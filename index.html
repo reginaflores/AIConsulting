@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello World</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0a0a0a;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      font-family: 'Courier New', monospace;
+      color: #fff;
+    }
+
+    h1 {
+      font-size: 3rem;
+      letter-spacing: 0.2em;
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+    }
+
+    .hal-container {
+      position: relative;
+      width: 220px;
+      height: 220px;
+    }
+
+    /* Pulsing glow animation */
+    @keyframes pulse {
+      0%, 100% { filter: drop-shadow(0 0 18px #ff2200) drop-shadow(0 0 40px #ff000088); }
+      50%       { filter: drop-shadow(0 0 32px #ff4400) drop-shadow(0 0 70px #ff000066); }
+    }
+
+    .hal-eye {
+      animation: pulse 2.5s ease-in-out infinite;
+    }
+
+    .caption {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+      color: #ff4422;
+      letter-spacing: 0.15em;
+      opacity: 0.85;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Hello, World</h1>
+
+  <div class="hal-container">
+    <!-- HAL 9000 eye drawn in SVG -->
+    <svg class="hal-eye" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
+      <!-- Outer housing ring -->
+      <circle cx="110" cy="110" r="108" fill="#1a1a1a" stroke="#333" stroke-width="3"/>
+
+      <!-- Mid ring -->
+      <circle cx="110" cy="110" r="88" fill="#111" stroke="#444" stroke-width="1.5"/>
+
+      <!-- Iris base (dark) -->
+      <circle cx="110" cy="110" r="70" fill="#0d0000"/>
+
+      <!-- Iris gradient glow -->
+      <defs>
+        <radialGradient id="irisGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"   stop-color="#ff6600" stop-opacity="1"/>
+          <stop offset="40%"  stop-color="#cc2200" stop-opacity="1"/>
+          <stop offset="75%"  stop-color="#880000" stop-opacity="1"/>
+          <stop offset="100%" stop-color="#1a0000" stop-opacity="1"/>
+        </radialGradient>
+        <radialGradient id="lensGrad" cx="38%" cy="35%" r="55%">
+          <stop offset="0%"   stop-color="#ffcc88" stop-opacity="0.9"/>
+          <stop offset="30%"  stop-color="#ff6600" stop-opacity="0.6"/>
+          <stop offset="100%" stop-color="#cc2200" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- Iris fill -->
+      <circle cx="110" cy="110" r="68" fill="url(#irisGrad)"/>
+
+      <!-- Concentric iris rings -->
+      <circle cx="110" cy="110" r="55" fill="none" stroke="#ff330044" stroke-width="6"/>
+      <circle cx="110" cy="110" r="43" fill="none" stroke="#ff220033" stroke-width="4"/>
+
+      <!-- Pupil -->
+      <circle cx="110" cy="110" r="28" fill="#050000"/>
+
+      <!-- Lens flare highlight -->
+      <circle cx="110" cy="110" r="68" fill="url(#lensGrad)"/>
+
+      <!-- Small specular dot -->
+      <circle cx="88" cy="88" r="7" fill="white" opacity="0.25"/>
+    </svg>
+  </div>
+
+
+</body>
+</html>
