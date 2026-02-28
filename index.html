@@ -3,101 +3,631 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hello World</title>
+  <title>Regina Flores Mir — AI Consultant</title>
   <style>
-    body {
-      margin: 0;
-      background-color: #0a0a0a;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      font-family: 'Courier New', monospace;
-      color: #fff;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f7f4ef;
+      --black: #0d0d0d;
+      --accent: #0047ff;
+      --mid: #555;
     }
 
-    h1 {
-      font-size: 3rem;
-      letter-spacing: 0.2em;
-      margin-bottom: 2rem;
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--black);
+      font-family: 'Georgia', serif;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 3rem;
+      background: var(--cream);
+      border-bottom: 1px solid #ddd;
+      z-index: 100;
+    }
+
+    nav .logo {
+      font-size: 0.9rem;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
-    .hal-container {
-      position: relative;
-      width: 220px;
-      height: 220px;
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
     }
 
-    /* Pulsing glow animation */
-    @keyframes pulse {
-      0%, 100% { filter: drop-shadow(0 0 18px #ff2200) drop-shadow(0 0 40px #ff000088); }
-      50%       { filter: drop-shadow(0 0 32px #ff4400) drop-shadow(0 0 70px #ff000066); }
+    nav a {
+      text-decoration: none;
+      color: var(--black);
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
     }
 
-    .hal-eye {
-      animation: pulse 2.5s ease-in-out infinite;
+    nav a:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 5rem 3rem 5rem;
+      border-bottom: 1px solid #ccc;
     }
 
-    .caption {
-      margin-top: 1.5rem;
-      font-size: 0.95rem;
-      color: #ff4422;
+    .hero-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.5rem, 10vw, 10rem);
+      font-weight: normal;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      max-width: 900px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-sub p {
+      font-size: 1.1rem;
+      color: var(--mid);
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    .hero-sub a {
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 2px solid var(--black);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .hero-sub a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 3rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 3rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-grid h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: normal;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .about-grid h2 em { font-style: italic; color: var(--accent); }
+
+    .about-right p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    .credentials {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .credential {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-top: 1px solid #ddd;
+      font-size: 0.9rem;
+    }
+
+    .credential .org { font-weight: bold; }
+    .credential .role { color: var(--mid); font-style: italic; }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0;
+      border: 1px solid #ccc;
+    }
+
+    .service {
+      padding: 2.5rem;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      transition: background 0.2s;
+    }
+
+    .service:hover { background: var(--black); color: var(--cream); }
+    .service:hover .service-num { color: var(--accent); }
+    .service:hover p { color: #aaa; }
+
+    .service-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+    }
+
+    .service h3 {
+      font-size: 1.3rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .service p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--mid);
+    }
+
+    /* CASE STUDIES */
+    .cases {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .case {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      padding: 3.5rem 0;
+      border-top: 1px solid #ccc;
+    }
+
+    .case:last-child { border-bottom: 1px solid #ccc; }
+
+    .case-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-top: 0.2rem;
+    }
+
+    .case-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    .case-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--mid);
+      letter-spacing: 0.05em;
+      line-height: 1.5;
+    }
+
+    .case-body h3 {
+      font-size: 1.4rem;
+      font-weight: normal;
+      margin-bottom: 1.8rem;
+      line-height: 1.3;
+    }
+
+    .case-boxes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .case-box {
+      border: 1px solid #ccc;
+      padding: 1.5rem;
+    }
+
+    .case-box-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
       letter-spacing: 0.15em;
-      opacity: 0.85;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.8rem;
+    }
+
+    .case-box p {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: #333;
+    }
+
+    @media (max-width: 900px) {
+      .case-boxes { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .case { grid-template-columns: 1fr; gap: 1rem; }
+    }
+
+    /* CONTACT */
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .contact-inner h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: normal;
+      line-height: 1.15;
+    }
+
+    .contact-inner h2 em { font-style: italic; color: var(--accent); }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-link {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      text-decoration: none;
+      color: var(--black);
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #ddd;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: var(--accent); }
+
+    .contact-link .link-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .contact-link:hover .link-label { color: var(--accent); }
+
+    .contact-link .link-value {
+      font-size: 1.1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--mid);
+      letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      nav ul { gap: 1.2rem; }
+      .hero { padding: 0 1.5rem 4rem; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <h1>Hello, World</h1>
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Regina Flores Mir</div>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#case-studies">Case Studies</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-  <div class="hal-container">
-    <!-- HAL 9000 eye drawn in SVG -->
-    <svg class="hal-eye" viewBox="0 0 220 220" xmlns="http://www.w3.org/2000/svg">
-      <!-- Outer housing ring -->
-      <circle cx="110" cy="110" r="108" fill="#1a1a1a" stroke="#333" stroke-width="3"/>
-
-      <!-- Mid ring -->
-      <circle cx="110" cy="110" r="88" fill="#111" stroke="#444" stroke-width="1.5"/>
-
-      <!-- Iris base (dark) -->
-      <circle cx="110" cy="110" r="70" fill="#0d0000"/>
-
-      <!-- Iris gradient glow -->
-      <defs>
-        <radialGradient id="irisGrad" cx="50%" cy="50%" r="50%">
-          <stop offset="0%"   stop-color="#ff6600" stop-opacity="1"/>
-          <stop offset="40%"  stop-color="#cc2200" stop-opacity="1"/>
-          <stop offset="75%"  stop-color="#880000" stop-opacity="1"/>
-          <stop offset="100%" stop-color="#1a0000" stop-opacity="1"/>
-        </radialGradient>
-        <radialGradient id="lensGrad" cx="38%" cy="35%" r="55%">
-          <stop offset="0%"   stop-color="#ffcc88" stop-opacity="0.9"/>
-          <stop offset="30%"  stop-color="#ff6600" stop-opacity="0.6"/>
-          <stop offset="100%" stop-color="#cc2200" stop-opacity="0"/>
-        </radialGradient>
-      </defs>
-
-      <!-- Iris fill -->
-      <circle cx="110" cy="110" r="68" fill="url(#irisGrad)"/>
-
-      <!-- Concentric iris rings -->
-      <circle cx="110" cy="110" r="55" fill="none" stroke="#ff330044" stroke-width="6"/>
-      <circle cx="110" cy="110" r="43" fill="none" stroke="#ff220033" stroke-width="4"/>
-
-      <!-- Pupil -->
-      <circle cx="110" cy="110" r="28" fill="#050000"/>
-
-      <!-- Lens flare highlight -->
-      <circle cx="110" cy="110" r="68" fill="url(#lensGrad)"/>
-
-      <!-- Small specular dot -->
-      <circle cx="88" cy="88" r="7" fill="white" opacity="0.25"/>
-    </svg>
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-tag">AI Consultant &amp; Strategist</p>
+    <h1>Making <em>AI</em> work for your business.</h1>
+    <div class="hero-sub">
+      <p>Bridging the gap between cutting-edge AI and the operational realities of finance, data, and enterprise systems.</p>
+      <a href="#contact">Get in touch &rarr;</a>
+    </div>
   </div>
 
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">// About</p>
+    <div class="about-grid">
+      <h2>Science. Finance. Design. Now <em>AI.</em></h2>
+      <div class="about-right">
+        <p>
+          I bring a rare combination of quantitative rigor, financial expertise, and design thinking to AI consulting.
+          With a background spanning astrophysics research at NASA, equity markets at Goldman Sachs, foreign exchange at JP Morgan,
+          and analytics leadership in consulting, I understand how organizations actually work — and where AI can genuinely move the needle.
+        </p>
+        <p>
+          I help companies cut through the AI hype and implement practical, high-impact solutions in operations,
+          reporting, and data systems. No buzzwords. Just results.
+        </p>
+
+        <div class="credentials">
+          <div class="credential">
+            <span class="org">Goldman Sachs</span>
+            <span class="role">Equity Prime Brokerage</span>
+          </div>
+          <div class="credential">
+            <span class="org">JP Morgan</span>
+            <span class="role">FX &amp; Commodities Sales</span>
+          </div>
+          <div class="credential">
+            <span class="org">NASA Ames Research Center</span>
+            <span class="role">Astrophysics Research</span>
+          </div>
+          <div class="credential">
+            <span class="org">Columbia University</span>
+            <span class="role">M.A. Statistics &amp; B.A. Physics</span>
+          </div>
+          <div class="credential">
+            <span class="org">Parsons School of Design</span>
+            <span class="role">MFA Design &amp; Technology</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label">// Services</p>
+    <div class="services-grid">
+      <div class="service">
+        <div class="service-num">01</div>
+        <h3>AI Strategy &amp; Roadmapping</h3>
+        <p>Assess where AI fits in your operations, identify high-value opportunities, and build a practical implementation plan your team can actually execute.</p>
+      </div>
+      <div class="service">
+        <div class="service-num">02</div>
+        <h3>Workflow Automation</h3>
+        <p>Map your existing processes and replace manual, repetitive work with intelligent automation — freeing your team to focus on what matters.</p>
+      </div>
+      <div class="service">
+        <div class="service-num">03</div>
+        <h3>Data &amp; Reporting Systems</h3>
+        <p>Build intelligent dashboards and reporting pipelines that surface insights automatically, replacing slow manual reporting with real-time clarity.</p>
+      </div>
+      <div class="service">
+        <div class="service-num">04</div>
+        <h3>Custom AI Tools</h3>
+        <p>Develop bespoke AI-powered tools tailored to your specific business problems — from internal assistants to predictive models and data pipelines.</p>
+      </div>
+      <div class="service">
+        <div class="service-num">05</div>
+        <h3>Finance &amp; Analytics AI</h3>
+        <p>Specialized expertise in applying AI to financial operations, quantitative analysis, risk reporting, and investment data workflows.</p>
+      </div>
+      <div class="service">
+        <div class="service-num">06</div>
+        <h3>Team Training &amp; Adoption</h3>
+        <p>Help your team understand, trust, and effectively use AI tools — turning skeptics into advocates and ensuring lasting organizational change.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section id="case-studies">
+    <p class="section-label">// Case Studies</p>
+    <div class="cases">
+
+      <div class="case">
+        <div class="case-meta">
+          <span class="case-num">01</span>
+          <span class="case-tag">Hedge Fund &mdash; Portfolio Reporting</span>
+        </div>
+        <div class="case-body">
+          <h3>Automating Portfolio Reporting for a Multi-Strategy Hedge Fund</h3>
+          <div class="case-boxes">
+            <div class="case-box">
+              <div class="case-box-label">Challenge</div>
+              <p>A mid-sized hedge fund was producing daily portfolio reports manually — a process taking analysts 3+ hours each morning, prone to errors, and leaving portfolio managers waiting for data when markets were already moving.</p>
+            </div>
+            <div class="case-box">
+              <div class="case-box-label">Approach</div>
+              <p>Audited the full reporting workflow and identified key data sources — prime brokerage feeds, internal risk systems, Bloomberg. Built an automated pipeline that ingested, reconciled, and normalized data nightly, generating reports with natural language summaries of portfolio movements, risk exposures, and attribution.</p>
+            </div>
+            <div class="case-box">
+              <div class="case-box-label">Outcome</div>
+              <p>Reporting time reduced from 3 hours to under 10 minutes. Portfolio managers received actionable morning briefs before market open. Analysts were freed to focus on analysis rather than data wrangling.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-meta">
+          <span class="case-num">02</span>
+          <span class="case-tag">Family Office &mdash; FX &amp; Multi-Asset Reporting</span>
+        </div>
+        <div class="case-body">
+          <h3>AI-Driven FX Exposure Reporting for a Global Family Office</h3>
+          <div class="case-boxes">
+            <div class="case-box">
+              <div class="case-box-label">Challenge</div>
+              <p>A family office with multi-currency, multi-asset holdings had no unified view of FX exposure across portfolios. Risk reporting was fragmented across spreadsheets maintained by different teams, making consolidated analysis slow and unreliable.</p>
+            </div>
+            <div class="case-box">
+              <div class="case-box-label">Approach</div>
+              <p>Designed a centralized data model consolidating positions across asset classes and currencies. Built an AI layer that calculated real-time FX exposure, generated plain-language risk summaries, and flagged threshold breaches automatically — replacing manual weekend reconciliation.</p>
+            </div>
+            <div class="case-box">
+              <div class="case-box-label">Outcome</div>
+              <p>The investment team gained a live, consolidated view of currency exposure for the first time. Weekend reconciliation was eliminated. Principals received automated weekly briefs with actionable hedging considerations derived directly from current positions.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-meta">
+          <span class="case-num">03</span>
+          <span class="case-tag">Consulting Firm &mdash; Data &amp; Analytics</span>
+        </div>
+        <div class="case-body">
+          <h3>Building an AI Analytics Layer for a Management Consulting Firm</h3>
+          <div class="case-boxes">
+            <div class="case-box">
+              <div class="case-box-label">Challenge</div>
+              <p>A consulting firm was sitting on years of client engagement data, project outcomes, and market research — but had no way to synthesize it. Consultants spent hours rebuilding analysis from scratch for each new engagement.</p>
+            </div>
+            <div class="case-box">
+              <div class="case-box-label">Approach</div>
+              <p>Designed and implemented a retrieval-augmented AI system that indexed the firm's full knowledge base and allowed consultants to query it conversationally. Built automated insight reports summarizing relevant past engagements, benchmark data, and methodology frameworks on demand.</p>
+            </div>
+            <div class="case-box">
+              <div class="case-box-label">Outcome</div>
+              <p>Consultants cut research and prep time by over 50% per engagement. The firm's institutional knowledge became accessible and actionable for the first time. New hires onboarded significantly faster with AI-assisted context on past work.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-meta">
+          <span class="case-num">04</span>
+          <span class="case-tag">Metropolitan Museum of Art &mdash; Data &amp; Cultural Engagement</span>
+        </div>
+        <div class="case-body">
+          <h3>The Hip Hop Project — Making 200,000 Artworks Accessible Through Rap Lyrics</h3>
+          <div class="case-boxes">
+            <div class="case-box">
+              <div class="case-box-label">Challenge</div>
+              <p>The Met's digital archive of 200,000+ works was largely inaccessible to younger, diverse audiences — particularly young people from nearby neighborhoods who had never engaged with the museum. The data existed; the entry point didn't.</p>
+            </div>
+            <div class="case-box">
+              <div class="case-box-label">Approach</div>
+              <p>Conducted ethnographic research to identify 13 culturally influential rappers. Built a system integrating the Rap Genius API and the Met's own digital API, using words from rap lyrics as keyword searches through the archive — generating curated, personalized "tours" of the collection through the lens of hip hop. Created for the Met Media Lab.</p>
+            </div>
+            <div class="case-box">
+              <div class="case-box-label">Outcome</div>
+              <p>Demonstrated how combining open cultural datasets with an unexpected interface layer can unlock entirely new audiences. The project launched at <a href="http://www.rappersdelight.nyc" target="_blank" style="color:var(--accent)">rappersdelight.nyc</a> — a model for how institutions with large, underutilized data archives can use API integration to drive discovery and engagement.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-meta">
+          <span class="case-num">05</span>
+          <span class="case-tag">Scientific Research &mdash; Data Visualization &amp; Urban Systems</span>
+        </div>
+        <div class="case-body">
+          <h3>Holobiont Urbanism — Mapping and Visualizing New York City's Microbiome</h3>
+          <div class="case-boxes">
+            <div class="case-box">
+              <div class="case-box-label">Challenge</div>
+              <p>Cutting-edge microbiome research from the Mason Lab at Weill Cornell was generating rich scientific data about the microbial life of NYC — but it was invisible to the public and locked in academic formats. How do you make complex biological data not just understandable, but viscerally felt?</p>
+            </div>
+            <div class="case-box">
+              <div class="case-box-label">Approach</div>
+              <p>Led design and visualization for a cross-disciplinary collaboration with MIT Media Lab, Weill Cornell, The Cooper Union, and the Extrapolation Factory. Combined DNA sequencing data collected via honeybees with thermal imaging of NYC streets and web-based 3D rendering to create a live data art installation — reframing the city as a biological superstructure.</p>
+            </div>
+            <div class="case-box">
+              <div class="case-box-label">Outcome</div>
+              <p>Featured in Wired, National Geographic, and Creative Applications. Results contributed to peer-reviewed publications in environmental microbiology. Demonstrated that rigorous scientific data, when designed with intention, can shift public perception at scale.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">// Contact</p>
+    <div class="contact-inner">
+      <h2>Let's talk about what <em>AI can do</em> for your organization.</h2>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:regina.flores@newschool.edu">
+          <span class="link-label">Email</span>
+          <span class="link-value">regina.flores@gmail.com</span>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/reginafloresmir" target="_blank">
+          <span class="link-label">LinkedIn</span>
+          <span class="link-value">linkedin.com/in/reginafloresmir</span>
+        </a>
+        <a class="contact-link" href="https://github.com/reginaflores" target="_blank">
+          <span class="link-label">GitHub</span>
+          <span class="link-value">github.com/reginaflores</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>&copy; 2026 Regina Flores Mir</span>
+    <span>AI Consultant &mdash; New York</span>
+  </footer>
 
 </body>
 </html>
