@@ -24,8 +24,8 @@
 
     /* NAV */
     nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
+      position: sticky;
+      top: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -60,13 +60,35 @@
 
     nav a:hover { color: var(--accent); }
 
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--black);
+      transition: all 0.25s;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
     /* HERO */
     .hero {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 0 3rem 5rem;
+      padding: 2rem 3rem 5rem;
       border-bottom: 1px solid #ccc;
     }
 
@@ -361,11 +383,26 @@
     }
 
     @media (max-width: 768px) {
-      nav { padding: 1rem 1.5rem; }
-      nav ul { gap: 1.2rem; }
-      .hero { padding: 0 1.5rem 4rem; }
-      section { padding: 4rem 1.5rem; }
+      nav { padding: 1rem 1.5rem; flex-wrap: wrap; }
+      .nav-toggle { display: flex; }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        padding: 0.5rem 0 1rem;
+      }
+      nav ul.open { display: flex; }
+      nav ul li { border-top: 1px solid #eee; }
+      nav a { display: block; padding: 0.75rem 0; font-size: 0.8rem; }
+      .hero { padding: 2rem 1.5rem 3rem; min-height: auto; justify-content: flex-start; }
+      .hero h1 { font-size: clamp(4rem, 18vw, 8rem); }
+      .hero-sub { flex-direction: column; align-items: flex-start; }
+      section { padding: 3rem 1.5rem; }
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .credential .role { text-align: right; }
+      .case { grid-template-columns: 1fr; gap: 1rem; padding: 2rem 0; }
+      .case-boxes { grid-template-columns: 1fr; }
       .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
       footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
     }
@@ -376,13 +413,29 @@
   <!-- NAV -->
   <nav>
     <div class="logo">Regina Flores Mir</div>
-    <ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="navMenu">
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#case-studies">Case Studies</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    // Close menu when a link is clicked
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      menu.classList.remove('open');
+    }));
+  </script>
 
   <!-- HERO -->
   <div class="hero">
