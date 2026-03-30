@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (window.location.hash) history.replaceState(null, '', window.location.pathname);
+    window.scrollTo(0, 0);
+  </script>
   <title>Regina Flores Mir — AI Consultant</title>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -288,38 +293,49 @@
       line-height: 1.3;
     }
 
-    .case-boxes {
+    .case-details {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      gap: 2rem;
     }
 
-    .case-box {
-      border: 1px solid #ccc;
-      padding: 1.5rem;
-    }
-
-    .case-box-label {
+    .case-detail-label {
       font-family: 'Courier New', monospace;
       font-size: 0.7rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--accent);
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.75rem;
+      display: block;
     }
 
-    .case-box p {
+    .case-detail p {
       font-size: 0.88rem;
-      line-height: 1.75;
-      color: #333;
+      line-height: 1.7;
+      color: var(--black);
     }
 
-    @media (max-width: 900px) {
-      .case-boxes { grid-template-columns: 1fr; }
+    .dash-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
     }
 
-    @media (max-width: 768px) {
-      .case { grid-template-columns: 1fr; gap: 1rem; }
+    .dash-list li {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--black);
+    }
+
+    .dash-list li::before {
+      content: '\2192';
+      color: var(--accent);
+      flex-shrink: 0;
     }
 
     /* CONTACT */
@@ -403,7 +419,7 @@
       .about-grid { grid-template-columns: 1fr; gap: 2rem; }
       .credential .role { text-align: right; }
       .case { grid-template-columns: 1fr; gap: 1rem; padding: 2rem 0; }
-      .case-boxes { grid-template-columns: 1fr; }
+      .case-details { grid-template-columns: 1fr; gap: 1.5rem; }
       .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
       footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
     }
@@ -431,7 +447,6 @@
       toggle.classList.toggle('open');
       menu.classList.toggle('open');
     });
-    // Close menu when a link is clicked
     menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
       toggle.classList.remove('open');
       menu.classList.remove('open');
@@ -443,7 +458,7 @@
     <p class="hero-tag">AI Consultant &amp; Strategist</p>
     <h1>Making <em>AI</em> work for your business.</h1>
     <div class="hero-sub">
-      <p>Bridging the gap between cutting-edge AI and the operational realities of finance, data, and enterprise systems.</p>
+      <p>Bridging the gap between cutting-edge AI and the operational realities of enterprise systems.</p>
       <a href="#contact">Get in touch &rarr;</a>
     </div>
   </div>
@@ -452,16 +467,16 @@
   <section id="about">
     <p class="section-label">// About</p>
     <div class="about-grid">
-      <h2>Science. Finance. Design. <em>AI.</em></h2>
+      <h2>Dev. Data. Design. <em>AI.</em></h2>
       <div class="about-right">
         <p>
-          I bring a rare combination of quantitative rigor, financial expertise, and design thinking to AI consulting.
+          I bring a rare combination of quantitative rigor, financial expertise, project management and software development, and design thinking to AI consulting.
           With a background spanning astrophysics research at NASA, prime brokerage at Goldman Sachs, foreign exchange at JP Morgan,
-          and analytics leadership in consulting, I understand how organizations actually work — and where AI can genuinely move the needle.
+          analytics leadership in consulting, and product development as a founder, I understand how organizations actually work — and where AI can genuinely move the needle.
         </p>
         <p>
           I help companies cut through the AI hype and implement practical, high-impact solutions in operations,
-          reporting, and data systems. No buzzwords. Just results.
+          reporting, and data systems.
         </p>
 
         <div class="credentials">
@@ -524,6 +539,16 @@
         <h3>Team Training &amp; Adoption</h3>
         <p>Help your team understand, trust, and effectively use AI tools — turning skeptics into advocates and ensuring lasting organizational change.</p>
       </div>
+      <div class="service">
+        <div class="service-num">07</div>
+        <h3>Full Stack Development &amp; Implementation</h3>
+        <p>End-to-end development of AI-powered applications — from database and backend architecture to polished, client-facing interfaces built to production standards.</p>
+      </div>
+      <div class="service">
+        <div class="service-num">08</div>
+        <h3>Design &amp; Creative Direction</h3>
+        <p>From data visualization and interaction design to visual systems and brand identity — bringing aesthetic rigor and design thinking to every layer of a product, from the first concept to the final interface.</p>
+      </div>
     </div>
   </section>
 
@@ -535,22 +560,26 @@
       <div class="case">
         <div class="case-meta">
           <span class="case-num">01</span>
-          <span class="case-tag">Hedge Fund &mdash; Portfolio Reporting</span>
+          <span class="case-tag">NY Startup &mdash; AI-First Systems &amp; Development</span>
         </div>
         <div class="case-body">
-          <h3>Automating Portfolio Reporting for a Multi-Strategy Hedge Fund</h3>
-          <div class="case-boxes">
-            <div class="case-box">
-              <div class="case-box-label">Challenge</div>
-              <p>A mid-sized hedge fund was producing daily portfolio reports manually — a process taking analysts 3+ hours each morning, prone to errors, and leaving portfolio managers waiting for data when markets were already moving.</p>
+          <h3>Building AI-First Systems and Front End for a New York-Based Founder</h3>
+          <div class="case-details">
+            <div class="case-detail">
+              <span class="case-detail-label">Challenge</span>
+              <p>A New York-based founder needed to bring a product to life but faced the prospect of a costly traditional buildout — hiring a full engineering team, long development cycles, and significant capital burn before reaching an MVP. They needed a smarter path forward.</p>
             </div>
-            <div class="case-box">
-              <div class="case-box-label">Approach</div>
-              <p>Audited the full reporting workflow and identified key data sources — prime brokerage feeds, internal risk systems, Bloomberg. Built an automated pipeline that ingested, reconciled, and normalized data nightly, generating reports with natural language summaries of portfolio movements, risk exposures, and attribution.</p>
+            <div class="case-detail">
+              <span class="case-detail-label">Approach</span>
+              <ul class="dash-list">
+                <li>Worked directly with the founder to map the AI landscape and identify where AI could replace traditional engineering overhead</li>
+                <li>Designed and built AI-first backend systems that leveraged language models as core infrastructure, not bolt-on features</li>
+                <li>Developed the front end with modern tooling, moving from concept to working product at startup speed</li>
+              </ul>
             </div>
-            <div class="case-box">
-              <div class="case-box-label">Outcome</div>
-              <p>Reporting time reduced from 3 hours to under 10 minutes. Portfolio managers received actionable morning briefs before market open. Analysts were freed to focus on analysis rather than data wrangling.</p>
+            <div class="case-detail">
+              <span class="case-detail-label">Outcome</span>
+              <p>The founder launched a functional product at a fraction of the cost of a traditional buildout. AI-first architecture eliminated the need for a large engineering team, saving significant capital while delivering a system built to scale.</p>
             </div>
           </div>
         </div>
@@ -559,22 +588,26 @@
       <div class="case">
         <div class="case-meta">
           <span class="case-num">02</span>
-          <span class="case-tag">Family Office &mdash; FX &amp; Multi-Asset Reporting</span>
+          <span class="case-tag">Private Equity &mdash; AI Adoption &amp; Reporting</span>
         </div>
         <div class="case-body">
-          <h3>AI-Driven FX Exposure Reporting for a Global Family Office</h3>
-          <div class="case-boxes">
-            <div class="case-box">
-              <div class="case-box-label">Challenge</div>
-              <p>A family office with multi-currency, multi-asset holdings had no unified view of FX exposure across portfolios. Risk reporting was fragmented across spreadsheets maintained by different teams, making consolidated analysis slow and unreliable.</p>
+          <h3>Advising a Private Equity Portfolio Manager on Integrating Claude into Reporting Systems</h3>
+          <div class="case-details">
+            <div class="case-detail">
+              <span class="case-detail-label">Challenge</span>
+              <p>A private equity portfolio manager wanted to use AI to streamline investor reporting and portfolio monitoring but had no technical foundation for it — and no internal team to evaluate or implement the right approach. The tools existed; the strategy didn't.</p>
             </div>
-            <div class="case-box">
-              <div class="case-box-label">Approach</div>
-              <p>Designed a centralized data model consolidating positions across asset classes and currencies. Built an AI layer that calculated real-time FX exposure, generated plain-language risk summaries, and flagged threshold breaches automatically — replacing manual weekend reconciliation.</p>
+            <div class="case-detail">
+              <span class="case-detail-label">Approach</span>
+              <ul class="dash-list">
+                <li>Assessed existing reporting workflows and identified highest-leverage integration points for Claude</li>
+                <li>Designed a Claude-powered system to draft LP update narratives from structured portfolio data</li>
+                <li>Built lightweight tooling to flag portfolio anomalies and surface them in plain language for the investment team</li>
+              </ul>
             </div>
-            <div class="case-box">
-              <div class="case-box-label">Outcome</div>
-              <p>The investment team gained a live, consolidated view of currency exposure for the first time. Weekend reconciliation was eliminated. Principals received automated weekly briefs with actionable hedging considerations derived directly from current positions.</p>
+            <div class="case-detail">
+              <span class="case-detail-label">Outcome</span>
+              <p>LP report drafting time cut by over 60%. The portfolio manager gained a clear, actionable AI integration roadmap. The team moved from AI curiosity to confident, daily use of Claude as a core part of their reporting process.</p>
             </div>
           </div>
         </div>
@@ -583,22 +616,27 @@
       <div class="case">
         <div class="case-meta">
           <span class="case-num">03</span>
-          <span class="case-tag">Consulting Firm &mdash; Data &amp; Analytics</span>
+          <span class="case-tag">Financial Services &mdash; Team Training &amp; Adoption</span>
         </div>
         <div class="case-body">
-          <h3>Building an AI Analytics Layer for a Management Consulting Firm</h3>
-          <div class="case-boxes">
-            <div class="case-box">
-              <div class="case-box-label">Challenge</div>
-              <p>A consulting firm was sitting on years of client engagement data, project outcomes, and market research — but had no way to synthesize it. Consultants spent hours rebuilding analysis from scratch for each new engagement.</p>
+          <h3>AI Training and Adoption Program for a Financial Services Team</h3>
+          <div class="case-details">
+            <div class="case-detail">
+              <span class="case-detail-label">Challenge</span>
+              <p>A financial services firm had invested in AI tooling but adoption was stalling. Team members were skeptical, unsure how AI fit their specific workflows, and defaulting to old habits. The tools were there — the organizational buy-in wasn't.</p>
             </div>
-            <div class="case-box">
-              <div class="case-box-label">Approach</div>
-              <p>Designed and implemented a retrieval-augmented AI system that indexed the firm's full knowledge base and allowed consultants to query it conversationally. Built automated insight reports summarizing relevant past engagements, benchmark data, and methodology frameworks on demand.</p>
+            <div class="case-detail">
+              <span class="case-detail-label">Approach</span>
+              <ul class="dash-list">
+                <li>Ran a workflow audit across teams to identify where AI could create immediate, visible wins</li>
+                <li>Designed role-specific training sessions — analysts, operations, and leadership each received tailored programming</li>
+                <li>Built internal prompt libraries and reference guides specific to the firm's use cases</li>
+                <li>Established a feedback loop to track adoption and iterate on tooling in real time</li>
+              </ul>
             </div>
-            <div class="case-box">
-              <div class="case-box-label">Outcome</div>
-              <p>Consultants cut research and prep time by over 50% per engagement. The firm's institutional knowledge became accessible and actionable for the first time. New hires onboarded significantly faster with AI-assisted context on past work.</p>
+            <div class="case-detail">
+              <span class="case-detail-label">Outcome</span>
+              <p>AI tool usage increased significantly across all teams within 30 days. Skeptics became internal advocates. The firm developed lasting AI literacy — not just familiarity with tools, but the judgment to apply them strategically to new problems.</p>
             </div>
           </div>
         </div>
@@ -610,19 +648,24 @@
           <span class="case-tag">Metropolitan Museum of Art &mdash; Data &amp; Cultural Engagement</span>
         </div>
         <div class="case-body">
-          <h3>The Hip Hop Project — Making 200,000 Artworks Accessible Through Rap Lyrics</h3>
-          <div class="case-boxes">
-            <div class="case-box">
-              <div class="case-box-label">Challenge</div>
-              <p>The Met's digital archive of 200,000+ works was largely inaccessible to younger, diverse audiences — particularly young people from nearby neighborhoods who had never engaged with the museum. The data existed; the entry point didn't.</p>
+          <h3>Making 200,000 Artworks Accessible Through Rap Lyrics</h3>
+          <div class="case-details">
+            <div class="case-detail">
+              <span class="case-detail-label">Challenge</span>
+              <p>The Met's digital archive of 200,000+ works was largely inaccessible to younger audiences — particularly young people from nearby neighborhoods who had never engaged with the museum. The data existed; the entry point didn't.</p>
             </div>
-            <div class="case-box">
-              <div class="case-box-label">Approach</div>
-              <p>Conducted ethnographic research to identify 13 culturally influential rappers. Built a system integrating the Rap Genius API and the Met's own digital API, using words from rap lyrics as keyword searches through the archive — generating curated, personalized "tours" of the collection through the lens of hip hop. Created for the Met Media Lab.</p>
+            <div class="case-detail">
+              <span class="case-detail-label">Approach</span>
+              <ul class="dash-list">
+                <li>Conducted ethnographic research to identify 13 culturally influential rappers</li>
+                <li>Integrated the Rap Genius API and the Met's digital API</li>
+                <li>Used rap lyrics as keyword searches to generate curated, personalized "tours" of the collection</li>
+                <li>Created for the Met Media Lab</li>
+              </ul>
             </div>
-            <div class="case-box">
-              <div class="case-box-label">Outcome</div>
-              <p>Demonstrated how combining open cultural datasets with an unexpected interface layer can unlock entirely new audiences. The project launched at <a href="http://www.rappersdelight.nyc" target="_blank" style="color:var(--accent)">rappersdelight.nyc</a> — a model for how institutions with large, underutilized data archives can use API integration to drive discovery and engagement.</p>
+            <div class="case-detail">
+              <span class="case-detail-label">Outcome</span>
+              <p>Demonstrated how combining open cultural datasets with an unexpected interface layer can unlock entirely new audiences. The project launched at <a href="http://www.rappersdelight.nyc" target="_blank" style="color:var(--accent);">rappersdelight.nyc</a> — a model for how institutions with large, underutilized data archives can use API integration to drive discovery and engagement.</p>
             </div>
           </div>
         </div>
@@ -631,22 +674,53 @@
       <div class="case">
         <div class="case-meta">
           <span class="case-num">05</span>
-          <span class="case-tag">Scientific Research &mdash; Data Visualization &amp; Urban Systems</span>
+          <span class="case-tag">MIT Media Lab &mdash; Data Visualization &amp; Urban Systems</span>
         </div>
         <div class="case-body">
-          <h3>Holobiont Urbanism — Mapping and Visualizing New York City's Microbiome</h3>
-          <div class="case-boxes">
-            <div class="case-box">
-              <div class="case-box-label">Challenge</div>
+          <h3>Mapping and Visualizing New York City's Microbiome</h3>
+          <div class="case-details">
+            <div class="case-detail">
+              <span class="case-detail-label">Challenge</span>
               <p>Cutting-edge microbiome research from the Mason Lab at Weill Cornell was generating rich scientific data about the microbial life of NYC — but it was invisible to the public and locked in academic formats. How do you make complex biological data not just understandable, but viscerally felt?</p>
             </div>
-            <div class="case-box">
-              <div class="case-box-label">Approach</div>
-              <p>Led design and visualization for a cross-disciplinary collaboration with MIT Media Lab, Weill Cornell, The Cooper Union, and the Extrapolation Factory. Combined DNA sequencing data collected via honeybees with thermal imaging of NYC streets and web-based 3D rendering to create a live data art installation — reframing the city as a biological superstructure.</p>
+            <div class="case-detail">
+              <span class="case-detail-label">Approach</span>
+              <ul class="dash-list">
+                <li>Led design for a cross-disciplinary collaboration with MIT Media Lab and Weill Cornell</li>
+                <li>Combined DNA sequencing data collected via honeybees with thermal imaging of NYC streets</li>
+                <li>Created web-based 3D rendering tool to create a live data installation — reframing the city as a biological superstructure</li>
+              </ul>
             </div>
-            <div class="case-box">
-              <div class="case-box-label">Outcome</div>
-              <p>Featured in Wired, National Geographic, and Creative Applications. Results contributed to peer-reviewed publications in environmental microbiology. Demonstrated that rigorous scientific data, when designed with intention, can shift public perception at scale.</p>
+            <div class="case-detail">
+              <span class="case-detail-label">Outcome</span>
+              <p>Presented at the Venice Biennale and featured in Wired and National Geographic. Results contributed to peer-reviewed publications in environmental microbiology. Demonstrated that rigorous scientific data, when designed with intention, can shift public perception at scale.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-meta">
+          <span class="case-num">06</span>
+          <span class="case-tag">Data X &mdash; Privacy &amp; Machine Learning</span>
+        </div>
+        <div class="case-body">
+          <h3>Making Facebook's Invisible Surveillance Visible</h3>
+          <div class="case-details">
+            <div class="case-detail">
+              <span class="case-detail-label">Challenge</span>
+              <p>How do you show a user that Facebook's continuous profiling is for the purpose of building detailed personality models to target ads to you? Most users had no idea this was happening, let alone what conclusions the platform had drawn about them.</p>
+            </div>
+            <div class="case-detail">
+              <span class="case-detail-label">Approach</span>
+              <ul class="dash-list">
+                <li>Built a front-end product that mirrored Facebook's own data collection — tracking likes, link clicks, post dwell time, and typed text</li>
+                <li>Integrated IBM Watson Personality Insights and the Apply Magic Sauce ML algorithm to generate real-time personality predictions</li>
+              </ul>
+            </div>
+            <div class="case-detail">
+              <span class="case-detail-label">Outcome</span>
+              <p>Over 70,000 installs on the Chrome Web Store. Covered by Vice, Fast Company, Mashable, The Next Web, and Big Think. Nominated for The Index Project award. Sparked mainstream conversation about algorithmic profiling and data rights — demonstrating that technical tools can be powerful instruments of public education.</p>
             </div>
           </div>
         </div>
@@ -680,7 +754,7 @@
   <!-- FOOTER -->
   <footer>
     <span>&copy; 2026 Regina Flores Mir</span>
-    <span>AI Consultant &mdash; New York</span>
+    <span>BUILT IN NYC</span>
   </footer>
 
 </body>

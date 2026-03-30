@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    if (window.location.hash) history.replaceState(null, '', window.location.pathname);
+    window.scrollTo(0, 0);
+  </script>
+  <title>Regina Flores Mir — AI Consultant</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f7f4ef;
+      --black: #0d0d0d;
+      --accent: #0047ff;
+      --mid: #555;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--black);
+      font-family: 'Georgia', serif;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 3rem;
+      background: var(--cream);
+      border-bottom: 1px solid #ddd;
+      z-index: 100;
+    }
+
+    nav .logo {
+      font-size: 0.9rem;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--black);
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--black);
+      transition: all 0.25s;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem 3rem 5rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .hero-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(3.5rem, 10vw, 10rem);
+      font-weight: normal;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      max-width: 900px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .hero-sub p {
+      font-size: 1.1rem;
+      color: var(--mid);
+      max-width: 480px;
+      line-height: 1.6;
+    }
+
+    .hero-sub a {
+      font-family: 'Courier New', monospace;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      text-decoration: none;
+      border-bottom: 2px solid var(--black);
+      padding-bottom: 2px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .hero-sub a:hover { color: var(--accent); border-color: var(--accent); }
+
+    /* SECTIONS */
+    section {
+      padding: 6rem 3rem;
+      border-bottom: 1px solid #ccc;
+      scroll-margin-top: 4rem;
+    }
+
+    .section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 3rem;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .about-grid h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: normal;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .about-grid h2 em { font-style: italic; color: var(--accent); }
+
+    .about-right p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    .credentials {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .credential {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-top: 1px solid #ddd;
+      font-size: 0.9rem;
+    }
+
+    .credential .org { font-weight: bold; }
+    .credential .role { color: var(--mid); font-style: italic; }
+
+    /* SERVICES */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 0;
+      border: 1px solid #ccc;
+    }
+
+    .service {
+      padding: 2.5rem;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      transition: background 0.2s;
+    }
+
+    .service:hover { background: var(--black); color: var(--cream); }
+    .service:hover .service-num { color: var(--accent); }
+    .service:hover p { color: #aaa; }
+
+    .service-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+    }
+
+    .service h3 {
+      font-size: 1.3rem;
+      font-weight: normal;
+      margin-bottom: 1rem;
+      line-height: 1.3;
+    }
+
+    .service p {
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--mid);
+    }
+
+    /* CASE STUDIES */
+    /* CASE STUDIES */
+    .cases {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .case {
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: 3rem;
+      padding: 3.5rem 0;
+      border-top: 1px solid #ccc;
+    }
+
+    .case:last-child { border-bottom: 1px solid #ccc; }
+
+    .case-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      padding-top: 0.2rem;
+    }
+
+    .case-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+    }
+
+    .case-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.72rem;
+      color: var(--mid);
+      letter-spacing: 0.05em;
+      line-height: 1.5;
+    }
+
+    .case-body h3 {
+      font-size: 1.4rem;
+      font-weight: normal;
+      margin-bottom: 1.8rem;
+      line-height: 1.3;
+    }
+
+    .case-boxes {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .case-box-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* FLIP BOX */
+    .case-box {
+      border: 1px solid #ccc;
+      perspective: 800px;
+      cursor: pointer;
+      height: 220px;
+      transition: border-color 0.2s;
+    }
+
+    .case-box:hover { border-color: var(--accent); }
+
+    .case-box-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
+      transform-style: preserve-3d;
+    }
+
+    .case-box.flipped .case-box-inner { transform: rotateY(180deg); }
+
+    .case-box-front,
+    .case-box-back {
+      position: absolute;
+      inset: 0;
+      padding: 1.5rem;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    .case-box-front {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .split-card {
+      flex-direction: row;
+      padding: 0;
+    }
+
+    .split-half {
+      flex: 1;
+      background-size: cover;
+      background-position: center;
+    }
+
+
+    .case-box-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .case-box-back {
+      transform: rotateY(180deg);
+      background: var(--cream);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .dash-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .dash-list li {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: var(--black);
+    }
+
+    .dash-list li::before {
+      content: '→';
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .case-box-back p {
+      font-size: 0.82rem;
+      line-height: 1.7;
+      color: var(--black);
+    }
+
+    .case-box-back a { color: var(--accent); }
+
+    /* Per-box gradient images */
+    .bg-challenge { background: linear-gradient(145deg, #0d1b2a 0%, #1a3a5c 100%); }
+    .bg-approach   { background: linear-gradient(145deg, #0d1a0d 0%, #1a4a1a 100%); }
+    .bg-outcome    { background: linear-gradient(145deg, #1a0d1a 0%, #3a1a3a 100%); }
+
+    @media (max-width: 900px) {
+      .case-boxes { grid-template-columns: 1fr; }
+      .case-box { height: 180px; }
+    }
+
+    /* CONTACT */
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .contact-inner h2 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: normal;
+      line-height: 1.15;
+    }
+
+    .contact-inner h2 em { font-style: italic; color: var(--accent); }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .contact-link {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      text-decoration: none;
+      color: var(--black);
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #ddd;
+      transition: color 0.2s;
+    }
+
+    .contact-link:hover { color: var(--accent); }
+
+    .contact-link .link-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .contact-link:hover .link-label { color: var(--accent); }
+
+    .contact-link .link-value {
+      font-size: 1.1rem;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--mid);
+      letter-spacing: 0.08em;
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; flex-wrap: wrap; }
+      .nav-toggle { display: flex; }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        padding: 0.5rem 0 1rem;
+      }
+      nav ul.open { display: flex; }
+      nav ul li { border-top: 1px solid #eee; }
+      nav a { display: block; padding: 0.75rem 0; font-size: 0.8rem; }
+      .hero { padding: 2rem 1.5rem 3rem; min-height: auto; justify-content: flex-start; }
+      .hero h1 { font-size: clamp(4rem, 18vw, 8rem); }
+      .hero-sub { flex-direction: column; align-items: flex-start; }
+      section { padding: 3rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .credential .role { text-align: right; }
+      .case { grid-template-columns: 1fr; gap: 1rem; padding: 2rem 0; }
+      .case-boxes { grid-template-columns: 1fr; }
+      .case-box { height: 160px; }
+      .contact-inner { grid-template-columns: 1fr; gap: 2rem; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Regina Flores Mir</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="navMenu">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#case-studies">Case Studies</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    // Close menu when a link is clicked
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      menu.classList.remove('open');
+    }));
+
+  </script>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-tag">AI Consultant &amp; Strategist</p>
+    <h1>Making <em>AI</em> work for your business.</h1>
+    <div class="hero-sub">
+      <p>Bridging the gap between cutting-edge AI and the operational realities of enterprise systems.</p>
+      <a href="#contact">Get in touch &rarr;</a>
+    </div>
+  </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">// About</p>
+    <div class="about-grid">
+      <h2>Dev. Data. Design. <em>AI.</em></h2>
+      <div class="about-right">
+        <p>
+          I bring a rare combination of quantitative rigor, financial expertise, project management and software development, and design thinking to AI consulting.
+          With a background spanning astrophysics research at NASA, prime brokerage at Goldman Sachs, foreign exchange at JP Morgan,
+          analytics leadership in consulting, and product development as a founder, I understand how organizations actually work — and where AI can genuinely move the needle.
+        </p>
+        <p>
+          I help companies cut through the AI hype and implement practical, high-impact solutions in operations,
+          reporting, and data systems.        </p>
+
+        <div class="credentials">
+          <div class="credential">
+            <span class="org">Goldman Sachs</span>
+            <span class="role">Equity Prime Brokerage</span>
+          </div>
+          <div class="credential">
+            <span class="org">JP Morgan</span>
+            <span class="role">FX &amp; Commodities Sales</span>
+          </div>
+          <div class="credential">
+            <span class="org">NASA Ames Research Center</span>
+            <span class="role">Astrophysics Research</span>
+          </div>
+          <div class="credential">
+            <span class="org">Columbia University</span>
+            <span class="role">MA Statistics &amp; B.A. Physics</span>
+          </div>
+          <div class="credential">
+            <span class="org">Parsons School of Design</span>
+            <span class="role">MFA Design &amp; Technology</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <p class="section-label">// Services</p>
+    <div class="services-grid">
+      <div class="service">
+        <div class="service-num">01</div>
+        <h3>AI Strategy &amp; Roadmapping</h3>
+        <p>Assess where AI fits in your operations, identify high-value opportunities, and build a practical implementation plan your team can actually execute.</p>
+      </div>
+      <div class="service">
+        <div class="service-num">02</div>
+        <h3>Workflow Automation</h3>
+        <p>Map your existing processes and replace manual, repetitive work with intelligent automation — freeing your team to focus on what matters.</p>
+      </div>
+      <div class="service">
+        <div class="service-num">03</div>
+        <h3>Data &amp; Reporting Systems</h3>
+        <p>Build intelligent dashboards and reporting pipelines that surface insights automatically, replacing slow manual reporting with real-time clarity.</p>
+      </div>
+      <div class="service">
+        <div class="service-num">04</div>
+        <h3>Custom AI Tools</h3>
+        <p>Develop bespoke AI-powered tools tailored to your specific business problems — from internal assistants to predictive models and data pipelines.</p>
+      </div>
+      <div class="service">
+        <div class="service-num">05</div>
+        <h3>Finance &amp; Analytics AI</h3>
+        <p>Specialized expertise in applying AI to financial operations, quantitative analysis, risk reporting, and investment data workflows.</p>
+      </div>
+      <div class="service">
+        <div class="service-num">06</div>
+        <h3>Team Training &amp; Adoption</h3>
+        <p>Help your team understand, trust, and effectively use AI tools — turning skeptics into advocates and ensuring lasting organizational change.</p>
+      </div>
+      <div class="service">
+        <div class="service-num">07</div>
+        <h3>Full Stack Development &amp; Implementation</h3>
+        <p>End-to-end development of AI-powered applications — from database and backend architecture to polished, client-facing interfaces built to production standards.</p>
+      </div>
+      <div class="service">
+        <div class="service-num">08</div>
+        <h3>Design &amp; Creative Direction</h3>
+        <p>From data visualization and interaction design to visual systems and brand identity — bringing aesthetic rigor and design thinking to every layer of a product, from the first concept to the final interface.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE STUDIES -->
+  <section id="case-studies">
+    <p class="section-label">// Case Studies</p>
+    <div class="cases">
+
+      <!-- CASE STUDY - iGaming (commented out for now)
+      <div class="case">
+        <div class="case-meta">
+          <span class="case-num">01</span>
+          <span class="case-tag">iGaming (Public Co.) &mdash; AI Adoption &amp; Workshops</span>
+        </div>
+        <div class="case-body">
+          <h3>AI Adoption Workshops for a Publicly Traded iGaming Company</h3>
+          <div class="case-boxes">
+            <div class="case-box-wrap">
+              <span class="case-box-label">Challenge</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://images.unsplash.com/photo-1596838132731-3301c3fd4317?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <p>A publicly traded iGaming company wanted to integrate AI across operations but leadership lacked clarity on the rapidly evolving AI landscape. Teams were uncertain where AI could add value, and the sales department was buried in repetitive manual processes with no automation in place.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Approach</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <ul class="dash-list">
+                      <li>Led executive workshops mapping the current AI landscape — models, capabilities, limitations, and competitive implications for iGaming</li>
+                      <li>Worked with C-suite to identify high-impact workflows for AI implementation across departments</li>
+                      <li>Trained the sales team to build their own internal automation tools — lead scoring scripts, outreach templating, and CRM data enrichment</li>
+                      <li>Created a repeatable AI adoption framework tailored to the company's regulatory and operational constraints</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Outcome</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <p>Executives gained a clear AI strategy aligned with business goals. The sales team independently built and deployed internal automation tools, reducing manual outreach prep by 60%. The company established an internal AI working group to continue driving adoption post-engagement.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      -->
+
+      <div class="case">
+        <div class="case-meta">
+          <span class="case-num">01</span>
+          <span class="case-tag">NY Startup &mdash; AI-First Systems &amp; Development</span>
+        </div>
+        <div class="case-body">
+          <h3>Building AI-First Systems and Front End for a New York-Based Founder</h3>
+          <div class="case-boxes">
+            <div class="case-box-wrap">
+              <span class="case-box-label">Challenge</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://museumnerd.com/cdn/shop/products/EP-15919_2000x2000_00.jpg?v=1641242942'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <p>A New York-based founder needed to bring a product to life but faced the prospect of a costly traditional buildout — hiring a full engineering team, long development cycles, and significant capital burn before reaching an MVP. They needed a smarter path forward.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Approach</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://miro.medium.com/1*-b-KLj-DFmgxN3I01LtU8A.jpeg'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <ul class="dash-list">
+                      <li>Worked directly with the founder to map the AI landscape and identify where AI could replace traditional engineering overhead</li>
+                      <li>Designed and built AI-first backend systems that leveraged language models as core infrastructure, not bolt-on features</li>
+                      <li>Developed the front end with modern tooling, moving from concept to working product at startup speed</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Outcome</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <p>The founder launched a functional product at a fraction of the cost of a traditional buildout. AI-first architecture eliminated the need for a large engineering team, saving significant capital while delivering a system built to scale.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-meta">
+          <span class="case-num">02</span>
+          <span class="case-tag">Private Equity &mdash; AI Adoption &amp; Reporting</span>
+        </div>
+        <div class="case-body">
+          <h3>Advising a Private Equity Portfolio Manager on Integrating Claude into Reporting Systems</h3>
+          <div class="case-boxes">
+            <div class="case-box-wrap">
+              <span class="case-box-label">Challenge</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <p>A private equity portfolio manager wanted to use AI to streamline investor reporting and portfolio monitoring but had no technical foundation for it — and no internal team to evaluate or implement the right approach. The tools existed; the strategy didn't.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Approach</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://images.unsplash.com/photo-1677442136019-21780ecad995?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <ul class="dash-list">
+                      <li>Assessed existing reporting workflows and identified highest-leverage integration points for Claude</li>
+                      <li>Designed a Claude-powered system to draft LP update narratives from structured portfolio data</li>
+                      <li>Built lightweight tooling to flag portfolio anomalies and surface them in plain language for the investment team</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Outcome</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <p>LP report drafting time cut by over 60%. The portfolio manager gained a clear, actionable AI integration roadmap. The team moved from AI curiosity to confident, daily use of Claude as a core part of their reporting process.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-meta">
+          <span class="case-num">03</span>
+          <span class="case-tag">Financial Services &mdash; Team Training &amp; Adoption</span>
+        </div>
+        <div class="case-body">
+          <h3>AI Training and Adoption Program for a Financial Services Team</h3>
+          <div class="case-boxes">
+            <div class="case-box-wrap">
+              <span class="case-box-label">Challenge</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://images.unsplash.com/photo-1556761175-4b46a572b786?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <p>A financial services firm had invested in AI tooling but adoption was stalling. Team members were skeptical, unsure how AI fit their specific workflows, and defaulting to old habits. The tools were there — the organizational buy-in wasn't.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Approach</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <ul class="dash-list">
+                      <li>Ran a workflow audit across teams to identify where AI could create immediate, visible wins</li>
+                      <li>Designed role-specific training sessions — analysts, operations, and leadership each received tailored programming</li>
+                      <li>Built internal prompt libraries and reference guides specific to the firm's use cases</li>
+                      <li>Established a feedback loop to track adoption and iterate on tooling in real time</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Outcome</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <p>AI tool usage increased significantly across all teams within 30 days. Skeptics became internal advocates. The firm developed lasting AI literacy — not just familiarity with tools, but the judgment to apply them strategically to new problems.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-meta">
+          <span class="case-num">04</span>
+          <span class="case-tag">Metropolitan Museum of Art &mdash; Data &amp; Cultural Engagement</span>
+        </div>
+        <div class="case-body">
+          <h3>Making 200,000 Artworks Accessible Through Rap Lyrics</h3>
+          <div class="case-boxes">
+            <div class="case-box-wrap">
+              <span class="case-box-label">Challenge</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/24/61/95/89/the-met-fifth-avenue.jpg?w=1400&h=800&s=1'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <p>The Met's digital archive of 200,000+ works was largely inaccessible to younger audiences — particularly young people from nearby neighborhoods who had never engaged with the museum. The data existed; the entry point didn't.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Approach</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-color: #f9ef6a; background-image: url('https://images.genius.com/eb4a73ac8b0ef4da24a544e332223ad1.1000x525x1.png'); background-size: 85%; background-repeat: no-repeat; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <ul class="dash-list">
+                      <li>Conducted ethnographic research to identify 13 culturally influential rappers</li>
+                      <li>Integrated the Rap Genius API and the Met's digital API</li>
+                      <li>Used rap lyrics as keyword searches to generate curated, personalized "tours" of the collection</li>
+                      <li>Created for the Met Media Lab</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Outcome</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front split-card">
+                    <div class="split-half" style="background-image: url('images/jay-z.jpg'); background-position: 40% center;"></div>
+                    <div class="split-half" style="background-image: url('https://images.metmuseum.org/CRDImages/ep/web-large/DP145927.jpg');"></div>
+                  </div>
+                  <div class="case-box-back">
+                    <p>Demonstrated how combining open cultural datasets with an unexpected interface layer can unlock entirely new audiences. The project launched at <a href="http://www.rappersdelight.nyc" target="_blank">rappersdelight.nyc</a> — a model for how institutions with large, underutilized data archives can use API integration to drive discovery and engagement.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-meta">
+          <span class="case-num">05</span>
+          <span class="case-tag">MIT Media Lab &mdash; Data Visualization &amp; Urban Systems</span>
+        </div>
+        <div class="case-body">
+          <h3>Mapping and Visualizing New York City's Microbiome</h3>
+          <div class="case-boxes">
+            <div class="case-box-wrap">
+              <span class="case-box-label">Challenge</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/2e/c2/5f/39/caption.jpg?w=1200&h=-1&s=1&cx=1920&cy=1080&chk=v1_9a7dafbb03426bb9c2d9'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <p>Cutting-edge microbiome research from the Mason Lab at Weill Cornell was generating rich scientific data about the microbial life of NYC — but it was invisible to the public and locked in academic formats. How do you make complex biological data not just understandable, but viscerally felt?</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Approach</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://letstalkprivacy.media.mit.edu/static/ee9221bb8981b4a217eea5db6aa89ad9/c6a2b/MIT_ML_Logo_K_RGB.png'); background-size: 70%; background-repeat: no-repeat; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <ul class="dash-list">
+                      <li>Led design for a cross-disciplinary collaboration with MIT Media Lab and Weill Cornell</li>
+                      <li>Combined DNA sequencing data collected via honeybees with thermal imaging of NYC streets</li>
+                      <li>Created web-based 3D rendering tool to create a live data installation — reframing the city as a biological superstructure</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Outcome</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background-image: url('https://images.adsttc.com/media/images/56cd/b8da/e58e/cefa/9100/03d4/large_jpg/A5-ufficiostampa2.jpg?1456322756'); background-size: cover; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <p>Presented at the Venice Biennale and featured in Wired and National Geographic. Results contributed to peer-reviewed publications in environmental microbiology. Demonstrated that rigorous scientific data, when designed with intention, can shift public perception at scale.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case">
+        <div class="case-meta">
+          <span class="case-num">06</span>
+          <span class="case-tag">Data X &mdash; Privacy &amp; Machine Learning</span>
+        </div>
+        <div class="case-body">
+          <h3>Making Facebook's Invisible Surveillance Visible</h3>
+          <div class="case-boxes">
+            <div class="case-box-wrap">
+              <span class="case-box-label">Challenge</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front bg-challenge" style="background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Facebook_Logo_%282019%29.png/1200px-Facebook_Logo_%282019%29.png'); background-size: 45%; background-repeat: no-repeat; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <p>How do you show a user that Facebook's continuous profiling is for the purpose of building detailed personality models to target ads to you? Most users had no idea this was happening, let alone what conclusions the platform had drawn about them.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Approach</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front bg-challenge" style="background-image: url('https://www.nicepng.com/png/detail/323-3239044_ibm-watson-logo.png'); background-size: 70%; background-repeat: no-repeat; background-position: center;"></div>
+                  <div class="case-box-back">
+                    <ul class="dash-list">
+                      <li>Built a front-end product that mirrored Facebook's own data collection — tracking likes, link clicks, post dwell time, and typed text</li>
+                      <li>Integrated IBM Watson Personality Insights and the Apply Magic Sauce ML algorithm to generate real-time personality predictions</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="case-box-wrap">
+              <span class="case-box-label">Outcome</span>
+              <div class="case-box" tabindex="0">
+                <div class="case-box-inner">
+                  <div class="case-box-front" style="background:var(--cream); display:flex; flex-direction:row; flex-wrap:nowrap; align-items:center; justify-content:center; gap:1rem; padding:1.5rem;">
+<img src="https://www.hakuhodo.co.jp/uploads/2019/02/nycmedia_logo.png" alt="NYC Media Lab" style="height:95px; object-fit:contain; mix-blend-mode:multiply;">
+                    <img src="https://pbs.twimg.com/profile_images/1704161469347049472/-rUkTbZn_400x400.png" alt="NEW INC" style="height:95px; object-fit:contain;">
+                  </div>
+                  <div class="case-box-back">
+                    <p>Over 70,000 installs on the Chrome Web Store. Covered by Vice, Fast Company, Mashable, The Next Web, and Big Think. Nominated for The Index Project award. Sparked mainstream conversation about algorithmic profiling and data rights — demonstrating that technical tools can be powerful instruments of public education.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label">// Contact</p>
+    <div class="contact-inner">
+      <h2>Let's talk about what <em>AI can do</em> for your organization.</h2>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:regina.flores@newschool.edu">
+          <span class="link-label">Email</span>
+          <span class="link-value">regina.flores@gmail.com</span>
+        </a>
+        <a class="contact-link" href="https://www.linkedin.com/in/reginafloresmir" target="_blank">
+          <span class="link-label">LinkedIn</span>
+          <span class="link-value">linkedin.com/in/reginafloresmir</span>
+        </a>
+        <a class="contact-link" href="https://github.com/reginaflores" target="_blank">
+          <span class="link-label">GitHub</span>
+          <span class="link-value">github.com/reginaflores</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>&copy; 2026 Regina Flores Mir</span>
+    <span>BUILT IN NYC</span>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.case-box').forEach(box => {
+      box.addEventListener('click', () => box.classList.toggle('flipped'));
+      box.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          box.classList.toggle('flipped');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
