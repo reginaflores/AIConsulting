@@ -457,6 +457,15 @@
     }
 
     /* ── WHO SECTION ── */
+    #who-canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
     section#who {
       background: #000;
       padding: 0;
@@ -872,6 +881,7 @@
 
   <!-- WHO IS THIS FOR -->
   <section id="who">
+    <canvas id="who-canvas"></canvas>
     <img id="who-astro"
       src="https://static.wixstatic.com/media/c22c23_d4a3e103764b464499a90fda1dd71676~mv2.webp/v1/fill/w_776,h_1276,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/new%20astro.webp"
       alt="" aria-hidden="true">
@@ -935,9 +945,18 @@
       toggle.classList.toggle('open');
       menu.classList.toggle('open');
     });
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', e => {
       toggle.classList.remove('open');
       menu.classList.remove('open');
+      const id = a.getAttribute('href').replace('#', '');
+      /* #cover lives inside a sticky scroll container — scroll to the outer wrapper */
+      const target = id === 'cover'
+        ? document.getElementById('coverScroll')
+        : document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
     }));
 
     /* ── HERO TITLE FLY-TOGETHER (scroll-driven) ── */
@@ -1497,6 +1516,52 @@
 
         window.addEventListener('scroll', updateWhoImpact, { passive: true });
         updateWhoImpact();
+      })();
+
+      /* ── FLOATING PARTICLE DRIFT — who section background ── */
+      (function () {
+        const whoSection = document.getElementById('who');
+        const canvas     = document.getElementById('who-canvas');
+        if (!canvas || !whoSection) return;
+
+        let W = whoSection.offsetWidth, H = whoSection.offsetHeight;
+        canvas.width = W; canvas.height = H;
+        const ctx = canvas.getContext('2d');
+
+        const DOTS = 90;
+        const dots = Array.from({ length: DOTS }, () => ({
+          x:  Math.random() * W,
+          y:  Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.25,
+          vy: (Math.random() - 0.5) * 0.25,
+          r:  0.8 + Math.random() * 1.4,
+          a:  0.12 + Math.random() * 0.28,
+        }));
+
+        let whoRaf = null;
+        function whoTick() {
+          whoRaf = requestAnimationFrame(whoTick);
+          ctx.clearRect(0, 0, W, H);
+          dots.forEach(p => {
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0) p.x = W; if (p.x > W) p.x = 0;
+            if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(85,136,255,${p.a})`;
+            ctx.fill();
+          });
+        }
+
+        new IntersectionObserver(([e]) => {
+          if ( e.isIntersecting && !whoRaf) whoTick();
+          if (!e.isIntersecting &&  whoRaf) { cancelAnimationFrame(whoRaf); whoRaf = null; }
+        }, { threshold: 0 }).observe(whoSection);
+
+        window.addEventListener('resize', () => {
+          W = whoSection.offsetWidth; H = whoSection.offsetHeight;
+          canvas.width = W; canvas.height = H;
+        });
       })();
 
       /* ── FLOATING PARTICLE DRIFT — do section background ── */
