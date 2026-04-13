@@ -552,9 +552,7 @@
 
     .who-callout {
       border-top: 1px solid rgba(255,255,255,0.18);
-      padding: 4rem 3rem;
-      display: flex;
-      justify-content: center;
+      padding: 3rem;
       text-align: justify;
       position: relative;
       z-index: 2;
@@ -569,7 +567,6 @@
       color: var(--muted);
       line-height: 1.85;
       margin: 0;
-      max-width: 60ch;
     }
 
     .who-callout p em {
@@ -948,13 +945,13 @@
 
       function updateFly() {
         const heroH   = document.querySelector('.hero').offsetHeight;
-        /* Letters start moving immediately, fully assembled by scrollY = heroH * 0.28 */
-        const scrollMax = heroH * 0.28;
+        /* Letters start moving immediately, fully assembled by scrollY = heroH * 0.45 */
+        const scrollMax = heroH * 0.45;
         const globalP   = Math.min(window.scrollY / scrollMax, 1);
 
         chars.forEach((c, i) => {
           /* Stagger: letter i starts converging slightly after the previous one */
-          const startAt = (i / N) * 0.22;           /* 0 → 0.22 offset window */
+          const startAt = (i / N) * 0.32;           /* 0 → 0.32 offset window */
           const charP   = Math.max(0, Math.min(1, (globalP - startAt) / (1 - startAt)));
           const ease    = easeOutExpo(charP);
 
