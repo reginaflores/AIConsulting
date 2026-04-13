@@ -503,7 +503,7 @@
       right: 6%;
       top: -2%;
       width: clamp(140px, 18vw, 280px);
-      z-index: 2;
+      z-index: 1;
       pointer-events: none;
       will-change: transform;
       animation: crystalFloat 7s ease-in-out infinite;
@@ -521,7 +521,7 @@
       right: 8%;
       top: 5%;
       width: clamp(130px, 16vw, 240px);
-      z-index: 3;
+      z-index: 2;
       opacity: 0;
       pointer-events: none;
       will-change: transform, opacity;
@@ -533,7 +533,7 @@
       grid-template-columns: 1fr 1fr 1fr;
       border: 1px solid rgba(255,255,255,0.18);
       position: relative;
-      z-index: 2;
+      z-index: 3;
       background: rgba(6,6,14,0.45);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
@@ -553,7 +553,9 @@
     .who-callout {
       padding: 4rem 3rem;
       position: relative;
-      z-index: 2;
+      z-index: 3;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
     .who-callout-inner {
