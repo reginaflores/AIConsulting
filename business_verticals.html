@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Business Verticals — Regina Flores Mir</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f7f4ef;
+      --black: #0d0d0d;
+      --accent: #0047ff;
+      --mid: #555;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--black);
+      font-family: 'Georgia', serif;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 3rem;
+      background: var(--cream);
+      border-bottom: 1px solid #ddd;
+      z-index: 100;
+    }
+
+    nav .logo {
+      font-size: 0.9rem;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--black);
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    /* ── SECTION ── */
+    section {
+      padding: 6rem 3rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 3rem;
+    }
+
+    /* ── HUB ── */
+    .hub-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 0;
+    }
+
+    .hub-title {
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: normal;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.5rem;
+    }
+
+    .hub-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hub-sub {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 4rem;
+    }
+
+    /* ── DIAGRAM AREA ── */
+    .diagram-wrap {
+      position: relative;
+    }
+
+    /* SVG connector layer */
+    .connectors {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: visible;
+    }
+
+    /* ── VERTICALS GRID ── */
+    .verticals-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      border: 1px solid #ccc;
+      position: relative;
+      z-index: 1;
+    }
+
+    .vertical {
+      padding: 2.5rem;
+      border-right: 1px solid #ccc;
+      transition: background 0.2s, color 0.2s;
+      cursor: default;
+    }
+
+    .vertical:last-child { border-right: none; }
+
+    .vertical:hover {
+      background: var(--black);
+      color: var(--cream);
+    }
+
+    .vertical:hover .v-num     { color: var(--accent); }
+    .vertical:hover .v-tag     { color: #666; }
+    .vertical:hover .v-items li { color: #aaa; }
+    .vertical:hover .v-items li::before { color: var(--accent); }
+
+    .v-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.4rem;
+    }
+
+    .v-title {
+      font-size: 1.15rem;
+      font-weight: normal;
+      line-height: 1.3;
+      margin-bottom: 1.4rem;
+    }
+
+    .v-items {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .v-items li {
+      display: flex;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: var(--mid);
+    }
+
+    .v-items li::before {
+      content: '\2192';
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    .v-tag {
+      display: block;
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-top: auto;
+      padding-top: 1.2rem;
+      border-top: 1px solid #ddd;
+    }
+
+    .vertical:hover .v-tag { border-top-color: #333; }
+
+    /* ── GROUP LABELS ── */
+    .groups {
+      display: grid;
+      grid-template-columns: 2fr 1fr 2fr;
+      margin-top: 2rem;
+      gap: 1rem;
+    }
+
+    .group-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mid);
+      padding-top: 0.6rem;
+      border-top: 1px solid var(--black);
+      text-align: center;
+    }
+
+    /* ── CONNECTOR LINES ── */
+    /* drawn by JS — placeholder height for layout */
+    .connector-spacer {
+      height: 72px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--mid);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── MOBILE NAV ── */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--black);
+      transition: all 0.25s;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; flex-wrap: wrap; }
+      .nav-toggle { display: flex; }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        padding: 0.5rem 0 1rem;
+      }
+      nav ul.open { display: flex; }
+      nav ul li { border-top: 1px solid #eee; }
+      nav a { display: block; padding: 0.75rem 0; font-size: 0.8rem; }
+      section { padding: 3rem 1.5rem; }
+      .verticals-grid { grid-template-columns: repeat(2, 1fr); }
+      .vertical:nth-child(2) { border-right: none; }
+      .vertical:nth-child(odd) { border-right: 1px solid #ccc; }
+      .vertical { border-bottom: 1px solid #ccc; }
+      .connectors { display: none; }
+      .connector-spacer { display: none; }
+      .groups { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      .verticals-grid { grid-template-columns: 1fr; }
+      .vertical { border-right: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="logo">Regina Flores Mir</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="navMenu">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </nav>
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      menu.classList.remove('open');
+    }));
+  </script>
+
+  <!-- VERTICALS -->
+  <section>
+    <p class="section-label">// Business Verticals</p>
+
+    <!-- Hub -->
+    <div class="hub-wrap" id="hubWrap">
+      <h2 class="hub-title">Five ways I work<br>with <em>organizations.</em></h2>
+      <p class="hub-sub">AI Consulting Practice &mdash; Regina Flores Mir</p>
+    </div>
+
+    <!-- Diagram: connector lines + cards -->
+    <div class="diagram-wrap" id="diagramWrap">
+      <svg class="connectors" id="connectors" aria-hidden="true"></svg>
+      <div class="connector-spacer" id="connectorSpacer"></div>
+
+      <div class="verticals-grid" id="verticalsGrid">
+
+        <div class="vertical" id="v0">
+          <div class="v-num">01</div>
+          <h3 class="v-title">Founder AI&#8209;First Buildouts</h3>
+          <ul class="v-items">
+            <li>Workflow automation</li>
+            <li>Web development</li>
+            <li>Back-end automation</li>
+          </ul>
+          <span class="v-tag">Build</span>
+        </div>
+
+        <div class="vertical" id="v1">
+          <div class="v-num">02</div>
+          <h3 class="v-title">Existing Business Automation</h3>
+          <ul class="v-items">
+            <li>Workflow automation</li>
+            <li>Reporting automation</li>
+            <li>Diagnosis &amp; prescription consulting</li>
+          </ul>
+          <span class="v-tag">Automate</span>
+        </div>
+
+        <div class="vertical" id="v2">
+          <div class="v-num">03</div>
+          <h3 class="v-title">Education Consulting</h3>
+          <ul class="v-items">
+            <li>University-level curriculum mapping</li>
+            <li>AI integration strategy</li>
+          </ul>
+          <span class="v-tag">Higher Ed</span>
+        </div>
+
+        <div class="vertical" id="v3">
+          <div class="v-num">04</div>
+          <h3 class="v-title">Enterprise Workshops</h3>
+          <ul class="v-items">
+            <li>AI education</li>
+            <li>Hands-on training</li>
+          </ul>
+          <span class="v-tag">Train &mdash; Enterprise</span>
+        </div>
+
+        <div class="vertical" id="v4">
+          <div class="v-num">05</div>
+          <h3 class="v-title">Community Workshops</h3>
+          <ul class="v-items">
+            <li>AI education</li>
+            <li>Hands-on training</li>
+          </ul>
+          <span class="v-tag">Train &mdash; Community</span>
+        </div>
+
+      </div><!-- /grid -->
+    </div><!-- /diagram-wrap -->
+
+    <!-- Group labels -->
+    <div class="groups">
+      <div class="group-label">Build &amp; Automate</div>
+      <div class="group-label">Education</div>
+      <div class="group-label">Workshops &amp; Training</div>
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>&copy; 2026 Regina Flores Mir</span>
+    <span>BUILT IN NYC</span>
+  </footer>
+
+  <script>
+    function drawConnectors() {
+      const svg = document.getElementById('connectors');
+      svg.innerHTML = '';
+
+      const wrap    = document.getElementById('diagramWrap');
+      const spacer  = document.getElementById('connectorSpacer');
+      const grid    = document.getElementById('verticalsGrid');
+      const hubWrap = document.getElementById('hubWrap');
+
+      const wrapRect   = wrap.getBoundingClientRect();
+      const hubRect    = hubWrap.getBoundingClientRect();
+      const spacerRect = spacer.getBoundingClientRect();
+      const gridRect   = grid.getBoundingClientRect();
+
+      // Origin: bottom-center of hub title block, relative to diagramWrap
+      const ox = hubRect.left - wrapRect.left + hubRect.width / 2;
+      const oy = 0; // spacer starts at y=0 inside diagramWrap
+
+      // Horizontal bus y — midpoint of the spacer
+      const busY = (spacerRect.height / 2);
+
+      // Grid top (where cards start), relative to diagramWrap
+      const gridTop = gridRect.top - wrapRect.top;
+
+      for (let i = 0; i < 5; i++) {
+        const card     = document.getElementById('v' + i);
+        const cardRect = card.getBoundingClientRect();
+
+        const cx = cardRect.left - wrapRect.left + cardRect.width / 2;
+        const cy = gridTop; // top of card
+
+        const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+        path.setAttribute('d',
+          `M ${ox} ${oy} L ${ox} ${busY} L ${cx} ${busY} L ${cx} ${cy}`
+        );
+        path.setAttribute('fill', 'none');
+        path.setAttribute('stroke', '#0047ff');
+        path.setAttribute('stroke-width', '1');
+        path.setAttribute('stroke-dasharray', '4 3');
+        svg.appendChild(path);
+
+        // Dot at card top
+        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        dot.setAttribute('cx', cx);
+        dot.setAttribute('cy', cy);
+        dot.setAttribute('r', '3');
+        dot.setAttribute('fill', '#0047ff');
+        svg.appendChild(dot);
+      }
+
+      // Dot at origin
+      const originDot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+      originDot.setAttribute('cx', ox);
+      originDot.setAttribute('cy', oy);
+      originDot.setAttribute('r', '3');
+      originDot.setAttribute('fill', '#0d0d0d');
+      svg.appendChild(originDot);
+    }
+
+    window.addEventListener('load', drawConnectors);
+    window.addEventListener('resize', drawConnectors);
+  </script>
+
+</body>
+</html>

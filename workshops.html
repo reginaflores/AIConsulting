@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Workshops — Regina Flores Mir</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f7f4ef;
+      --black: #0d0d0d;
+      --accent: #0047ff;
+      --mid: #555;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--black);
+      font-family: 'Georgia', serif;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 3rem;
+      background: var(--cream);
+      border-bottom: 1px solid #ddd;
+      z-index: 100;
+    }
+
+    nav .logo {
+      font-size: 0.9rem;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--black);
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--accent); }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+      padding: 4px;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--black);
+      transition: all 0.25s;
+    }
+
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 7rem 3rem 6rem;
+      border-bottom: 1px solid #ccc;
+    }
+
+    .hero-tag {
+      font-family: 'Courier New', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: normal;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      max-width: 820px;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 1.1rem;
+      color: var(--mid);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .hero-meta {
+      margin-top: 3rem;
+      display: flex;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .hero-meta-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    .hero-meta-value {
+      font-size: 0.95rem;
+      color: var(--black);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 6rem 3rem;
+      border-bottom: 1px solid #ccc;
+      scroll-margin-top: 4rem;
+    }
+
+    .section-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 3rem;
+    }
+
+    .section-heading {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: normal;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-heading em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    /* ── COVER GRID ── */
+    .cover-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid #ccc;
+    }
+
+    .cover-item {
+      padding: 2.5rem;
+      border-right: 1px solid #ccc;
+      border-bottom: 1px solid #ccc;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .cover-item:hover {
+      background: var(--black);
+      color: var(--cream);
+    }
+
+    .cover-item:hover .cover-num  { color: var(--accent); }
+    .cover-item:hover .cover-desc { color: #aaa; }
+
+    .cover-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      margin-bottom: 1.2rem;
+    }
+
+    .cover-item h3 {
+      font-size: 1.15rem;
+      font-weight: normal;
+      line-height: 1.3;
+      margin-bottom: 0.9rem;
+    }
+
+    .cover-desc {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      color: var(--mid);
+    }
+
+    /* ── DO LIST ── */
+    .do-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .do-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 2.5rem;
+      padding: 2.5rem 0;
+      border-top: 1px solid #ccc;
+      align-items: start;
+    }
+
+    .do-item:last-child { border-bottom: 1px solid #ccc; }
+
+    .do-num {
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      padding-top: 0.2rem;
+    }
+
+    .do-body h3 {
+      font-size: 1.2rem;
+      font-weight: normal;
+      margin-bottom: 0.6rem;
+    }
+
+    .do-body p {
+      font-size: 0.9rem;
+      line-height: 1.75;
+      color: #444;
+    }
+
+    /* ── WHO GRID ── */
+    .who-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .who-left p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
+
+    .who-list {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .who-list li {
+      display: flex;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 1rem 0;
+      border-top: 1px solid #ddd;
+      font-size: 0.95rem;
+      line-height: 1.5;
+    }
+
+    .who-list li:last-child { border-bottom: 1px solid #ddd; }
+
+    .who-list li::before {
+      content: '\2192';
+      color: var(--accent);
+      font-family: 'Courier New', monospace;
+      flex-shrink: 0;
+    }
+
+    .who-note {
+      margin-top: 2rem;
+      padding: 1.8rem;
+      border: 1px solid #ccc;
+      border-left: 3px solid var(--accent);
+    }
+
+    .who-note p {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: #333;
+    }
+
+    .who-note p + p { margin-top: 0.8rem; }
+
+    .who-note strong {
+      font-weight: normal;
+      color: var(--black);
+      font-style: italic;
+    }
+
+    /* ── CTA ── */
+    .cta-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .cta-inner h2 {
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      font-weight: normal;
+      line-height: 1.15;
+    }
+
+    .cta-inner h2 em { font-style: italic; color: var(--accent); }
+
+    .cta-links {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .cta-link {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      text-decoration: none;
+      color: var(--black);
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #ddd;
+      transition: color 0.2s;
+    }
+
+    .cta-link:hover { color: var(--accent); }
+
+    .cta-link .link-label {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .cta-link:hover .link-label { color: var(--accent); }
+
+    .cta-link .link-value { font-size: 1.05rem; }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Courier New', monospace;
+      font-size: 0.75rem;
+      color: var(--mid);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 1.5rem; flex-wrap: wrap; }
+      .nav-toggle { display: flex; }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        gap: 0;
+        padding: 0.5rem 0 1rem;
+      }
+      nav ul.open { display: flex; }
+      nav ul li { border-top: 1px solid #eee; }
+      nav a { display: block; padding: 0.75rem 0; }
+      .hero { padding: 4rem 1.5rem 3rem; }
+      section { padding: 3rem 1.5rem; }
+      .cover-grid { grid-template-columns: 1fr; }
+      .cover-item { border-right: none; }
+      .do-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .who-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cta-inner { grid-template-columns: 1fr; gap: 2rem; }
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem; }
+      .hero-meta { gap: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="logo" href="https://reginaflores.ai" style="text-decoration:none;color:inherit;">Regina Flores Mir</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul id="navMenu">
+      <li><a href="#cover">Workshop</a></li>
+      <li><a href="#do">Format</a></li>
+      <li><a href="#who">Who It's For</a></li>
+      <li><a href="#contact">Get in Touch</a></li>
+    </ul>
+  </nav>
+  <script>
+    const toggle = document.getElementById('navToggle');
+    const menu = document.getElementById('navMenu');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      menu.classList.toggle('open');
+    });
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+      toggle.classList.remove('open');
+      menu.classList.remove('open');
+    }));
+  </script>
+
+  <!-- HERO -->
+  <div class="hero">
+    <p class="hero-tag">Workshop — Practical AI</p>
+    <h1>AI is not<br>going away.<br><em>Let's learn it</em><br>together.</h1>
+    <p class="hero-desc">
+      A hands-on workshop designed to demystify artificial intelligence — no technical background required.
+      Walk away with real skills, real tools, and the confidence to use AI in your work and life.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Format</span>
+        <span class="hero-meta-value">2 Hours</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Group Size</span>
+        <span class="hero-meta-value">Up to 20 participants</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Level</span>
+        <span class="hero-meta-value">Beginner — No coding required</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Location</span>
+        <span class="hero-meta-value">In-person or virtual</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT WE WILL COVER -->
+  <section id="cover">
+    <p class="section-label">// What We Will Cover</p>
+    <h2 class="section-heading">Six topics.<br><em>All practical.</em></h2>
+    <div class="cover-grid">
+
+      <div class="cover-item">
+        <div class="cover-num">01</div>
+        <h3>What AI Actually Is</h3>
+        <p class="cover-desc">We'll trace AI's history from the 1950s to today and dive into how modern models actually work under the hood. Understand what large language models are — what they can do, what they can't, and why that distinction matters.</p>
+      </div>
+
+      <div class="cover-item">
+        <div class="cover-num">02</div>
+        <h3>The AI Landscape: Models &amp; Players</h3>
+        <p class="cover-desc">A full map of the companies and models shaping AI right now — OpenAI, Anthropic, Google, Meta, and more. Closed vs. open-source, what each is built for, and how to choose the right tool for the job.</p>
+      </div>
+
+      <div class="cover-item">
+        <div class="cover-num">03</div>
+        <h3>AI for Your Work</h3>
+        <p class="cover-desc">From writing and research to analysis and communication — how to integrate AI into your actual workflow to save time and sharpen your output.</p>
+      </div>
+
+      <div class="cover-item">
+        <div class="cover-num">04</div>
+        <h3>Automation Without Code</h3>
+        <p class="cover-desc">You don't need to be an engineer to automate. We'll cover no-code tools that let you build smart, repeatable workflows around your everyday tasks.</p>
+      </div>
+
+      <div class="cover-item">
+        <div class="cover-num">05</div>
+        <h3>Agentic AI &amp; Vibe Coding</h3>
+        <p class="cover-desc">Stop asking AI questions — start assigning it tasks. We'll cover the shift from chatbots to agents, introduce vibe coding, and you'll build something real from scratch using nothing but plain English.</p>
+      </div>
+
+      <div class="cover-item">
+        <div class="cover-num">06</div>
+        <h3>Ethics, Bias &amp; Agency</h3>
+        <p class="cover-desc">AI has blind spots — and understanding them is a form of power. We'll discuss bias, data privacy, and how to stay in the driver's seat as these tools evolve.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHAT WE WILL DO -->
+  <section id="do">
+    <p class="section-label">// What We Will Do</p>
+    <h2 class="section-heading">Hands-on from<br>minute <em>one.</em></h2>
+    <div class="do-list">
+
+      <div class="do-item">
+        <div class="do-num">01</div>
+        <div class="do-body">
+          <h3>Live Demos Together</h3>
+          <p>We'll open the tools and use them in real time. You'll see exactly how to navigate each platform, what to type, and how to iterate when the first result isn't quite right.</p>
+        </div>
+      </div>
+
+      <div class="do-item">
+        <div class="do-num">02</div>
+        <div class="do-body">
+          <h3>Hands-On Exercises</h3>
+          <p>You'll work through structured exercises designed around real scenarios — drafting, researching, summarizing, brainstorming. Each exercise builds a skill you can apply immediately after the workshop.</p>
+        </div>
+      </div>
+
+      <div class="do-item">
+        <div class="do-num">03</div>
+        <div class="do-body">
+          <h3>Build Something of Your Own</h3>
+          <p>By the end of the session, you'll have created at least one AI-powered tool or workflow tailored to your own work — something you can take back and actually use on Monday morning.</p>
+        </div>
+      </div>
+
+      <div class="do-item">
+        <div class="do-num">04</div>
+        <div class="do-body">
+          <h3>Open Q&amp;A &amp; Discussion</h3>
+          <p>Space to ask the questions you've been hesitant to ask elsewhere. No question is too basic. The goal is for everyone to leave feeling clear and confident — not overwhelmed.</p>
+        </div>
+      </div>
+
+      <div class="do-item">
+        <div class="do-num">05</div>
+        <div class="do-body">
+          <h3>Take-Home Resource Pack</h3>
+          <p>Every participant leaves with a curated resource pack — tool guides, a recommended reading list, and a personal action plan to keep building momentum after the workshop.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WHO IS THIS FOR -->
+  <section id="who">
+    <p class="section-label">// Who Is This For</p>
+    <h2 class="section-heading">Built for anyone who is<br><em>curious, not technical.</em></h2>
+    <div class="who-grid">
+
+      <div class="who-left">
+        <p>
+          This workshop was designed for people who know AI is important but don't know where to start —
+          or who have started and hit a wall. No engineering background. No prior AI experience. Just a willingness to engage.
+        </p>
+        <p>
+          It's a collaborative, direct space where the jargon gets explained. You're allowed to ask what things mean. That's the point.
+        </p>
+
+        <div class="who-note">
+          <p><strong>Become Iron Man:</strong> AI literacy is increasingly a professional and personal advantage — and the gap between those who have it and those who don't is widening fast. This workshop exists to make you feel empowered to use AI in all facets of your life to be smarter, quicker and more insightful.</p>
+        </div>
+      </div>
+
+      <ul class="who-list">
+        <li>Founders and entrepreneurs building or growing a business</li>
+        <li>Professionals looking to stay competitive in an AI-driven workplace</li>
+        <li>Career changers exploring new directions with AI as a tool</li>
+        <li>Executives and managers who need to lead AI-literate teams</li>
+        <li>Creatives — writers, designers, strategists — incorporating AI into their practice</li>
+        <li>Academics and educators integrating AI into their teaching or research</li>
+        <li>Anyone who has felt left out of the AI conversation and is ready to change that</li>
+      </ul>
+
+    </div>
+  </section>
+
+  <!-- CTA / CONTACT -->
+  <section id="contact">
+    <p class="section-label">// Get in Touch</p>
+    <div class="cta-inner">
+      <h2>Ready to bring this workshop to your <em>community?</em></h2>
+      <div class="cta-links">
+        <a class="cta-link" href="mailto:regina.flores@gmail.com">
+          <span class="link-label">Email</span>
+          <span class="link-value">regina.flores@gmail.com</span>
+        </a>
+        <a class="cta-link" href="https://www.linkedin.com/in/reginafloresmir" target="_blank">
+          <span class="link-label">LinkedIn</span>
+          <span class="link-value">linkedin.com/in/reginafloresmir</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>&copy; 2026 Regina Flores Mir</span>
+    <span>BUILT IN NYC</span>
+  </footer>
+
+</body>
+</html>
