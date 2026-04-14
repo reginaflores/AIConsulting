@@ -614,6 +614,20 @@
 
     .cta-inner h2 em { font-style: italic; color: var(--accent-l); }
 
+    .cta-right {
+      display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
+    }
+
+    .cta-bio {
+      font-family: 'Georgia', serif;
+      font-size: 0.95rem;
+      line-height: 1.85;
+      color: var(--muted);
+      margin: 0;
+    }
+
     .cta-links {
       display: flex;
       flex-direction: column;
@@ -915,15 +929,18 @@
     <p class="section-label">// Get in Touch</p>
     <div class="cta-inner">
       <h2 class="fade-up">Ready to bring this workshop to your <em>community?</em></h2>
-      <div class="cta-links">
-        <a class="cta-link" href="mailto:regina.flores@gmail.com">
-          <span class="link-label">Email</span>
-          <span class="link-value">regina.flores@gmail.com</span>
-        </a>
-        <a class="cta-link" href="https://www.linkedin.com/in/reginafloresmir" target="_blank">
-          <span class="link-label">LinkedIn</span>
-          <span class="link-value">linkedin.com/in/reginafloresmir</span>
-        </a>
+      <div class="cta-right">
+        <p class="cta-bio">Regina Flores Mir is an AI educator and researcher with a background spanning astrophysics (NASA), quantitative finance (Goldman Sachs, JPMorgan), and design and technology (DATA X). She is an AI consultant and strategist on the design and implementation of agentic AI systems. She works with founders and enterprise clients to take immediate action to use AI in their workflows, processes, or complete builds of backend/frontend systems. Her work has been incubated at the Metropolitan Museum of Art's Media Lab, MIT Media Lab, NYC Media Lab, and New Museum NEW INC. She is an adjunct professor at Parsons in Design and Technology. She will demystify AI for anyone.</p>
+        <div class="cta-links">
+          <a class="cta-link" href="mailto:regina.flores@gmail.com">
+            <span class="link-label">Email</span>
+            <span class="link-value">regina.flores@gmail.com</span>
+          </a>
+          <a class="cta-link" href="https://www.linkedin.com/in/reginafloresmir" target="_blank">
+            <span class="link-label">LinkedIn</span>
+            <span class="link-value">linkedin.com/in/reginafloresmir</span>
+          </a>
+        </div>
       </div>
     </div>
   </section>
@@ -1471,7 +1488,7 @@
       }
 
       /* ── 7. CTA ── */
-      const ctaItems = Array.from(document.querySelectorAll('.cta-inner > *, .cta-links .cta-link'));
+      const ctaItems = Array.from(document.querySelectorAll('.cta-inner > *, .cta-right > *, .cta-links .cta-link'));
       ctaItems.forEach((el, i) => { el.style.opacity = '0'; el.style.transform = `translateY(${20 + i*10}px)`; });
 
       function updateCta() {
