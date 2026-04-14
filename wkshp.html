@@ -284,10 +284,9 @@
       flex-shrink: 0;
     }
 
-    .cover-hd .section-label { margin-bottom: 0.6rem; opacity: 0.7; }
+    .cover-hd .section-label { margin-bottom: 3rem; opacity: 0.7; }
 
     .cover-hd .section-heading {
-      font-size: clamp(1.3rem, 2.2vw, 2rem);
       margin-bottom: 0;
     }
 
@@ -642,6 +641,9 @@
       object-fit: cover;
       margin: 0.2rem 1.1rem 0.4rem 0;
       shape-outside: circle();
+      background: linear-gradient(135deg, var(--accent-l), #7ab3ff);
+      color: transparent;
+      font-size: 0;
     }
 
     @media (max-width: 900px) {
@@ -736,7 +738,8 @@
       <span></span><span></span><span></span>
     </button>
     <ul id="navMenu">
-      <li><a href="#cover">Workshop</a></li>
+      <li><a href="#top">Workshop</a></li>
+      <li><a href="#cover">Topics</a></li>
       <li><a href="#do">Format</a></li>
       <li><a href="#who">Who It's For</a></li>
       <li><a href="#contact">Get in Touch</a></li>
@@ -747,7 +750,7 @@
   <div class="hero">
     <canvas id="nn-canvas"></canvas>
     <div class="hero-overlay"></div>
-    <p class="hero-tag">Workshop — Practical AI</p>
+    <p class="hero-tag">// Workshop — Practical AI</p>
     <div class="hero-content">
       <h1>
         <span class="hero-word"><!-- LEARN -->
@@ -986,6 +989,12 @@
       toggle.classList.remove('open');
       menu.classList.remove('open');
       const id = a.getAttribute('href').replace('#', '');
+      /* "Workshop" link scrolls back to the very top of the page */
+      if (id === 'top' || id === '') {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
       /* #cover lives inside a sticky scroll container — scroll to the outer wrapper */
       const target = id === 'cover'
         ? document.getElementById('coverScroll')
