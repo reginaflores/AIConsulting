@@ -9,14 +9,14 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --bg:       #ffffff;
-      --surface:  rgba(0,0,0,0.03);
-      --border:   rgba(0,0,0,0.08);
-      --text:     #1a1a2e;
-      --muted:    rgba(26,26,46,0.55);
+      --bg:       #06060e;
+      --surface:  rgba(255,255,255,0.04);
+      --border:   rgba(255,255,255,0.07);
+      --text:     #f0ece4;
+      --muted:    rgba(240,236,228,0.45);
       --accent:   #0047ff;
-      --accent-l: #0052cc;
-      --mid:      rgba(26,26,46,0.45);
+      --accent-l: #5580ff;
+      --mid:      rgba(240,236,228,0.45);
     }
 
     html { scroll-behavior: smooth; }
@@ -42,7 +42,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1.4rem 3rem;
-      background: rgba(255,255,255,0.85);
+      background: rgba(6,6,14,0.75);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
@@ -120,8 +120,8 @@
       position: absolute;
       inset: 0;
       background:
-        radial-gradient(ellipse at 60% 40%, transparent 20%, rgba(255,255,255,0.5) 80%),
-        linear-gradient(to bottom, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.0) 40%, rgba(255,255,255,0.85) 85%, rgba(255,255,255,1) 100%);
+        radial-gradient(ellipse at 60% 40%, transparent 20%, rgba(6,6,14,0.5) 80%),
+        linear-gradient(to bottom, rgba(6,6,14,0.2) 0%, rgba(6,6,14,0.0) 40%, rgba(6,6,14,0.85) 85%, rgba(6,6,14,1) 100%);
       z-index: 1;
       pointer-events: none;
     }
@@ -467,11 +467,11 @@
     }
 
     section#who {
-      background: #f0f0f5;
+      background: #000;
       padding: 0;
       position: relative;
       overflow: hidden;
-      border-bottom: 1px solid rgba(0,0,0,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
     }
 
     .who-impact {
@@ -487,7 +487,7 @@
       font-size: clamp(2.8rem, 7vw, 8rem);
       line-height: 0.88;
       letter-spacing: 0.03em;
-      color: var(--text);
+      color: #fff;
       padding: 0 3vw;
       user-select: none;
       white-space: nowrap;
@@ -540,17 +540,17 @@
     .who-boxes {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      border: 1px solid rgba(0,0,0,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
       position: relative;
       z-index: 3;
-      background: rgba(255,255,255,0.75);
+      background: rgba(6,6,14,0.45);
       backdrop-filter: blur(6px);
       -webkit-backdrop-filter: blur(6px);
     }
 
     .who-box {
       padding: 3rem;
-      border-right: 1px solid rgba(0,0,0,0.10);
+      border-right: 1px solid rgba(255,255,255,0.18);
       font-family: 'Georgia', serif;
       font-size: 0.95rem;
       line-height: 1.85;
@@ -568,10 +568,10 @@
     }
 
     .who-callout-inner {
-      border: 1px solid rgba(0,0,0,0.10);
+      border: 1px solid rgba(255,255,255,0.18);
       border-left: 3px solid var(--accent-l);
       padding: 2.5rem 3rem;
-      background: rgba(255,255,255,0.8);
+      background: rgba(6,6,14,0.55);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
     }
@@ -593,7 +593,7 @@
     @media (max-width: 700px) {
       .who-impact-text { font-size: clamp(3rem, 18vw, 7rem); white-space: normal; }
       .who-boxes { grid-template-columns: 1fr; }
-      .who-box { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.10); }
+      .who-box { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.18); }
       .who-box:last-child { border-bottom: none; }
     }
 
@@ -1021,10 +1021,10 @@
         c.width = c.height = 64;
         const ctx = c.getContext('2d');
         const g = ctx.createRadialGradient(32,32,0,32,32,28);
-        g.addColorStop(0.00,'rgba(0,60,200,0.9)');
-        g.addColorStop(0.15,'rgba(0,80,220,0.7)');
-        g.addColorStop(0.45,'rgba(0,70,200,0.25)');
-        g.addColorStop(1.00,'rgba(0,40,150,0.0)');
+        g.addColorStop(0.00,'rgba(255,255,255,1.0)');
+        g.addColorStop(0.15,'rgba(210,230,255,0.85)');
+        g.addColorStop(0.45,'rgba(80,140,255,0.30)');
+        g.addColorStop(1.00,'rgba(0,0,0,0.0)');
         ctx.fillStyle = g; ctx.fillRect(0,0,64,64);
         return new THREE.CanvasTexture(c);
       }
@@ -1232,8 +1232,8 @@
           const DOT_PX = 5 * DPR;
           const ptMat = new THREE.PointsMaterial({
             size: DOT_PX, sizeAttenuation: false,
-            map: makeGlowTex(), transparent: true, opacity: 0.85,
-            blending: THREE.NormalBlending, depthWrite: false,
+            map: makeGlowTex(), transparent: true, opacity: 0.9,
+            blending: THREE.AdditiveBlending, depthWrite: false,
             color: hexColor
           });
 
@@ -1247,7 +1247,7 @@
 
           const lineMat = new THREE.LineBasicMaterial({
             color: hexColor, transparent: true, opacity: 0,
-            blending: THREE.NormalBlending, depthWrite: false
+            blending: THREE.AdditiveBlending, depthWrite: false
           });
 
           /* Group so rotation is shared */
@@ -1290,7 +1290,7 @@
             lineGeo.attributes.position.needsUpdate = true;
 
             /* lines fade in sharply as shape forms, fade out as it disperses */
-            lineMat.opacity = prog * prog * 0.30;
+            lineMat.opacity = prog * prog * 0.38;
 
             /* slow rotation when assembled */
             group.rotation.y = prog * elapsed * 0.18;
@@ -1561,7 +1561,7 @@
             if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(0,60,180,${p.a})`;
+            ctx.fillStyle = `rgba(85,136,255,${p.a})`;
             ctx.fill();
           });
         }
@@ -1607,7 +1607,7 @@
             if (p.y < 0) p.y = H; if (p.y > H) p.y = 0;
             ctx.beginPath();
             ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-            ctx.fillStyle = `rgba(0,60,180,${p.a})`;
+            ctx.fillStyle = `rgba(85,136,255,${p.a})`;
             ctx.fill();
           });
         }
@@ -1671,7 +1671,7 @@
       renderer.setSize(W(), H());
 
       const scene  = new THREE.Scene();
-      scene.fog    = new THREE.FogExp2(0xffffff, 0.0008);
+      scene.fog    = new THREE.FogExp2(0x06060e, 0.0008); /* lighter fog — more visible */
 
       const camera = new THREE.PerspectiveCamera(65, W() / H(), 1, 3000);
       camera.position.z = 320; /* closer */
@@ -1682,11 +1682,11 @@
         c.width = c.height = sz;
         const ctx = c.getContext('2d');
         const g   = ctx.createRadialGradient(sz/2, sz/2, 0, sz/2, sz/2, sz/2);
-        g.addColorStop(0.00, 'rgba(0,60,200,0.9)');
-        g.addColorStop(0.15, 'rgba(0,80,220,0.7)');
-        g.addColorStop(0.40, 'rgba(0,70,200,0.3)');
-        g.addColorStop(0.70, 'rgba(0,50,180,0.08)');
-        g.addColorStop(1.00, 'rgba(0,30,150,0.00)');
+        g.addColorStop(0.00, 'rgba(220,235,255,1.0)');
+        g.addColorStop(0.10, 'rgba(160,195,255,0.95)');
+        g.addColorStop(0.30, 'rgba(60,120,255,0.55)');
+        g.addColorStop(0.60, 'rgba(0,71,255,0.15)');
+        g.addColorStop(1.00, 'rgba(0,20,180,0.00)');
         ctx.fillStyle = g;
         ctx.fillRect(0, 0, sz, sz);
         return new THREE.CanvasTexture(c);
@@ -1709,7 +1709,7 @@
       starGeo.setAttribute('position', new THREE.BufferAttribute(starPos, 3));
       const starMat = new THREE.PointsMaterial({
         size: 2.2, map: glowTex, transparent: true,
-        opacity: 0.45, blending: THREE.NormalBlending, depthWrite: false
+        opacity: 0.6, blending: THREE.AdditiveBlending, depthWrite: false
       });
       scene.add(new THREE.Points(starGeo, starMat));
 
@@ -1740,7 +1740,7 @@
       nodeGeo.setAttribute('position', new THREE.BufferAttribute(nodePositions, 3));
       const nodeMat = new THREE.PointsMaterial({
         size: 10, map: glowTex, transparent: true,
-        opacity: 0.8, blending: THREE.NormalBlending, depthWrite: false
+        opacity: 0.9, blending: THREE.AdditiveBlending, depthWrite: false
       });
       group.add(new THREE.Points(nodeGeo, nodeMat));
 
@@ -1757,7 +1757,7 @@
       hubGeo.setAttribute('position', new THREE.BufferAttribute(hubPositions, 3));
       const hubMat = new THREE.PointsMaterial({
         size: 32, map: glowTex, transparent: true,
-        opacity: 0.75, blending: THREE.NormalBlending, depthWrite: false
+        opacity: 0.85, blending: THREE.AdditiveBlending, depthWrite: false
       });
       group.add(new THREE.Points(hubGeo, hubMat));
 
@@ -1780,15 +1780,15 @@
       const lineGeo = new THREE.BufferGeometry();
       lineGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(lineVerts), 3));
       const lineMat = new THREE.LineBasicMaterial({
-        color: 0x3366ff, transparent: true, opacity: 0.22,
-        blending: THREE.NormalBlending, depthWrite: false
+        color: 0x3366ff, transparent: true, opacity: 0.38,
+        blending: THREE.AdditiveBlending, depthWrite: false
       });
       group.add(new THREE.LineSegments(lineGeo, lineMat));
 
       /* central wireframe icosahedron */
       const coreGeo = new THREE.IcosahedronGeometry(100, 2);
       const coreMat = new THREE.MeshBasicMaterial({
-        color: 0x1144ff, wireframe: true, transparent: true, opacity: 0.06
+        color: 0x1144ff, wireframe: true, transparent: true, opacity: 0.09
       });
       group.add(new THREE.Mesh(coreGeo, coreMat));
 
@@ -1831,19 +1831,19 @@
         group.rotation.x = currentX;
 
         /* hub pulse */
-        hubMat.opacity = 0.6 + 0.15 * Math.sin(sec * 1.4);
-        nodeMat.opacity = 0.7 + 0.1 * Math.sin(sec * 0.9);
+        hubMat.opacity = 0.7 + 0.25 * Math.sin(sec * 1.4);
+        nodeMat.opacity = 0.8 + 0.12 * Math.sin(sec * 0.9);
 
         /* click ripple — briefly boost lines + core */
         const sinceClick = (t - pulseT) / 1000;
         if (sinceClick < 1.2) {
           const wave = Math.sin(sinceClick * Math.PI);
-          lineMat.opacity = 0.22 + wave * 0.3;
-          coreMat.opacity = 0.06 + wave * 0.15;
+          lineMat.opacity = 0.38 + wave * 0.5;
+          coreMat.opacity = 0.09 + wave * 0.25;
           hubMat.size     = 32 + wave * 20;
         } else {
-          lineMat.opacity = 0.22;
-          coreMat.opacity = 0.06;
+          lineMat.opacity = 0.38;
+          coreMat.opacity = 0.09;
         }
 
         renderer.render(scene, camera);
