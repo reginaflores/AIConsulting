@@ -602,7 +602,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 5rem;
-      align-items: center;
+      align-items: start;
     }
 
     .cta-inner h2 {
@@ -626,6 +626,26 @@
       line-height: 1.85;
       color: var(--muted);
       margin: 0;
+    }
+
+    .cta-bio::after {
+      content: "";
+      display: block;
+      clear: both;
+    }
+
+    .cta-bio-img {
+      float: left;
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0.2rem 1.1rem 0.4rem 0;
+      shape-outside: circle();
+    }
+
+    @media (max-width: 900px) {
+      .cta-bio-img { width: 72px; height: 72px; margin: 0.1rem 0.9rem 0.3rem 0; }
     }
 
     .cta-links {
@@ -930,7 +950,7 @@
     <div class="cta-inner">
       <h2 class="fade-up">Ready to bring this workshop to your <em>community?</em></h2>
       <div class="cta-right">
-        <p class="cta-bio">Regina Flores Mir is an AI educator and researcher with a background spanning astrophysics (NASA), quantitative finance (Goldman Sachs, JPMorgan), and design and technology (DATA X). She is an AI consultant and strategist on the design and implementation of agentic AI systems. She works with founders and enterprise clients to take immediate action to use AI in their workflows, processes, or complete builds of backend/frontend systems. Her work has been incubated at the Metropolitan Museum of Art's Media Lab, MIT Media Lab, NYC Media Lab, and New Museum NEW INC. She is an adjunct professor at Parsons in Design and Technology. She will demystify AI for anyone.</p>
+        <p class="cta-bio"><img class="cta-bio-img" src="images/regina-headshot.jpg" alt="Regina Flores Mir">Regina Flores Mir is an AI educator and researcher with a background spanning astrophysics (NASA), quantitative finance (Goldman Sachs, JPMorgan), and design and technology (DATA X). She is an AI consultant and strategist on the design and implementation of agentic AI systems. She works with founders and enterprise clients to take immediate action to use AI in their workflows, processes, or complete builds of backend/frontend systems. Her work has been incubated at the Metropolitan Museum of Art's Media Lab, MIT Media Lab, NYC Media Lab, and New Museum NEW INC. She is an adjunct professor at Parsons in Design and Technology. She will demystify AI for anyone.</p>
         <div class="cta-links">
           <a class="cta-link" href="mailto:regina.flores@gmail.com">
             <span class="link-label">Email</span>
