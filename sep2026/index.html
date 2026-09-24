@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Regina Flores Mir — AI Consultant, Educator, Builder</title>
+<meta name="description" content="Regina Flores Mir designs, builds and ships agentic AI systems for founders and organizations, and teaches the people who run them. Astrophysics, quant finance, Parsons design and technology — New York.">
+<meta property="og:title" content="Regina Flores Mir — Science. Data. Design. Build.">
+<meta property="og:description" content="Agentic AI systems, workflow integration, full-stack builds and AI education — New York.">
+<meta property="og:image" content="images/HeadShot.jpeg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' fill='%230B0B0A'/%3E%3Ccircle cx='20' cy='20' r='14' fill='none' stroke='white' stroke-width='2'/%3E%3Cellipse cx='20' cy='20' rx='14' ry='5.5' fill='none' stroke='white' stroke-width='1.2' transform='rotate(-24 20 20)'/%3E%3Ccircle cx='29' cy='14' r='3.4' fill='%2300D95F'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,300..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --accent:#00D95F;
+  --ink:#000;
+  --paper:#fff;
+  --night:#0B0B0A;
+  --muted:#555;
+  --body:#333;
+  --rule:#EDEDED;
+  --gutter:40px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:24px}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Archivo','Helvetica Neue',Helvetica,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+a:hover{opacity:.72}
+img{display:block;max-width:100%}
+.mono{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace}
+.wrap{padding-left:var(--gutter);padding-right:var(--gutter)}
+.display{font-weight:800;font-stretch:72%;text-transform:uppercase;line-height:.86;letter-spacing:-.01em;margin:0}
+.kicker{font-size:13px;letter-spacing:.14em;text-transform:uppercase}
+.pill{display:inline-block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;border:1px solid var(--ink);padding:4px 12px;border-radius:999px}
+.pill.fill{background:var(--accent);border-color:var(--accent)}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;color:#000;padding:8px 14px;z-index:100}
+.skip:focus{left:8px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* ---------- HERO ---------- */
+#top{position:relative;min-height:100vh;min-height:100svh;background:var(--night);color:#fff;overflow:hidden;display:flex;flex-direction:column}
+#field{position:absolute;inset:0;width:100%;height:100%}
+.tw{animation:twinkle ease-in-out infinite}
+.orbit{transform-origin:1040px 470px;animation:spin 140s linear infinite}
+.orbit2{transform-origin:1040px 470px;animation:spin 220s linear infinite reverse}
+.sweep{transform-origin:1040px 470px;animation:spin 14s linear infinite}
+.wave{stroke-dasharray:14 10;animation:flow 6s linear infinite}
+.paused .tw,.paused .orbit,.paused .orbit2,.paused .sweep,.paused .wave{animation-play-state:paused}
+@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.95}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes flow{to{stroke-dashoffset:-240}}
+@media (prefers-reduced-motion:reduce){.tw,.orbit,.orbit2,.sweep,.wave{animation:none}html{scroll-behavior:auto}}
+.veil{position:absolute;inset:0;background:rgba(11,11,10,.35)}
+
+header.bar{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:28px var(--gutter)}
+.logo{display:flex;align-items:center;gap:14px;min-height:44px}
+.logo b{display:block;font-size:22px;font-weight:800;font-stretch:78%;letter-spacing:.02em;text-transform:uppercase;line-height:1}
+.logo small{display:block;margin-top:2px;font-size:11px;letter-spacing:.08em;color:rgba(255,255,255,.8)}
+.menu-btn{display:flex;align-items:center;gap:12px;height:48px;padding:0 20px 0 22px;border-radius:999px;border:1px solid rgba(255,255,255,.5);background:rgba(11,11,10,.35);color:#fff;font:500 13px 'IBM Plex Mono',monospace;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+.menu-btn svg{transition:transform .2s}
+.menu-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+.menu-wrap{position:relative}
+#site-menu{position:absolute;right:0;top:60px;width:440px;padding:28px 32px 30px;background:#fff;color:#000;border-radius:6px;display:none;flex-direction:column;gap:4px;box-shadow:0 24px 60px rgba(0,0,0,.35)}
+#site-menu.open{display:flex}
+#site-menu a.item{display:flex;align-items:baseline;gap:16px;padding:8px 0;border-bottom:1px solid var(--rule)}
+#site-menu a.item span:first-child{font-size:12px;color:var(--muted);width:22px}
+#site-menu a.item span:last-child{font-size:40px;font-weight:800;font-stretch:74%;text-transform:uppercase;line-height:1}
+#site-menu a.item.last{border-bottom:0}
+#site-menu a.item.last span:last-child{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:6px;text-underline-offset:6px}
+.menu-foot{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid #000;font-size:13px}
+.menu-foot span{font-size:12px;color:var(--muted)}
+
+.hero-copy{position:relative;z-index:2;margin-top:auto;padding:0 var(--gutter) 40px;display:flex;flex-direction:column;gap:28px;max-width:1180px}
+.hero-copy .kicker{color:rgba(255,255,255,.85);margin:0}
+.hero-copy h1{font-size:clamp(64px,12vw,172px)}
+.hero-copy h1 em{font-style:normal;color:var(--accent)}
+.hero-copy p.lede{margin:0;max-width:640px;font-size:22px;line-height:1.4;color:rgba(255,255,255,.9)}
+.hero-foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:0 var(--gutter) 36px}
+.scroll-cue{display:flex;align-items:center;gap:14px;min-height:48px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
+.scroll-cue i{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:#fff}
+.pause{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;border:1px solid rgba(255,255,255,.5);background:transparent;cursor:pointer}
+
+/* ---------- INTRO ---------- */
+#intro{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;row-gap:56px;padding-top:120px;padding-bottom:110px;border-bottom:1px solid #000}
+#intro .big{grid-column:1/span 6;margin:0;font-size:40px;line-height:1.12;font-weight:500;font-stretch:92%;letter-spacing:-.01em}
+.pillars{grid-column:8/span 5;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));column-gap:32px;row-gap:36px}
+.pillars div{display:flex;flex-direction:column;gap:10px;padding-top:14px;border-top:1px solid #000}
+.pillars .pill{align-self:flex-start;padding:5px 12px}
+.pillars p{margin:0;font-size:18px;line-height:1.35}
+
+/* ---------- SECTION HEADS ---------- */
+.sec{padding-top:140px;padding-bottom:150px}
+.sec-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;margin-bottom:96px;flex-wrap:wrap}
+.sec-head h2{font-size:clamp(64px,10.4vw,150px);display:flex;align-items:flex-start;gap:20px}
+.sec-head h2 sup{font:500 20px 'IBM Plex Mono',monospace;letter-spacing:.04em;margin-top:12px}
+.sec-head .aside{max-width:420px;font-size:18px;line-height:1.45;color:var(--body);margin:0}
+.link-arrow{display:inline-flex;align-items:center;gap:10px;min-height:44px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;border-bottom:1px solid currentColor}
+
+/* ---------- WORK ---------- */
+.grid{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;row-gap:120px;align-items:start}
+.card{display:flex;flex-direction:column;gap:22px}
+.card .art{position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:22px}
+.card .art svg.bg{position:absolute;inset:0;width:100%;height:100%}
+.card .art .tag{position:relative;font-size:12px;letter-spacing:.1em}
+.card .meta{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap;font-size:12px}
+.card h3{margin:0;font-weight:800;font-stretch:74%;line-height:.95;text-transform:uppercase;font-size:40px}
+.card.lg h3{font-size:52px}
+.card p{margin:0;max-width:560px;font-size:18px;line-height:1.45;color:var(--body)}
+.card ul.facts{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:8px}
+.card ul.facts li{font-size:12px;letter-spacing:.06em;background:#F3F3F1;padding:5px 10px;border-radius:3px}
+.card a.go{align-self:flex-start}
+.c1{grid-column:1/span 7}.c1 .art{height:600px;background:#0A0A0A;color:#B5B5B5}
+.c2{grid-column:9/span 4;margin-top:200px}.c2 .art{height:460px;background:var(--accent)}
+.c3{grid-column:2/span 4}.c3 .art{height:500px;background:#EDEDED;color:#333}
+.c4{grid-column:7/span 6;margin-top:120px}.c4 .art{height:620px;background:#1E1E1E;color:#B5B5B5}
+.c5{grid-column:1/span 6}.c5 .art{height:480px;background:#000;color:#B5B5B5}
+.c6{grid-column:8/span 5;margin-top:160px}.c6 .art{height:420px;background:#E3E3E3;color:#333}
+.c7{grid-column:1/span 6}.c7 .art{height:420px;background:#E3E3E3;color:#333}
+.c8{grid-column:8/span 5;margin-top:160px}.c8 .art{height:440px;background:#1E1E1E;color:#B5B5B5}
+
+/* ---------- CONSULTING ---------- */
+#consulting{background:var(--night);color:#fff}
+#consulting .sec-head .aside{color:rgba(255,255,255,.78)}
+.svc{border-top:1px solid rgba(255,255,255,.35)}
+.svc-row{display:grid;grid-template-columns:80px minmax(0,5fr) minmax(0,5fr) minmax(0,2fr);gap:32px;padding:40px 0;border-bottom:1px solid rgba(255,255,255,.35);align-items:start}
+.svc-row .n{font-size:13px;color:rgba(255,255,255,.7);padding-top:10px}
+.svc-row h3{margin:0;font-size:52px;font-weight:800;font-stretch:74%;line-height:.95;text-transform:uppercase}
+.svc-row p{margin:0;font-size:18px;line-height:1.45;color:rgba(255,255,255,.85)}
+.svc-row .fmt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding-top:10px;text-align:right}
+.who{display:flex;flex-wrap:wrap;gap:10px;margin-top:64px;align-items:center}
+.who .pill{border-color:rgba(255,255,255,.5)}
+.who span.l{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-right:8px}
+
+/* ---------- TEACHING ---------- */
+.teach{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;row-gap:64px}
+.teach .col-a{grid-column:1/span 5;display:flex;flex-direction:column;gap:28px}
+.teach .col-b{grid-column:7/span 6}
+.fact-block{padding:28px;background:var(--accent)}
+.fact-block h3{margin:0 0 12px;font-size:40px;font-weight:800;font-stretch:74%;line-height:.95;text-transform:uppercase}
+.fact-block p{margin:0;font-size:18px;line-height:1.45}
+.plain p{margin:0 0 14px;font-size:18px;line-height:1.5;color:var(--body)}
+.topics{margin:0;padding:0;list-style:none;border-top:1px solid #000}
+.topics li{padding:12px 0;border-bottom:1px solid var(--rule);font-size:18px;display:flex;gap:16px}
+.topics li span{font-size:12px;color:var(--muted);width:22px;padding-top:4px;flex-shrink:0}
+.log{margin:0;padding:0;list-style:none;border-top:1px solid #000}
+.log li{display:grid;grid-template-columns:160px minmax(0,1fr);gap:24px;padding:22px 0;border-bottom:1px solid #000}
+.log .d{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-top:6px}
+.log h4{margin:0 0 6px;font-size:28px;font-weight:800;font-stretch:78%;text-transform:uppercase;line-height:1}
+.log p{margin:0;font-size:16px;line-height:1.45;color:var(--body)}
+.log a{border-bottom:1px solid currentColor}
+
+/* ---------- ARCHIVE ---------- */
+#archive{background:#F3F3F1}
+.arch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.arch article{background:#fff;display:flex;flex-direction:column}
+.arch .ph{height:260px;background:#0A0A0A;position:relative;overflow:hidden}
+.arch .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05)}
+.arch .ph svg{position:absolute;inset:0;width:100%;height:100%}
+.arch .body{padding:24px 24px 28px;display:flex;flex-direction:column;gap:12px}
+.arch .yr{font-size:12px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
+.arch h3{margin:0;font-size:34px;font-weight:800;font-stretch:74%;line-height:.95;text-transform:uppercase}
+.arch p{margin:0;font-size:16px;line-height:1.45;color:var(--body)}
+.arch .press{font-size:12px;letter-spacing:.06em;color:#000;border-top:1px solid var(--rule);padding-top:12px;margin-top:auto}
+.also{margin-top:48px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.also .l{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+
+/* ---------- WRITING ---------- */
+.writing{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;row-gap:48px;align-items:start}
+.writing .title{grid-column:1/span 6}
+.writing .title h3{margin:18px 0 0;font-size:clamp(48px,6vw,88px);font-weight:800;font-stretch:72%;line-height:.88;text-transform:uppercase}
+.writing .detail{grid-column:8/span 5;display:flex;flex-direction:column;gap:28px}
+.principles{display:grid;grid-template-columns:1fr 1fr;gap:0;border-top:1px solid #000;border-left:1px solid #000}
+.principles div{padding:20px;border-right:1px solid #000;border-bottom:1px solid #000;font-size:20px;font-weight:700;font-stretch:84%;text-transform:uppercase;line-height:1.05;min-height:110px;display:flex;flex-direction:column;justify-content:space-between;gap:12px}
+.principles div span{font-size:12px;font-weight:400;color:var(--muted);letter-spacing:.08em}
+
+/* ---------- ABOUT ---------- */
+#about{border-top:1px solid #000}
+.about{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;row-gap:56px;align-items:start}
+.about .photo{grid-column:1/span 4;position:sticky;top:32px}
+.about .photo img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 30%;filter:grayscale(1)}
+.about .photo figcaption{margin-top:12px;font-size:12px;letter-spacing:.08em;color:var(--muted);display:flex;justify-content:space-between}
+.about .text{grid-column:6/span 7}
+.about .text .big{margin:0 0 32px;font-size:34px;line-height:1.15;font-weight:500;font-stretch:92%;letter-spacing:-.01em}
+.about .text p.b{margin:0 0 18px;font-size:18px;line-height:1.55;color:var(--body)}
+.cv{margin-top:56px;display:grid;grid-template-columns:1fr 1fr;column-gap:32px;row-gap:40px}
+.cv h4{margin:0 0 14px;font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding-bottom:10px;border-bottom:1px solid #000}
+.cv ul{margin:0;padding:0;list-style:none}
+.cv li{padding:9px 0;border-bottom:1px solid var(--rule);font-size:16px;line-height:1.35;display:flex;justify-content:space-between;gap:16px}
+.cv li span{font-size:12px;color:var(--muted);white-space:nowrap;padding-top:3px}
+
+/* ---------- CONTACT ---------- */
+#contact{background:var(--accent);color:#000;padding-top:120px;padding-bottom:48px;display:flex;flex-direction:column;gap:80px}
+.cta{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.cta h2{font-size:clamp(88px,13vw,190px);line-height:.84}
+.cta h2 span{color:#fff;-webkit-text-stroke:2px #000}
+.cta .r{display:flex;flex-direction:column;gap:18px;align-items:flex-end}
+.cta .mail{font-size:34px;font-weight:600;font-stretch:86%;border-bottom:2px solid #000;padding-bottom:6px}
+.cta .socials{display:flex;gap:24px;font-size:13px;letter-spacing:.1em;text-transform:uppercase}
+.cta .socials a{border-bottom:1px solid #000}
+.legal{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(0,0,0,.35);font-size:12px;letter-spacing:.08em;color:rgba(0,0,0,.8)}
+.legal nav{display:flex;gap:32px;flex-wrap:wrap}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width:1100px){
+  .grid{row-gap:88px}
+  .c1,.c4{grid-column:1/-1;margin-top:0}
+  .c2,.c3,.c5,.c6,.c7,.c8{grid-column:span 6;margin-top:0}
+  .c1 .art,.c4 .art{height:520px}
+  .c2 .art,.c3 .art,.c5 .art,.c6 .art,.c7 .art,.c8 .art{height:420px}
+  #intro .big,.pillars{grid-column:1/-1}
+  .svc-row{grid-template-columns:60px minmax(0,1fr) minmax(0,1fr)}
+  .svc-row .fmt{grid-column:2/-1;text-align:left;padding-top:0}
+  .teach .col-a,.teach .col-b{grid-column:1/-1}
+  .arch{grid-template-columns:1fr 1fr}
+  .writing .title,.writing .detail{grid-column:1/-1}
+  .about .photo{grid-column:1/span 5;position:static}
+  .about .text{grid-column:1/-1}
+}
+@media (max-width:720px){
+  :root{--gutter:16px}
+  header.bar{padding:20px var(--gutter)}
+  .logo b{font-size:17px}
+  .logo small{display:none}
+  .menu-btn{height:44px;padding:0 16px}
+  #site-menu{position:fixed;left:12px;right:12px;top:76px;width:auto;padding:20px 22px 22px}
+  #site-menu a.item span:last-child{font-size:34px}
+  .hero-copy{gap:20px;padding-bottom:28px}
+  .hero-copy h1{font-size:clamp(60px,21vw,110px)}
+  .hero-copy p.lede{font-size:18px}
+  .hero-foot{padding-bottom:24px}
+  .hero-foot .scroll-cue span{display:none}
+  #intro{padding-top:72px;padding-bottom:72px;row-gap:40px}
+  #intro .big{font-size:28px}
+  .pillars{grid-template-columns:1fr;row-gap:24px}
+  .sec{padding-top:88px;padding-bottom:96px}
+  .sec-head{margin-bottom:56px}
+  .grid{row-gap:64px}
+  .c2,.c3,.c5,.c6,.c7,.c8{grid-column:1/-1}
+  .card .art,.c1 .art,.c4 .art,.c2 .art,.c3 .art,.c5 .art,.c6 .art,.c7 .art,.c8 .art{height:300px}
+  .card h3,.card.lg h3{font-size:36px}
+  .card p{font-size:16px}
+  .svc-row{grid-template-columns:1fr;gap:12px;padding:28px 0}
+  .svc-row .n{padding-top:0}
+  .svc-row .fmt{grid-column:auto}
+  .svc-row h3{font-size:38px}
+  .svc-row p{font-size:16px}
+  .log li{grid-template-columns:1fr;gap:6px}
+  .log h4{font-size:24px}
+  .arch{grid-template-columns:1fr}
+  .principles{grid-template-columns:1fr}
+  .principles div{min-height:0}
+  .about .photo{grid-column:1/-1}
+  .about .text .big{font-size:26px}
+  .cv{grid-template-columns:1fr}
+  #contact{padding-top:80px;gap:56px}
+  .cta .r{align-items:flex-start}
+  .cta .mail{font-size:24px;word-break:break-all}
+  .legal nav{gap:18px}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#work">Skip to content</a>
+
+<!-- ============ HERO ============ -->
+<section id="top">
+  <svg id="field" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g id="stars"></g>
+    <g class="orbit" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="1">
+      <ellipse cx="1040" cy="470" rx="520" ry="190"/>
+      <ellipse cx="1040" cy="470" rx="380" ry="380" stroke-dasharray="2 8"/>
+    </g>
+    <g class="orbit2" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1">
+      <circle cx="1040" cy="470" r="250"/>
+      <circle cx="1040" cy="470" r="150" stroke-dasharray="1 6"/>
+      <circle cx="1290" cy="470" r="5" fill="var(--accent)" stroke="none"/>
+    </g>
+    <g class="sweep"><line x1="1040" y1="470" x2="1040" y2="-40" stroke="var(--accent)" stroke-opacity=".55" stroke-width="1.5"/></g>
+    <path class="wave" d="M0 700 C 120 660, 200 740, 320 700 S 520 650, 640 700 S 860 760, 980 700 S 1200 640, 1320 700 S 1440 720, 1500 700" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="1.2"/>
+  </svg>
+  <div class="veil"></div>
+
+  <header class="bar">
+    <a class="logo" href="#top" aria-label="Regina Flores Mir — home">
+      <svg width="40" height="40" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="17" fill="none" stroke="#fff" stroke-width="2"/>
+        <ellipse cx="20" cy="20" rx="17" ry="6.5" fill="none" stroke="#fff" stroke-width="1.2" transform="rotate(-24 20 20)"/>
+        <circle cx="31" cy="13" r="3.4" fill="var(--accent)"/>
+      </svg>
+      <span><b>Regina Flores Mir</b><small class="mono">reginafloresmir.ai</small></span>
+    </a>
+    <div class="menu-wrap">
+      <button class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-menu">
+        <span id="menu-label">Menu</span>
+        <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" fill="none" stroke="#fff" stroke-width="1.6"><path d="M4 7l5 5 5-5"/></svg>
+      </button>
+      <nav id="site-menu" aria-label="Site">
+        <a class="item" href="#work"><span class="mono">01</span><span>Work</span></a>
+        <a class="item" href="#consulting"><span class="mono">02</span><span>Consulting</span></a>
+        <a class="item" href="#teaching"><span class="mono">03</span><span>Teaching</span></a>
+        <a class="item" href="#writing"><span class="mono">04</span><span>Writing</span></a>
+        <a class="item" href="#about"><span class="mono">05</span><span>About</span></a>
+        <a class="item last" href="#contact"><span class="mono">06</span><span>Contact</span></a>
+        <div class="menu-foot mono">
+          <a href="mailto:regina@reginafloresmir.ai">regina@reginafloresmir.ai</a>
+          <span>New York</span>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <div class="hero-copy">
+    <p class="kicker mono">AI Consultant · Educator · Builder</p>
+    <h1 class="display">Science. Data.<br>Design. <em>Build.</em></h1>
+    <p class="lede">I design and ship agentic AI systems, workflow integrations and full-stack builds, and I teach the teams who will run them.</p>
+  </div>
+
+  <div class="hero-foot">
+    <a class="scroll-cue mono" href="#work">
+      <i><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#000" stroke-width="1.8" aria-hidden="true"><path d="M9 3v12M4 10l5 5 5-5"/></svg></i>
+      <span>Scroll to work</span>
+    </a>
+    <button class="pause" id="pause" aria-label="Pause background animation">
+      <svg id="ico-pause" width="16" height="16" viewBox="0 0 16 16" fill="#fff" aria-hidden="true"><rect x="3" y="2" width="3.4" height="12"/><rect x="9.6" y="2" width="3.4" height="12"/></svg>
+      <svg id="ico-play" width="16" height="16" viewBox="0 0 16 16" fill="#fff" aria-hidden="true" style="display:none"><path d="M4 2l10 6-10 6z"/></svg>
+    </button>
+  </div>
+</section>
+
+<!-- ============ INTRO ============ -->
+<section id="intro" class="wrap">
+  <p class="big">A career that started in astrophysics and ran through quant finance and design school, with data and code the whole way through. Now I help founders and organizations put AI to real work.</p>
+  <div class="pillars">
+    <div><span class="pill fill mono">Science</span><p>Astrophysics at Columbia (Barnard). Radio astronomy research at NASA Ames, Arecibo and Green Bank.</p></div>
+    <div><span class="pill fill mono">Data</span><p>MA in Statistics from Columbia. Quant and markets roles at Goldman Sachs, Brevan Howard and J.P. Morgan.</p></div>
+    <div><span class="pill fill mono">Design</span><p>MFA in Design &amp; Technology from Parsons. Media-lab work at MIT and The Met. Parsons faculty today.</p></div>
+    <div><span class="pill fill mono">Build</span><p>Claude-powered agent pipelines, data archives, internal tools, web and iOS apps.</p></div>
+  </div>
+</section>
+
+<!-- ============ SELECTED WORK ============ -->
+<section id="work" class="sec wrap">
+  <div class="sec-head">
+    <h2 class="display">Selected Work</h2>
+    <p class="aside">Client builds, enterprise education and open tools from 2026. Client names are left out where an NDA applies.</p>
+  </div>
+
+  <div class="grid">
+    <!-- 01 -->
+    <article class="card lg c1">
+      <div class="art">
+        <svg class="bg" viewBox="0 0 700 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#fff" stroke-opacity=".18" fill="none">
+            <path d="M120 150 C 250 150, 250 300, 350 300"/><path d="M120 220 C 250 220, 250 300, 350 300"/><path d="M120 290 C 250 290, 250 300, 350 300"/><path d="M120 360 C 250 360, 250 300, 350 300"/><path d="M120 430 C 250 430, 250 300, 350 300"/>
+            <path d="M350 300 L 500 300" stroke-dasharray="4 6"/><path d="M500 300 L 610 220"/><path d="M500 300 L 610 380"/>
+          </g>
+          <g fill="#fff" fill-opacity=".55"><circle cx="120" cy="150" r="4"/><circle cx="120" cy="220" r="4"/><circle cx="120" cy="290" r="4"/><circle cx="120" cy="360" r="4"/><circle cx="120" cy="430" r="4"/></g>
+          <circle cx="350" cy="300" r="28" fill="none" stroke="#fff" stroke-opacity=".7"/>
+          <circle cx="500" cy="300" r="28" fill="none" stroke="var(--accent)" stroke-width="1.5"/>
+          <circle cx="610" cy="220" r="7" fill="var(--accent)"/><circle cx="610" cy="380" r="7" fill="none" stroke="#fff" stroke-opacity=".5"/>
+          <text x="350" y="350" fill="#fff" fill-opacity=".6" font-family="IBM Plex Mono" font-size="11" text-anchor="middle">AGENT 1 · DAILY</text>
+          <text x="500" y="350" fill="var(--accent)" font-family="IBM Plex Mono" font-size="11" text-anchor="middle">AGENT 2 · WEEKLY</text>
+          <text x="120" y="120" fill="#fff" fill-opacity=".6" font-family="IBM Plex Mono" font-size="11" text-anchor="middle">SOURCES</text>
+          <text x="610" y="200" fill="#fff" fill-opacity=".6" font-family="IBM Plex Mono" font-size="11" text-anchor="middle">PUBLISH</text>
+        </svg>
+        <span class="tag mono">Two-agent pipeline · human review</span>
+      </div>
+      <div class="meta mono"><span>01</span><span class="pill">Consulting · Agentic systems</span></div>
+      <h3>An agentic pipeline</h3>
+      <p>A two-agent Claude system: one agent gathers information from sources every day, and a second researches and verifies what it finds. Approved results are published through a review dashboard, so a person makes the final call.</p>
+      <ul class="facts mono"><li>Claude Haiku 4.5 + Sonnet 4.6</li><li>Tool use · prompt caching</li><li>Flask review dashboard</li><li>109 unit tests</li><li>Handed off Apr 2026</li></ul>
+    </article>
+
+    <!-- 02 -->
+    <article class="card c2">
+      <div class="art">
+        <svg class="bg" viewBox="0 0 400 460" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <text x="24" y="200" font-family="Archivo" font-weight="800" font-size="150" style="font-stretch:72%" fill="#000">200+</text>
+          <text x="28" y="240" font-family="IBM Plex Mono" font-size="12" fill="#000">PARTICIPANTS · EN / ES</text>
+        </svg>
+        <span class="tag mono">Mexico · bilingual</span>
+      </div>
+      <div class="meta mono"><span>02</span><span class="pill">Corporate · Organization-wide training</span></div>
+      <h3>AI literacy at scale</h3>
+      <p>"Demystifying AI" for more than 200 people in Mexico: a bilingual program that gave an entire organization a shared vocabulary for AI, supported by a Spanish-language AI news briefing and reference guides.</p>
+    </article>
+
+    <!-- 03 -->
+    <article class="card c3">
+      <div class="art">
+        <svg class="bg" viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="none" stroke="#000" stroke-opacity=".7">
+            <rect x="40" y="60" width="60" height="80"/><rect x="110" y="60" width="60" height="80"/><rect x="180" y="60" width="60" height="80"/><rect x="250" y="60" width="60" height="80" fill="var(--accent)" stroke="none"/><rect x="320" y="60" width="60" height="80"/>
+            <rect x="40" y="150" width="60" height="80"/><rect x="110" y="150" width="60" height="80"/><rect x="180" y="150" width="60" height="80"/><rect x="250" y="150" width="60" height="80"/><rect x="320" y="150" width="60" height="80"/>
+            <rect x="40" y="240" width="60" height="80"/><rect x="110" y="240" width="60" height="80" fill="#000"/><rect x="180" y="240" width="60" height="80"/><rect x="250" y="240" width="60" height="80"/><rect x="320" y="240" width="60" height="80"/>
+          </g>
+          <text x="40" y="370" font-family="IBM Plex Mono" font-size="12" fill="#333">1970s ——————————— 2020s</text>
+        </svg>
+        <span class="tag mono">Archive architecture · 2026</span>
+      </div>
+      <div class="meta mono"><span>03</span><span class="pill">Consulting · Archives</span></div>
+      <h3>Digital Legacy Archive</h3>
+      <p>Architecture and technology plan for a digital archive of about fifty years of a scholar's work: structured data, a RESTful API and preservation practice. It is designed to be AI-ready, from transcribing audio recordings to searching across the collection, while the archive keeps ownership of its data. The project began in August 2026 and is ongoing.</p>
+    </article>
+
+    <!-- 04 -->
+    <article class="card lg c4">
+      <div class="art">
+        <svg class="bg" viewBox="0 0 700 620" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g stroke="#fff" stroke-opacity=".06"><path d="M60 40 V 580"/><path d="M100 40 V 580"/><path d="M140 40 V 580"/><path d="M180 40 V 580"/><path d="M220 40 V 580"/><path d="M260 40 V 580"/><path d="M300 40 V 580"/><path d="M340 40 V 580"/><path d="M380 40 V 580"/><path d="M420 40 V 580"/><path d="M460 40 V 580"/><path d="M500 40 V 580"/><path d="M540 40 V 580"/><path d="M580 40 V 580"/><path d="M620 40 V 580"/><path d="M660 40 V 580"/><path d="M40 60 H 680"/><path d="M40 100 H 680"/><path d="M40 140 H 680"/><path d="M40 180 H 680"/><path d="M40 220 H 680"/><path d="M40 260 H 680"/><path d="M40 300 H 680"/><path d="M40 340 H 680"/><path d="M40 380 H 680"/><path d="M40 420 H 680"/><path d="M40 460 H 680"/><path d="M40 500 H 680"/><path d="M40 540 H 680"/><path d="M40 580 H 680"/></g>
+          <path d="M50 540 C 60.0 539.8, 83.3 539.8, 110 539 C 136.7 538.2, 178.3 538.0, 210 535 C 241.7 532.0, 275.0 527.8, 300 521 C 325.0 514.2, 342.5 509.2, 360 494 C 377.5 478.8, 393.0 455.7, 405 430 C 417.0 404.3, 424.5 370.0, 432 340 C 439.5 310.0, 447.0 265.0, 450 250 L450 560 L50 560Z" fill="var(--accent)" fill-opacity=".08"/>
+          <path d="M50 540 C 60.0 539.8, 83.3 539.8, 110 539 C 136.7 538.2, 178.3 538.0, 210 535 C 241.7 532.0, 275.0 527.8, 300 521 C 325.0 514.2, 342.5 509.2, 360 494 C 377.5 478.8, 393.0 455.7, 405 430 C 417.0 404.3, 424.5 370.0, 432 340 C 439.5 310.0, 447.0 265.0, 450 250" fill="none" stroke="var(--accent)" stroke-width="2"/>
+          <circle cx="110" cy="539" r="3" fill="#fff"/>
+          <text x="110" y="511" font-family="IBM Plex Mono" font-size="10" fill="#fff" fill-opacity=".85" text-anchor="middle">1950</text><text x="110" y="523" font-family="IBM Plex Mono" font-size="9" fill="#fff" fill-opacity=".45" text-anchor="middle">TURING TEST</text>
+          <circle cx="210" cy="535" r="3" fill="#fff"/>
+          <text x="210" y="507" font-family="IBM Plex Mono" font-size="10" fill="#fff" fill-opacity=".85" text-anchor="middle">1997</text><text x="210" y="519" font-family="IBM Plex Mono" font-size="9" fill="#fff" fill-opacity=".45" text-anchor="middle">DEEP BLUE</text>
+          <circle cx="300" cy="521" r="3" fill="#fff"/>
+          <text x="300" y="493" font-family="IBM Plex Mono" font-size="10" fill="#fff" fill-opacity=".85" text-anchor="middle">2012</text><text x="300" y="505" font-family="IBM Plex Mono" font-size="9" fill="#fff" fill-opacity=".45" text-anchor="middle">DEEP LEARNING</text>
+          <circle cx="360" cy="494" r="3" fill="#fff"/>
+          <text x="372" y="500" font-family="IBM Plex Mono" font-size="10" fill="#fff" fill-opacity=".85" text-anchor="start">2017</text><text x="372" y="512" font-family="IBM Plex Mono" font-size="9" fill="#fff" fill-opacity=".45" text-anchor="start">TRANSFORMER</text>
+          <circle cx="405" cy="430" r="3" fill="#fff"/>
+          <text x="393" y="422" font-family="IBM Plex Mono" font-size="10" fill="#fff" fill-opacity=".85" text-anchor="end">2022</text><text x="393" y="434" font-family="IBM Plex Mono" font-size="9" fill="#fff" fill-opacity=".45" text-anchor="end">CHATGPT</text>
+          <circle cx="450" cy="250" r="5" fill="var(--accent)"/>
+          <text x="438" y="242" font-family="IBM Plex Mono" font-size="10" fill="#fff" fill-opacity=".85" text-anchor="end">NOW</text><text x="438" y="254" font-family="IBM Plex Mono" font-size="9" fill="#fff" fill-opacity=".45" text-anchor="end">AGENTS</text>
+          <path d="M480 300 l10 -10 h150 l-10 10 Z" fill="var(--accent)" fill-opacity="0.70"/>
+          <rect x="480" y="300" width="150" height="20" fill="var(--accent)" fill-opacity="1.00"/>
+          <path d="M630 300 l10 -10 v20 l-10 10 Z" fill="var(--accent)" fill-opacity="0.45"/>
+          <text x="488" y="314" font-family="IBM Plex Mono" font-size="9" fill="#000" fill-opacity=".85">APPLICATIONS</text>
+          <path d="M480 330 l10 -10 h150 l-10 10 Z" fill="#fff" fill-opacity="0.45"/>
+          <rect x="480" y="330" width="150" height="20" fill="#fff" fill-opacity="0.65"/>
+          <path d="M630 330 l10 -10 v20 l-10 10 Z" fill="#fff" fill-opacity="0.29"/>
+          <text x="488" y="344" font-family="IBM Plex Mono" font-size="9" fill="#000" fill-opacity=".85">MODELS</text>
+          <path d="M480 360 l10 -10 h150 l-10 10 Z" fill="#fff" fill-opacity="0.39"/>
+          <rect x="480" y="360" width="150" height="20" fill="#fff" fill-opacity="0.55"/>
+          <path d="M630 360 l10 -10 v20 l-10 10 Z" fill="#fff" fill-opacity="0.25"/>
+          <text x="488" y="374" font-family="IBM Plex Mono" font-size="9" fill="#000" fill-opacity=".85">INFRASTRUCTURE</text>
+          <path d="M480 390 l10 -10 h150 l-10 10 Z" fill="#fff" fill-opacity="0.31"/>
+          <rect x="480" y="390" width="150" height="20" fill="#fff" fill-opacity="0.45"/>
+          <path d="M630 390 l10 -10 v20 l-10 10 Z" fill="#fff" fill-opacity="0.20"/>
+          <text x="488" y="404" font-family="IBM Plex Mono" font-size="9" fill="#000" fill-opacity=".85">CHIPS</text>
+          <path d="M480 420 l10 -10 h150 l-10 10 Z" fill="#fff" fill-opacity="0.24"/>
+          <rect x="480" y="420" width="150" height="20" fill="#fff" fill-opacity="0.35"/>
+          <path d="M630 420 l10 -10 v20 l-10 10 Z" fill="#fff" fill-opacity="0.16"/>
+          <text x="488" y="434" font-family="IBM Plex Mono" font-size="9" fill="#000" fill-opacity=".85">ENERGY</text>
+          <text x="480" y="464" font-family="IBM Plex Mono" font-size="9" fill="#fff" fill-opacity=".5">THE AI ECONOMY · 5 LAYERS</text>
+          <rect x="60" y="80" width="70" height="70" fill="none" stroke="#fff" stroke-opacity=".35"/>
+          <rect x="63.0" y="123.8" width="2" height="2" fill="#fff" fill-opacity="0.69"/>
+          <rect x="81.2" y="124.2" width="2" height="2" fill="#fff" fill-opacity="0.35"/>
+          <rect x="77.6" y="107.4" width="2" height="2" fill="#fff" fill-opacity="0.50"/>
+          <rect x="104.8" y="139.9" width="2" height="2" fill="#fff" fill-opacity="0.60"/>
+          <rect x="72.6" y="93.7" width="2" height="2" fill="#fff" fill-opacity="0.43"/>
+          <rect x="103.2" y="105.1" width="2" height="2" fill="#fff" fill-opacity="0.32"/>
+          <rect x="119.9" y="103.7" width="2" height="2" fill="#fff" fill-opacity="0.34"/>
+          <rect x="89.9" y="141.6" width="2" height="2" fill="#fff" fill-opacity="0.63"/>
+          <rect x="77.3" y="122.3" width="2" height="2" fill="#fff" fill-opacity="0.53"/>
+          <rect x="79.7" y="88.0" width="2" height="2" fill="#fff" fill-opacity="0.55"/>
+          <rect x="97.2" y="133.3" width="2" height="2" fill="#fff" fill-opacity="0.46"/>
+          <rect x="77.7" y="125.2" width="2" height="2" fill="#fff" fill-opacity="0.62"/>
+          <rect x="73.1" y="131.5" width="2" height="2" fill="#fff" fill-opacity="0.78"/>
+          <rect x="114.3" y="97.6" width="2" height="2" fill="#fff" fill-opacity="0.76"/>
+          <rect x="101.0" y="130.5" width="2" height="2" fill="#fff" fill-opacity="0.43"/>
+          <rect x="85.5" y="92.8" width="2" height="2" fill="#fff" fill-opacity="0.51"/>
+          <rect x="85.5" y="94.3" width="2" height="2" fill="#fff" fill-opacity="0.72"/>
+          <rect x="87.1" y="94.7" width="2" height="2" fill="#fff" fill-opacity="0.49"/>
+          <rect x="112.4" y="134.6" width="2" height="2" fill="#fff" fill-opacity="0.52"/>
+          <rect x="93.3" y="116.9" width="2" height="2" fill="#fff" fill-opacity="0.45"/>
+          <rect x="95.4" y="115.4" width="2" height="2" fill="#fff" fill-opacity="0.59"/>
+          <rect x="99.9" y="140.9" width="2" height="2" fill="#fff" fill-opacity="0.53"/>
+          <rect x="83.5" y="111.1" width="2" height="2" fill="#fff" fill-opacity="0.67"/>
+          <rect x="85.9" y="114.2" width="2" height="2" fill="#fff" fill-opacity="0.76"/>
+          <rect x="86.9" y="118.3" width="2" height="2" fill="#fff" fill-opacity="0.62"/>
+          <rect x="83.0" y="126.7" width="2" height="2" fill="#fff" fill-opacity="0.43"/>
+          <rect x="113.1" y="135.8" width="2" height="2" fill="#fff" fill-opacity="0.37"/>
+          <rect x="101.9" y="87.9" width="2" height="2" fill="#fff" fill-opacity="0.52"/>
+          <rect x="84.2" y="92.2" width="2" height="2" fill="#fff" fill-opacity="0.64"/>
+          <rect x="101.9" y="144.8" width="2" height="2" fill="#fff" fill-opacity="0.52"/>
+          <rect x="73.3" y="116.0" width="2" height="2" fill="#fff" fill-opacity="0.68"/>
+          <rect x="98.1" y="142.2" width="2" height="2" fill="#fff" fill-opacity="0.41"/>
+          <rect x="66.7" y="95.9" width="2" height="2" fill="#fff" fill-opacity="0.47"/>
+          <rect x="67.8" y="125.6" width="2" height="2" fill="#fff" fill-opacity="0.47"/>
+          <rect x="90.0" y="138.3" width="2" height="2" fill="#fff" fill-opacity="0.68"/>
+          <rect x="116.2" y="83.7" width="2" height="2" fill="#fff" fill-opacity="0.38"/>
+          <rect x="104.7" y="113.5" width="2" height="2" fill="#fff" fill-opacity="0.69"/>
+          <rect x="109.0" y="130.9" width="2" height="2" fill="#fff" fill-opacity="0.53"/>
+          <rect x="70.7" y="96.0" width="2" height="2" fill="#fff" fill-opacity="0.70"/>
+          <rect x="67.0" y="118.6" width="2" height="2" fill="#fff" fill-opacity="0.63"/>
+          <rect x="91.2" y="106.1" width="2" height="2" fill="#fff" fill-opacity="0.31"/>
+          <rect x="67.4" y="91.3" width="2" height="2" fill="#fff" fill-opacity="0.57"/>
+          <rect x="105.7" y="95.4" width="2" height="2" fill="#fff" fill-opacity="0.75"/>
+          <rect x="99.4" y="110.0" width="2" height="2" fill="#fff" fill-opacity="0.43"/>
+          <rect x="109.6" y="108.2" width="2" height="2" fill="#fff" fill-opacity="0.76"/>
+          <rect x="121.2" y="113.9" width="2" height="2" fill="#fff" fill-opacity="0.67"/>
+          <rect x="121.0" y="97.1" width="2" height="2" fill="#fff" fill-opacity="0.78"/>
+          <rect x="111.2" y="131.4" width="2" height="2" fill="#fff" fill-opacity="0.67"/>
+          <rect x="119.8" y="85.7" width="2" height="2" fill="#fff" fill-opacity="0.65"/>
+          <rect x="114.1" y="99.2" width="2" height="2" fill="#fff" fill-opacity="0.52"/>
+          <rect x="82.8" y="132.9" width="2" height="2" fill="#fff" fill-opacity="0.62"/>
+          <rect x="124.9" y="120.0" width="2" height="2" fill="#fff" fill-opacity="0.37"/>
+          <rect x="102.3" y="98.9" width="2" height="2" fill="#fff" fill-opacity="0.35"/>
+          <rect x="64.0" y="97.8" width="2" height="2" fill="#fff" fill-opacity="0.49"/>
+          <rect x="121.7" y="84.0" width="2" height="2" fill="#fff" fill-opacity="0.37"/>
+          <rect x="94.5" y="91.2" width="2" height="2" fill="#fff" fill-opacity="0.66"/>
+          <rect x="108.7" y="86.2" width="2" height="2" fill="#fff" fill-opacity="0.63"/>
+          <rect x="89.6" y="111.6" width="2" height="2" fill="#fff" fill-opacity="0.71"/>
+          <rect x="85.0" y="134.3" width="2" height="2" fill="#fff" fill-opacity="0.43"/>
+          <rect x="104.9" y="139.8" width="2" height="2" fill="#fff" fill-opacity="0.44"/>
+          <rect x="109.4" y="99.2" width="2" height="2" fill="#fff" fill-opacity="0.32"/>
+          <rect x="103.8" y="99.0" width="2" height="2" fill="#fff" fill-opacity="0.34"/>
+          <rect x="87.7" y="116.8" width="2" height="2" fill="#fff" fill-opacity="0.43"/>
+          <rect x="81.9" y="105.1" width="2" height="2" fill="#fff" fill-opacity="0.56"/>
+          <rect x="63.1" y="88.4" width="2" height="2" fill="#fff" fill-opacity="0.69"/>
+          <rect x="82.3" y="129.9" width="2" height="2" fill="#fff" fill-opacity="0.38"/>
+          <rect x="75.2" y="90.7" width="2" height="2" fill="#fff" fill-opacity="0.52"/>
+          <rect x="94.7" y="141.0" width="2" height="2" fill="#fff" fill-opacity="0.69"/>
+          <rect x="78.9" y="110.7" width="2" height="2" fill="#fff" fill-opacity="0.64"/>
+          <rect x="98.5" y="115.1" width="2" height="2" fill="#fff" fill-opacity="0.34"/>
+          <rect x="117.8" y="106.7" width="2" height="2" fill="#fff" fill-opacity="0.40"/>
+          <rect x="103.2" y="104.5" width="2" height="2" fill="#fff" fill-opacity="0.59"/>
+          <rect x="63.2" y="116.0" width="2" height="2" fill="#fff" fill-opacity="0.65"/>
+          <rect x="68.9" y="109.7" width="2" height="2" fill="#fff" fill-opacity="0.61"/>
+          <rect x="82.6" y="103.2" width="2" height="2" fill="#fff" fill-opacity="0.58"/>
+          <rect x="90.6" y="104.0" width="2" height="2" fill="#fff" fill-opacity="0.51"/>
+          <rect x="124.9" y="119.2" width="2" height="2" fill="#fff" fill-opacity="0.46"/>
+          <rect x="90.9" y="127.6" width="2" height="2" fill="#fff" fill-opacity="0.65"/>
+          <rect x="78.6" y="141.7" width="2" height="2" fill="#fff" fill-opacity="0.34"/>
+          <rect x="77.3" y="118.9" width="2" height="2" fill="#fff" fill-opacity="0.59"/>
+          <rect x="88.3" y="95.3" width="2" height="2" fill="#fff" fill-opacity="0.47"/>
+          <rect x="65.1" y="134.2" width="2" height="2" fill="#fff" fill-opacity="0.33"/>
+          <rect x="124.7" y="130.6" width="2" height="2" fill="#fff" fill-opacity="0.38"/>
+          <rect x="68.1" y="83.2" width="2" height="2" fill="#fff" fill-opacity="0.30"/>
+          <path d="M136 115.0 h14" stroke="#fff" stroke-opacity=".4"/>
+          <rect x="156" y="80" width="70" height="70" fill="none" stroke="#fff" stroke-opacity=".35"/>
+          <rect x="212.7" y="122.5" width="2" height="2" fill="#fff" fill-opacity="0.60"/>
+          <rect x="164.5" y="108.6" width="2" height="2" fill="#fff" fill-opacity="0.50"/>
+          <rect x="160.6" y="94.3" width="2" height="2" fill="#fff" fill-opacity="0.57"/>
+          <rect x="167.9" y="112.3" width="2" height="2" fill="#fff" fill-opacity="0.50"/>
+          <rect x="209.8" y="92.2" width="2" height="2" fill="#fff" fill-opacity="0.33"/>
+          <rect x="163.2" y="108.1" width="2" height="2" fill="#fff" fill-opacity="0.77"/>
+          <rect x="206.2" y="128.7" width="2" height="2" fill="#fff" fill-opacity="0.77"/>
+          <rect x="180.5" y="111.6" width="2" height="2" fill="#fff" fill-opacity="0.51"/>
+          <rect x="213.8" y="140.0" width="2" height="2" fill="#fff" fill-opacity="0.36"/>
+          <rect x="184.5" y="143.1" width="2" height="2" fill="#fff" fill-opacity="0.33"/>
+          <rect x="218.5" y="139.8" width="2" height="2" fill="#fff" fill-opacity="0.41"/>
+          <rect x="165.1" y="125.3" width="2" height="2" fill="#fff" fill-opacity="0.80"/>
+          <rect x="159.3" y="137.8" width="2" height="2" fill="#fff" fill-opacity="0.37"/>
+          <rect x="207.9" y="141.3" width="2" height="2" fill="#fff" fill-opacity="0.44"/>
+          <rect x="169.4" y="114.5" width="2" height="2" fill="#fff" fill-opacity="0.35"/>
+          <rect x="169.8" y="112.8" width="2" height="2" fill="#fff" fill-opacity="0.79"/>
+          <rect x="188.8" y="130.4" width="2" height="2" fill="#fff" fill-opacity="0.47"/>
+          <rect x="169.4" y="100.5" width="2" height="2" fill="#fff" fill-opacity="0.80"/>
+          <rect x="167.4" y="119.8" width="2" height="2" fill="#fff" fill-opacity="0.55"/>
+          <rect x="195.4" y="133.4" width="2" height="2" fill="#fff" fill-opacity="0.62"/>
+          <rect x="206.7" y="141.3" width="2" height="2" fill="#fff" fill-opacity="0.62"/>
+          <rect x="190.9" y="127.3" width="2" height="2" fill="#fff" fill-opacity="0.70"/>
+          <rect x="185.5" y="101.7" width="2" height="2" fill="#fff" fill-opacity="0.33"/>
+          <rect x="207.6" y="126.1" width="2" height="2" fill="#fff" fill-opacity="0.59"/>
+          <rect x="201.0" y="122.8" width="2" height="2" fill="#fff" fill-opacity="0.58"/>
+          <rect x="217.3" y="119.6" width="2" height="2" fill="#fff" fill-opacity="0.38"/>
+          <rect x="177.2" y="135.8" width="2" height="2" fill="#fff" fill-opacity="0.78"/>
+          <rect x="173.5" y="106.5" width="2" height="2" fill="#fff" fill-opacity="0.77"/>
+          <rect x="183.6" y="107.3" width="2" height="2" fill="#fff" fill-opacity="0.72"/>
+          <rect x="175.7" y="105.3" width="2" height="2" fill="#fff" fill-opacity="0.49"/>
+          <rect x="194.3" y="122.9" width="2" height="2" fill="#fff" fill-opacity="0.60"/>
+          <rect x="203.9" y="101.8" width="2" height="2" fill="#fff" fill-opacity="0.65"/>
+          <rect x="196.7" y="101.7" width="2" height="2" fill="#fff" fill-opacity="0.59"/>
+          <rect x="178.0" y="83.6" width="2" height="2" fill="#fff" fill-opacity="0.31"/>
+          <rect x="216.8" y="129.6" width="2" height="2" fill="#fff" fill-opacity="0.48"/>
+          <rect x="203.6" y="126.9" width="2" height="2" fill="#fff" fill-opacity="0.61"/>
+          <rect x="168.1" y="87.6" width="2" height="2" fill="#fff" fill-opacity="0.49"/>
+          <rect x="172.3" y="128.3" width="2" height="2" fill="#fff" fill-opacity="0.59"/>
+          <rect x="179.7" y="135.7" width="2" height="2" fill="#fff" fill-opacity="0.42"/>
+          <rect x="172.6" y="112.1" width="2" height="2" fill="#fff" fill-opacity="0.44"/>
+          <rect x="164.3" y="89.8" width="2" height="2" fill="#fff" fill-opacity="0.70"/>
+          <rect x="192.2" y="116.4" width="2" height="2" fill="#fff" fill-opacity="0.39"/>
+          <rect x="215.6" y="130.0" width="2" height="2" fill="#fff" fill-opacity="0.78"/>
+          <rect x="188.7" y="107.6" width="2" height="2" fill="#fff" fill-opacity="0.68"/>
+          <rect x="212.1" y="84.3" width="2" height="2" fill="#fff" fill-opacity="0.54"/>
+          <rect x="183.8" y="133.6" width="2" height="2" fill="#fff" fill-opacity="0.56"/>
+          <rect x="215.7" y="128.5" width="2" height="2" fill="#fff" fill-opacity="0.39"/>
+          <rect x="161.0" y="140.3" width="2" height="2" fill="#fff" fill-opacity="0.60"/>
+          <rect x="179.7" y="127.6" width="2" height="2" fill="#fff" fill-opacity="0.77"/>
+          <rect x="163.9" y="140.6" width="2" height="2" fill="#fff" fill-opacity="0.37"/>
+          <rect x="177.3" y="116.9" width="2" height="2" fill="#fff" fill-opacity="0.65"/>
+          <rect x="183.9" y="87.9" width="2" height="2" fill="#fff" fill-opacity="0.73"/>
+          <rect x="185.7" y="117.2" width="2" height="2" fill="#fff" fill-opacity="0.32"/>
+          <rect x="191.2" y="120.5" width="2" height="2" fill="#fff" fill-opacity="0.74"/>
+          <rect x="165.4" y="100.1" width="2" height="2" fill="#fff" fill-opacity="0.48"/>
+          <rect x="208.7" y="121.4" width="2" height="2" fill="#fff" fill-opacity="0.54"/>
+          <rect x="174.7" y="107.1" width="2" height="2" fill="#fff" fill-opacity="0.44"/>
+          <rect x="196.2" y="97.4" width="2" height="2" fill="#fff" fill-opacity="0.68"/>
+          <rect x="185.6" y="93.4" width="2" height="2" fill="#fff" fill-opacity="0.54"/>
+          <rect x="214.1" y="108.2" width="2" height="2" fill="#fff" fill-opacity="0.63"/>
+          <rect x="176.8" y="140.9" width="2" height="2" fill="#fff" fill-opacity="0.66"/>
+          <rect x="159.5" y="100.4" width="2" height="2" fill="#fff" fill-opacity="0.37"/>
+          <rect x="214.0" y="110.8" width="2" height="2" fill="#fff" fill-opacity="0.74"/>
+          <rect x="202.1" y="107.6" width="2" height="2" fill="#fff" fill-opacity="0.64"/>
+          <circle cx="191.0" cy="115.0" r="19.6" fill="#fff" fill-opacity="0.30"/>
+          <path d="M232 115.0 h14" stroke="#fff" stroke-opacity=".4"/>
+          <rect x="252" y="80" width="70" height="70" fill="none" stroke="#fff" stroke-opacity=".35"/>
+          <rect x="266.0" y="121.0" width="2" height="2" fill="#fff" fill-opacity="0.73"/>
+          <rect x="313.4" y="129.9" width="2" height="2" fill="#fff" fill-opacity="0.34"/>
+          <rect x="257.4" y="122.0" width="2" height="2" fill="#fff" fill-opacity="0.68"/>
+          <rect x="302.7" y="131.6" width="2" height="2" fill="#fff" fill-opacity="0.40"/>
+          <rect x="309.0" y="101.3" width="2" height="2" fill="#fff" fill-opacity="0.43"/>
+          <rect x="262.5" y="87.0" width="2" height="2" fill="#fff" fill-opacity="0.54"/>
+          <rect x="268.8" y="132.8" width="2" height="2" fill="#fff" fill-opacity="0.54"/>
+          <rect x="271.1" y="102.7" width="2" height="2" fill="#fff" fill-opacity="0.46"/>
+          <rect x="291.1" y="86.0" width="2" height="2" fill="#fff" fill-opacity="0.58"/>
+          <rect x="300.6" y="84.9" width="2" height="2" fill="#fff" fill-opacity="0.74"/>
+          <rect x="316.8" y="92.9" width="2" height="2" fill="#fff" fill-opacity="0.51"/>
+          <rect x="282.1" y="137.3" width="2" height="2" fill="#fff" fill-opacity="0.39"/>
+          <rect x="293.3" y="136.7" width="2" height="2" fill="#fff" fill-opacity="0.37"/>
+          <rect x="279.9" y="112.2" width="2" height="2" fill="#fff" fill-opacity="0.72"/>
+          <rect x="296.5" y="98.5" width="2" height="2" fill="#fff" fill-opacity="0.70"/>
+          <rect x="307.4" y="114.0" width="2" height="2" fill="#fff" fill-opacity="0.67"/>
+          <rect x="277.3" y="108.3" width="2" height="2" fill="#fff" fill-opacity="0.69"/>
+          <rect x="266.3" y="92.5" width="2" height="2" fill="#fff" fill-opacity="0.35"/>
+          <rect x="305.4" y="99.3" width="2" height="2" fill="#fff" fill-opacity="0.34"/>
+          <rect x="308.2" y="90.7" width="2" height="2" fill="#fff" fill-opacity="0.38"/>
+          <rect x="271.4" y="134.4" width="2" height="2" fill="#fff" fill-opacity="0.66"/>
+          <rect x="304.5" y="97.8" width="2" height="2" fill="#fff" fill-opacity="0.45"/>
+          <rect x="293.7" y="129.2" width="2" height="2" fill="#fff" fill-opacity="0.51"/>
+          <rect x="261.5" y="118.3" width="2" height="2" fill="#fff" fill-opacity="0.34"/>
+          <rect x="315.0" y="120.8" width="2" height="2" fill="#fff" fill-opacity="0.54"/>
+          <rect x="271.6" y="95.9" width="2" height="2" fill="#fff" fill-opacity="0.60"/>
+          <rect x="308.3" y="103.3" width="2" height="2" fill="#fff" fill-opacity="0.41"/>
+          <rect x="309.9" y="104.0" width="2" height="2" fill="#fff" fill-opacity="0.62"/>
+          <rect x="269.2" y="127.4" width="2" height="2" fill="#fff" fill-opacity="0.31"/>
+          <rect x="308.1" y="136.5" width="2" height="2" fill="#fff" fill-opacity="0.65"/>
+          <rect x="306.1" y="100.0" width="2" height="2" fill="#fff" fill-opacity="0.48"/>
+          <rect x="293.4" y="122.2" width="2" height="2" fill="#fff" fill-opacity="0.70"/>
+          <rect x="291.5" y="115.6" width="2" height="2" fill="#fff" fill-opacity="0.40"/>
+          <rect x="307.3" y="90.4" width="2" height="2" fill="#fff" fill-opacity="0.62"/>
+          <rect x="290.2" y="137.8" width="2" height="2" fill="#fff" fill-opacity="0.48"/>
+          <rect x="304.1" y="94.3" width="2" height="2" fill="#fff" fill-opacity="0.55"/>
+          <rect x="313.6" y="124.9" width="2" height="2" fill="#fff" fill-opacity="0.31"/>
+          <rect x="305.2" y="126.2" width="2" height="2" fill="#fff" fill-opacity="0.44"/>
+          <rect x="255.5" y="95.5" width="2" height="2" fill="#fff" fill-opacity="0.51"/>
+          <rect x="261.7" y="105.4" width="2" height="2" fill="#fff" fill-opacity="0.52"/>
+          <rect x="287.5" y="88.1" width="2" height="2" fill="#fff" fill-opacity="0.31"/>
+          <rect x="294.5" y="104.3" width="2" height="2" fill="#fff" fill-opacity="0.46"/>
+          <rect x="268.6" y="117.6" width="2" height="2" fill="#fff" fill-opacity="0.46"/>
+          <rect x="311.7" y="108.1" width="2" height="2" fill="#fff" fill-opacity="0.45"/>
+          <circle cx="287.0" cy="115.0" r="19.6" fill="#fff" fill-opacity="0.45"/>
+          <path d="M328 115.0 h14" stroke="#fff" stroke-opacity=".4"/>
+          <rect x="348" y="80" width="70" height="70" fill="none" stroke="#fff" stroke-opacity=".35"/>
+          <rect x="361.2" y="143.6" width="2" height="2" fill="#fff" fill-opacity="0.53"/>
+          <rect x="352.0" y="103.5" width="2" height="2" fill="#fff" fill-opacity="0.46"/>
+          <rect x="358.8" y="140.9" width="2" height="2" fill="#fff" fill-opacity="0.71"/>
+          <rect x="392.6" y="143.7" width="2" height="2" fill="#fff" fill-opacity="0.67"/>
+          <rect x="404.1" y="84.9" width="2" height="2" fill="#fff" fill-opacity="0.46"/>
+          <rect x="396.7" y="111.7" width="2" height="2" fill="#fff" fill-opacity="0.57"/>
+          <rect x="359.0" y="93.6" width="2" height="2" fill="#fff" fill-opacity="0.62"/>
+          <rect x="391.1" y="83.6" width="2" height="2" fill="#fff" fill-opacity="0.38"/>
+          <rect x="365.1" y="95.8" width="2" height="2" fill="#fff" fill-opacity="0.68"/>
+          <rect x="402.8" y="102.1" width="2" height="2" fill="#fff" fill-opacity="0.60"/>
+          <rect x="391.0" y="89.4" width="2" height="2" fill="#fff" fill-opacity="0.31"/>
+          <rect x="378.6" y="113.9" width="2" height="2" fill="#fff" fill-opacity="0.57"/>
+          <rect x="380.3" y="102.2" width="2" height="2" fill="#fff" fill-opacity="0.58"/>
+          <rect x="406.3" y="83.2" width="2" height="2" fill="#fff" fill-opacity="0.38"/>
+          <rect x="362.2" y="104.5" width="2" height="2" fill="#fff" fill-opacity="0.45"/>
+          <rect x="405.9" y="96.8" width="2" height="2" fill="#fff" fill-opacity="0.39"/>
+          <rect x="389.4" y="92.8" width="2" height="2" fill="#fff" fill-opacity="0.68"/>
+          <rect x="410.4" y="90.1" width="2" height="2" fill="#fff" fill-opacity="0.62"/>
+          <rect x="360.9" y="125.3" width="2" height="2" fill="#fff" fill-opacity="0.38"/>
+          <rect x="352.1" y="141.1" width="2" height="2" fill="#fff" fill-opacity="0.72"/>
+          <rect x="366.7" y="103.9" width="2" height="2" fill="#fff" fill-opacity="0.58"/>
+          <rect x="397.0" y="144.3" width="2" height="2" fill="#fff" fill-opacity="0.40"/>
+          <rect x="372.1" y="123.9" width="2" height="2" fill="#fff" fill-opacity="0.53"/>
+          <rect x="355.8" y="126.9" width="2" height="2" fill="#fff" fill-opacity="0.73"/>
+          <circle cx="383.0" cy="115.0" r="19.6" fill="#fff" fill-opacity="0.60"/>
+          <path d="M424 115.0 h14" stroke="#fff" stroke-opacity=".4"/>
+          <rect x="444" y="80" width="70" height="70" fill="none" stroke="#fff" stroke-opacity=".35"/>
+          <rect x="496.4" y="128.0" width="2" height="2" fill="#fff" fill-opacity="0.35"/>
+          <rect x="495.2" y="95.7" width="2" height="2" fill="#fff" fill-opacity="0.66"/>
+          <rect x="481.1" y="112.9" width="2" height="2" fill="#fff" fill-opacity="0.60"/>
+          <rect x="453.9" y="133.1" width="2" height="2" fill="#fff" fill-opacity="0.44"/>
+          <circle cx="479.0" cy="115.0" r="19.6" fill="var(--accent)" fill-opacity="1.00"/>
+          <text x="60" y="172" font-family="IBM Plex Mono" font-size="9" fill="#fff" fill-opacity=".5">NOISE → IMAGE · DIFFUSION</text>
+          </svg>
+        <span class="tag mono">Corporate training toolkit</span>
+      </div>
+      <div class="meta mono"><span>04</span><span class="pill">Corporate · Interactive explainers</span></div>
+      <h3>AI, explained interactively</h3>
+      <p>My own set of interactive explainers for corporate teams, used in workshops and client sessions: the full AI timeline, a benchmark chart, a platform overview across industries, the "five-layer cake" of the AI economy, how diffusion models work, and more.</p>
+    </article>
+
+    <!-- 05 -->
+    <article class="card c5">
+      <div class="art">
+        <svg class="bg" viewBox="0 0 600 480" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g font-family="Archivo" font-weight="800" style="font-stretch:72%" fill="#fff">
+            <text x="40" y="130" font-size="64" fill-opacity=".3">PAIN POINTS</text>
+            <text x="40" y="210" font-size="64" fill-opacity=".55">PRIORITIES</text>
+            <text x="40" y="290" font-size="64" fill="var(--accent)">BUILD</text>
+          </g>
+        </svg>
+        <span class="tag mono">Leadership sessions</span>
+      </div>
+      <div class="meta mono"><span>05</span><span class="pill">Leadership · Strategy sessions</span></div>
+      <h3>AI labs for leadership teams</h3>
+      <p>Small-room sessions for decision-makers, built on each team's own problems. One senior leadership team came in with pain points gathered from its staff and left with priorities. In "From chat to built", participants built a working SwiftUI app with Claude Code.</p>
+    </article>
+
+    <!-- 06 -->
+    <article class="card c6">
+      <div class="art">
+        <svg class="bg" viewBox="0 0 500 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <text x="30" y="200" font-family="Archivo" font-weight="800" font-size="170" style="font-stretch:72%" fill="#000">1:1</text>
+          <circle cx="330" cy="92" r="12" fill="var(--accent)"/>
+          <g font-family="IBM Plex Mono" font-size="11" fill="#000" fill-opacity=".8">
+            <text x="34" y="244">TEAM · BUSINESS · PAIN POINTS</text>
+            <text x="34" y="262">→ WORKFLOWS YOU RUN YOURSELF</text>
+          </g>
+        </svg>
+        <span class="tag mono">One executive · one business</span>
+      </div>
+      <div class="meta mono"><span>06</span><span class="pill">Executive · 1:1 coaching</span></div>
+      <h3>Executive coach</h3>
+      <p>One-on-one work with a single executive. I start by understanding their team, their business and where the friction is, then teach them to implement the workflows and solutions themselves, so the capability stays with them, not with a consultant.</p>
+    </article>
+
+    <!-- 07 -->
+    <article class="card c7">
+      <div class="art">
+        <svg class="bg" viewBox="0 0 500 420" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="none" stroke="#000" stroke-opacity=".75">
+            <rect x="40" y="70" width="110" height="60"/><rect x="195" y="70" width="110" height="60"/><rect x="350" y="70" width="110" height="60"/>
+            <rect x="118" y="200" width="110" height="60"/><rect x="272" y="200" width="110" height="60" fill="var(--accent)" stroke="none"/>
+            <path d="M150 100 H195 M305 100 H350 M250 130 V165 H173 V200 M250 165 H327 V200"/>
+          </g>
+          <g font-family="IBM Plex Mono" font-size="10" fill="#000"><text x="54" y="104">SOURCES</text><text x="209" y="104">RULES</text><text x="364" y="104">MODEL</text><text x="132" y="234">REVIEW</text><text x="286" y="234">DESTINATION</text></g>
+        </svg>
+        <span class="tag mono">Configure · deploy · reuse</span>
+      </div>
+      <div class="meta mono"><span>07</span><span class="pill">Product · Agent framework</span></div>
+      <h3>Agent Architecture</h3>
+      <p>My own framework for launching agent systems quickly. Instead of building each one from scratch, an organization plugs in its sources, rules and publishing destination, and gets a working Claude-powered system with deduplication, a human review dashboard and publishing built in.</p>
+    </article>
+
+    <!-- 08 -->
+    <article class="card c8">
+      <div class="art">
+        <svg class="bg" viewBox="0 0 600 440" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <g fill="#fff" fill-opacity=".28">
+            <circle cx="80" cy="90" r="5"/><circle cx="130" cy="90" r="5"/><circle cx="180" cy="90" r="5"/><circle cx="230" cy="90" r="5"/><circle cx="280" cy="90" r="5"/><circle cx="330" cy="90" r="5"/>
+            <circle cx="80" cy="140" r="5"/><circle cx="130" cy="140" r="5"/><circle cx="230" cy="140" r="5"/><circle cx="280" cy="140" r="5"/><circle cx="330" cy="140" r="5"/>
+            <circle cx="80" cy="190" r="5"/><circle cx="130" cy="190" r="5"/><circle cx="180" cy="190" r="5"/><circle cx="280" cy="190" r="5"/><circle cx="330" cy="190" r="5"/>
+            <circle cx="130" cy="240" r="5"/><circle cx="180" cy="240" r="5"/><circle cx="230" cy="240" r="5"/><circle cx="280" cy="240" r="5"/>
+          </g>
+          <g fill="var(--accent)"><circle cx="180" cy="140" r="7"/><circle cx="230" cy="190" r="7"/><circle cx="80" cy="240" r="7"/><circle cx="330" cy="240" r="7"/></g>
+          <path d="M380 90 H 520 M380 140 H 490 M380 190 H 540 M380 240 H 460" stroke="#fff" stroke-opacity=".5" stroke-width="6"/>
+          <g font-family="IBM Plex Mono" font-size="11" fill="#fff" fill-opacity=".55"><text x="80" y="300">INTERVIEWS · RUBRIC · CODING → SYNTHESIS</text></g>
+        </svg>
+        <span class="tag mono">Research &amp; strategy</span>
+      </div>
+      <div class="meta mono"><span>08</span><span class="pill">Education · Curriculum strategy</span></div>
+      <h3>Assessing curriculum in the age of AI</h3>
+      <p>A curriculum assessment for a graduate design and technology program, asking what students need to learn as AI reshapes the field. The work combined student interviews, rubric-based review and qualitative coding, and ended with recommendations for academic leadership.</p>
+    </article>
+  </div>
+</section>
+
+<!-- ============ CONSULTING ============ -->
+<section id="consulting" class="sec wrap">
+  <div class="sec-head">
+    <h2 class="display">Consulting</h2>
+    <p class="aside">I build AI systems end to end: the data pipeline, the model choice, and the interface your team will actually use.</p>
+  </div>
+  <div class="svc">
+    <div class="svc-row">
+      <span class="n mono">01</span>
+      <h3>Custom AI Builds</h3>
+      <p>Agentic pipelines, internal tools, dashboards and apps, scoped around a single workflow that should run itself. Every build ships with tests, cost limits and a human review step.</p>
+      <span class="fmt mono">4–8 week build</span>
+    </div>
+    <div class="svc-row">
+      <span class="n mono">02</span>
+      <h3>Strategy &amp; Audit</h3>
+      <p>A clear map of where AI helps your organization, where it doesn't, and what to do first. I cover tool selection, cost comparison, data readiness and a week-one plan.</p>
+      <span class="fmt mono">Short engagement</span>
+    </div>
+    <div class="svc-row">
+      <span class="n mono">03</span>
+      <h3>Team Workshops</h3>
+      <p>Practical, no-code-required sessions for executives, staff and communities, in English or Spanish, built around the problems your people actually face.</p>
+      <span class="fmt mono">Half-day<br>Full-day<br>Series</span>
+    </div>
+    <div class="svc-row">
+      <span class="n mono">04</span>
+      <h3>Executive Coach</h3>
+      <p>One-on-one work with a single executive. I learn the team, the business and the pain points, then teach you to implement the workflows and solutions yourself.</p>
+      <span class="fmt mono">1:1</span>
+    </div>
+    <div class="svc-row">
+      <span class="n mono">05</span>
+      <h3>Ongoing Retainer</h3>
+      <p>A standing technical partner once systems are live. I monitor, iterate, add capabilities and keep your team current as the models change.</p>
+      <span class="fmt mono">Monthly</span>
+    </div>
+  </div>
+  <div class="who mono">
+    <span class="l">Who I work with</span>
+    <span class="pill">Founders</span><span class="pill">Small &amp; mid-sized businesses</span><span class="pill">Enterprise teams</span><span class="pill">Schools &amp; universities</span><span class="pill">Cultural institutions</span>
+  </div>
+</section>
+
+<!-- ============ TEACHING ============ -->
+<section id="teaching" class="sec wrap">
+  <div class="sec-head">
+    <h2 class="display">Teaching</h2>
+    <p class="aside">I've taught code to designers for more than a decade. Now I teach AI to everyone else.</p>
+  </div>
+  <div class="teach">
+    <div class="col-a">
+      <div class="fact-block">
+        <p class="mono" style="font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px">Parsons School of Design · MFA Design &amp; Technology</p>
+        <h3>Part-time faculty since 2016</h3>
+        <p>I have taught JavaScript, front- and back-end web development, and openFrameworks to BFA and MFA students. Now I teach <em>Data as Material</em>, using data architecture, code and AI to build for the physical and digital world.</p>
+      </div>
+      <div class="plain">
+        <p><strong>Practical AI workshops.</strong> Two hours, up to 20 people, no coding required, in person or virtual. Every session includes live demos and hands-on exercises, and people build something of their own before they leave.</p>
+      </div>
+      <ul class="topics">
+        <li><span class="mono">01</span>What AI actually is</li>
+        <li><span class="mono">02</span>The landscape: models &amp; players</li>
+        <li><span class="mono">03</span>AI for your work</li>
+        <li><span class="mono">04</span>Automation without code</li>
+        <li><span class="mono">05</span>Agentic AI &amp; vibe coding</li>
+        <li><span class="mono">06</span>Ethics, bias &amp; agency</li>
+      </ul>
+    </div>
+    <div class="col-b">
+      <ul class="log">
+        <li><span class="d mono">Round table</span><div><h4>From chat to built</h4><p>Round table taking people from chatting with AI to shipping with it, including a SwiftUI app built live with Claude Code. <a href="https://reginaflores.github.io/AI_Workshop_June_3/" target="_blank" rel="noopener">Materials ↗</a></p></div></li>
+        <li><span class="d mono">Working session</span><div><h4>Senior leadership session</h4><p>AI session for a senior leadership team, built on pain points the organization collected from its own staff.</p></div></li>
+        <li><span class="d mono">Large-group workshop</span><div><h4>Corporate — Demystifying AI</h4><p>A 200+ person workshop, with a Spanish-language AI news briefing.</p></div></li>
+        <li><span class="d mono">Hands-on workshop</span><div><h4>Leadership workshop</h4><p>Hands-on AI workshop for leaders.</p></div></li>
+        <li><span class="d mono">Series</span><div><h4>Build-with-AI series</h4><p>Session one covered AI basics and web apps. Session two built iOS apps with Claude Code, Terminal and Xcode.</p></div></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARCHIVE ============ -->
+<section id="archive" class="sec wrap">
+  <div class="sec-head">
+    <h2 class="display">Earlier Work</h2>
+    <p class="aside">Data, privacy and visualization projects from my MFA and media-lab years, incubated at The Met Media Lab, MIT Media Lab, NYC Media Lab and the New Museum's NEW INC.</p>
+  </div>
+  <div class="arch">
+    <article>
+      <div class="ph">
+        <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="400" height="260" fill="#0A0A0A"/>
+          <g fill="none" stroke="#fff" stroke-opacity=".5"><rect x="60" y="50" width="120" height="160" rx="4"/><circle cx="120" cy="110" r="30"/><path d="M80 190 Q120 150 160 190"/></g>
+          <g fill="var(--accent)"><rect x="210" y="60" width="130" height="8"/><rect x="210" y="84" width="96" height="8"/><rect x="210" y="108" width="118" height="8"/><rect x="210" y="132" width="60" height="8"/><rect x="210" y="156" width="104" height="8"/></g>
+        </svg>
+      </div>
+      <div class="body">
+        <span class="yr mono">DATA X · 2016–17 · Co-founder</span>
+        <h3>Data Selfie</h3>
+        <p>A browser extension that shows you what your Facebook data says about you, as the machines read it.</p>
+        <span class="press mono">70,000+ installs · Vice, Fast Company, Mashable, The Next Web, Big Think · Index Award nominee</span>
+      </div>
+    </article>
+    <article>
+      <div class="ph"><img src="images/render-3d.jpg" alt="Holobiont Urbanism — 3D point-cloud visualization" loading="lazy"></div>
+      <div class="body">
+        <span class="yr mono">MIT Media Lab · 2015–16 · Research fellow</span>
+        <h3>Holobiont Urbanism</h3>
+        <p>Revealing the microbiological world of cities. Honeybees and modified hives collect samples, which are genetically sequenced and turned into 3D web visualizations of each city's microbial neighborhoods. Made with the Playful Systems group, Dr. Chris Mason, Dr. Elizabeth Henaff and others. It grew out of my Parsons thesis on mapping NYC's microbiome.</p>
+        <span class="press mono">Venice Architecture Biennale 2016, Palazzo Mora · Wired · National Geographic</span>
+        <a class="link-arrow mono" href="https://www.media.mit.edu/projects/holobiont-urbanism-revealing-the-microbiological-world-of-cities/overview/" target="_blank" rel="noopener" style="align-self:flex-start">MIT Media Lab project <span aria-hidden="true">↗</span></a>
+      </div>
+    </article>
+    <article>
+      <div class="ph">
+        <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="400" height="260" fill="#0A0A0A"/>
+          <g fill="#fff" fill-opacity=".85">
+            <rect x="40" y="130" width="10" height="40"/><rect x="58" y="100" width="10" height="100"/><rect x="76" y="80" width="10" height="140"/><rect x="94" y="115" width="10" height="70"/><rect x="112" y="95" width="10" height="110"/><rect x="130" y="125" width="10" height="50"/><rect x="148" y="70" width="10" height="160"/><rect x="166" y="105" width="10" height="90"/><rect x="184" y="120" width="10" height="60"/>
+          </g>
+          <g fill="var(--accent)"><rect x="202" y="60" width="10" height="180"/><rect x="220" y="90" width="10" height="120"/></g>
+          <g fill="#fff" fill-opacity=".4"><rect x="238" y="110" width="10" height="80"/><rect x="256" y="125" width="10" height="50"/><rect x="274" y="100" width="10" height="100"/><rect x="292" y="130" width="10" height="40"/><rect x="310" y="115" width="10" height="70"/><rect x="328" y="135" width="10" height="30"/><rect x="346" y="120" width="10" height="60"/></g>
+        </svg>
+      </div>
+      <div class="body">
+        <span class="yr mono">The Met Media Lab · 2015</span>
+        <h3>Rappers Delight</h3>
+        <p>A web app that uses hip hop to bring younger audiences into The Met's collection. It pairs the Genius (RapGenius) API with The Met's own API across 13 culturally influential rappers.</p>
+        <span class="press mono">The Met Media Lab Expo · NYC Media Lab Showcase</span>
+      </div>
+    </article>
+  </div>
+  <div class="also mono">
+    <span class="l">Also</span>
+    <span class="pill">Terreform One — three.js &amp; Arduino data systems, 2015</span>
+    <span class="pill">NY Media Lab Combine, 2016</span>
+    <span class="pill">NEW INC, 2016 cohort</span>
+  </div>
+</section>
+
+<!-- ============ WRITING ============ -->
+<section id="writing" class="sec wrap">
+  <div class="sec-head">
+    <h2 class="display">Writing</h2>
+  </div>
+  <div class="writing">
+    <div class="title">
+      <span class="pill mono">In progress · 2026</span>
+      <h3>Design Manifesto for a New Earth</h3>
+    </div>
+    <div class="detail">
+      <p style="margin:0;font-size:18px;line-height:1.5;color:var(--body)">A rewrite, for the age of AI, of the design manifesto I wrote at Parsons in 2014. It works down from the cosmos to the everyday: astrophysics, planet Earth, the technosphere, and what it would mean to design a new Earth. Its central question is whether power in technology concentrates or distributes.</p>
+      <div>
+        <p class="mono" style="margin:0 0 12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">The 2014 principles</p>
+        <div class="principles">
+          <div><span class="mono">I</span>Ecology above all else</div>
+          <div><span class="mono">II</span>Do no digital harm</div>
+          <div><span class="mono">III</span>Design to inspire</div>
+          <div><span class="mono">IV</span>Astrophysics as aesthetic</div>
+        </div>
+      </div>
+      <a class="link-arrow mono" href="https://reginafloresmir.com/blog/2014/11/10/paper-2-write-a-design-manifesto" target="_blank" rel="noopener">Read the 2014 manifesto <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about" class="sec wrap">
+  <div class="sec-head">
+    <h2 class="display">About</h2>
+  </div>
+  <div class="about">
+    <figure class="photo" style="margin:0">
+      <img src="images/HeadShot.jpeg" alt="Portrait of Regina Flores Mir" loading="lazy">
+      <figcaption class="mono"><span>Regina Flores Mir</span><span>New York</span></figcaption>
+    </figure>
+    <div class="text">
+      <p class="b">Regina Flores Mir is an AI consultant and educator whose career spans astrophysics, quantitative finance, and design and technology. She works with founders and corporate teams on data architecture and agentic AI systems, from strategy and workflow automation to full-stack builds. Her work has been incubated at The Met Media Lab, NYC Media Lab and the New Museum's NEW INC, and her MIT Media Lab work went to the 2016 Venice Biennale. She holds degrees from Columbia and Parsons, where she teaches Design and Technology. Her workshops make AI practical for non-technical teams, from executives to classrooms.</p>
+
+      <div class="cv">
+        <div>
+          <h4 class="mono">Experience</h4>
+          <ul>
+            <li>AI Consulting — Founder <span class="mono">2026 – Current</span></li>
+            <li>Parsons MFADT — Faculty <span class="mono">2016 – Current</span></li>
+            <li>DATA X — Co-founder <span class="mono">2016–17</span></li>
+            <li>MIT Media Lab — Research Fellow <span class="mono">2015–16</span></li>
+            <li>The Cue Group — Dir. of Analytics <span class="mono">2012–14</span></li>
+            <li>J.P. Morgan — Associate, FX/Rates/Commodities <span class="mono">2008–11</span></li>
+            <li>Brevan Howard — Quant Strategies <span class="mono">2007</span></li>
+            <li>Goldman Sachs — Analyst, Prime Brokerage <span class="mono">2005–07</span></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="mono">Education</h4>
+          <ul>
+            <li>Parsons — MFA, Design &amp; Technology <span class="mono">2016</span></li>
+            <li>Columbia — MA, Statistics (Finance) <span class="mono">2008</span></li>
+            <li>Barnard, Columbia — BA, Physics (Astrophysics) <span class="mono">2004</span></li>
+          </ul>
+          <h4 class="mono" style="margin-top:40px">Science</h4>
+          <ul>
+            <li>NAIC — Arecibo, PR <span class="mono">2004</span></li>
+            <li>NAIC — Green Bank, WV <span class="mono">2003</span></li>
+            <li>NASA Ames Research Center <span class="mono">2000–01</span></li>
+          </ul>
+          <h4 class="mono" style="margin-top:40px">Tools</h4>
+          <ul>
+            <li>Claude API &amp; Claude Code · Python · R</li>
+            <li>React · Node · REST APIs · SwiftUI</li>
+            <li>p5.js · three.js · openFrameworks · GLSL</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<footer id="contact" class="wrap">
+  <div class="cta">
+    <h2 class="display">Let’s<br><span>build.</span></h2>
+    <div class="r">
+      <a class="mail" href="mailto:regina@reginafloresmir.ai">regina@reginafloresmir.ai</a>
+      <span class="mono" style="font-size:13px;letter-spacing:.1em">CONSULTING · TEACHING · SPEAKING</span>
+      <div class="socials mono">
+        <a href="https://www.linkedin.com/in/reginafloresmir" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/reginaflores" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </div>
+  <div class="legal mono">
+    <span>© <span id="yr">2026</span> Regina Flores Mir — New York</span>
+    <nav aria-label="Footer">
+      <a href="#work">WORK</a><a href="#consulting">CONSULTING</a><a href="#about">ABOUT</a><a href="#top">BACK TO TOP ↑</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Starfield (seeded, matches the design mock)
+  var seed = 11, rnd = function(){ seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
+  var g = document.getElementById('stars'), ns = 'http://www.w3.org/2000/svg', html = '';
+  var dly = [0,-1.1,-2.3,-3.4,-4.6,-5.7], dur = [3.2,4.4,5.9,7.3];
+  for (var i = 0; i < 160; i++) {
+    var x = Math.round(rnd()*1440), y = Math.round(rnd()*900), r = (0.5 + rnd()*1.7).toFixed(2);
+    var d = dly[Math.floor(rnd()*6)], u = dur[Math.floor(rnd()*4)];
+    html += '<circle class="tw" cx="'+x+'" cy="'+y+'" r="'+r+'" fill="#fff" style="animation-delay:'+d+'s;animation-duration:'+u+'s"/>';
+  }
+  g.innerHTML = html;
+
+  // Pause / play
+  var field = document.getElementById('field'), btn = document.getElementById('pause');
+  var ip = document.getElementById('ico-pause'), il = document.getElementById('ico-play');
+  function setPaused(p){
+    field.classList.toggle('paused', p);
+    ip.style.display = p ? 'none' : ''; il.style.display = p ? '' : 'none';
+    btn.setAttribute('aria-label', p ? 'Play background animation' : 'Pause background animation');
+  }
+  btn.addEventListener('click', function(){ setPaused(!field.classList.contains('paused')); });
+  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) setPaused(true);
+
+  // Menu
+  var mb = document.getElementById('menu-btn'), menu = document.getElementById('site-menu'), lbl = document.getElementById('menu-label');
+  function setMenu(o){ menu.classList.toggle('open', o); mb.setAttribute('aria-expanded', o); lbl.textContent = o ? 'Close' : 'Menu'; }
+  mb.addEventListener('click', function(e){ e.stopPropagation(); setMenu(!menu.classList.contains('open')); });
+  menu.addEventListener('click', function(e){ if (e.target.closest('a')) setMenu(false); });
+  document.addEventListener('click', function(e){ if (!menu.contains(e.target)) setMenu(false); });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { setMenu(false); mb.focus(); } });
+
+  document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+</body>
+</html>
