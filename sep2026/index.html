@@ -157,7 +157,7 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
 #archive{background:#F3F3F1}
 .arch{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
 .arch article{background:#fff;display:flex;flex-direction:column}
-.arch .ph{height:260px;background:#0A0A0A;position:relative;overflow:hidden}
+.arch .ph{height:260px;background:#0A0A0A;position:relative;overflow:hidden;border-bottom:4px solid var(--accent)}
 .arch .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05)}
 .arch .ph svg{position:absolute;inset:0;width:100%;height:100%}
 .arch .ph img.flash{position:absolute;inset:0;opacity:0;transition:opacity .3s ease}
@@ -196,6 +196,7 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
 .cv ul{margin:0;padding:0;list-style:none}
 .cv li{padding:9px 0;border-bottom:1px solid var(--rule);font-size:16px;line-height:1.35;display:flex;justify-content:space-between;gap:16px}
 .cv li span{font-size:12px;color:var(--muted);white-space:nowrap;padding-top:3px}
+.about .text mark{background:var(--accent);color:#000;padding:0 .2em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
 
 /* ---------- CONTACT ---------- */
 #contact{background:var(--accent);color:#000;padding-top:120px;padding-bottom:48px;display:flex;flex-direction:column;gap:80px}
@@ -860,7 +861,7 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
   </div>
   <div class="arch">
     <article>
-      <div class="ph"><iframe class="vid" id="ds-vid" src="https://player.vimeo.com/video/162077219?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1#t=56s" title="Data Selfie — project film" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+      <div class="ph"><iframe class="vid" id="ds-vid" src="https://player.vimeo.com/video/162077219?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1#t=57s" title="Data Selfie — project film" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
       <div class="body">
         <span class="yr mono">DATA X · 2016–17 · Co-founder</span>
         <h3>Data Selfie</h3>
@@ -909,7 +910,7 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
   </div>
   <div class="writing">
     <div class="title">
-      <span class="pill mono">In progress · 2026</span>
+      <span class="pill fill mono">In progress · 2026</span>
       <h3>Design Manifesto for a New Earth</h3>
     </div>
     <div class="detail">
@@ -938,7 +939,7 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
       <figcaption class="mono"><span>Regina Flores Mir</span><span>New York</span></figcaption>
     </figure>
     <div class="text">
-      <p class="b">Regina Flores Mir is an AI consultant and educator whose career spans astrophysics, quantitative finance, and design and technology. She works with founders and corporate teams on data architecture and agentic AI systems, from strategy and workflow automation to full-stack builds. Her work has been incubated at The Met Media Lab, NYC Media Lab and the New Museum's NEW INC, and her MIT Media Lab work went to the 2016 Venice Biennale. She holds degrees from Columbia and Parsons, where she teaches Design and Technology. Her workshops make AI practical for non-technical teams, from executives to classrooms.</p>
+      <p class="b"><mark>Regina Flores Mir</mark> is an AI consultant and educator whose career spans astrophysics, quantitative finance, and design and technology. She works with founders and corporate teams on data architecture and agentic AI systems, from strategy and workflow automation to full-stack builds. Her work has been incubated at The Met Media Lab, NYC Media Lab and the New Museum's NEW INC, and her MIT Media Lab work went to the 2016 Venice Biennale. She holds degrees from Columbia and Parsons, where she teaches Design and Technology. Her workshops make AI practical for non-technical teams, from executives to classrooms.</p>
 
       <div class="cv">
         <div>
@@ -1003,17 +1004,17 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script>
 (function(){
-  // Data Selfie: loop 0:56–1:22 of the film
+  // Data Selfie: loop 0:57–1:22 of the film
   var df = document.getElementById('ds-vid');
   if (df && window.Vimeo) {
     var dp = new Vimeo.Player(df), seeking = false;
     var restart = function(){
       if (seeking) return;
       seeking = true;
-      dp.setCurrentTime(56).catch(function(){}).then(function(){ seeking = false; });
+      dp.setCurrentTime(57).catch(function(){}).then(function(){ seeking = false; });
     };
     dp.ready().then(restart).catch(function(){});
-    dp.on('timeupdate', function(d){ if (d.seconds < 56 || d.seconds >= 82) restart(); });
+    dp.on('timeupdate', function(d){ if (d.seconds < 57 || d.seconds >= 82) restart(); });
   }
 
   // Rappers Delight: loop 0:04–0:12 of the film, then flash the app screenshot
