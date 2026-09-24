@@ -861,7 +861,7 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
   </div>
   <div class="arch">
     <article>
-      <div class="ph"><iframe class="vid" src="https://player.vimeo.com/video/162077219?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" title="Data Selfie — project film" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
+      <div class="ph"><iframe class="vid" id="ds-vid" src="https://player.vimeo.com/video/162077219?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1#t=56s" title="Data Selfie — project film" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
       <div class="body">
         <span class="yr mono">DATA X · 2016–17 · Co-founder</span>
         <h3>Data Selfie</h3>
@@ -1004,6 +1004,19 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
 <script src="https://player.vimeo.com/api/player.js"></script>
 <script>
 (function(){
+  // Data Selfie: loop 0:56–1:22 of the film
+  var df = document.getElementById('ds-vid');
+  if (df && window.Vimeo) {
+    var dp = new Vimeo.Player(df), seeking = false;
+    var restart = function(){
+      if (seeking) return;
+      seeking = true;
+      dp.setCurrentTime(56).catch(function(){}).then(function(){ seeking = false; });
+    };
+    dp.ready().then(restart).catch(function(){});
+    dp.on('timeupdate', function(d){ if (d.seconds < 56 || d.seconds >= 82) restart(); });
+  }
+
   // Rappers Delight: loop 0:04–0:12 of the film, then flash the app screenshot
   var rf = document.getElementById('rd-vid'), shot = document.getElementById('rd-shot');
   if (rf && shot && window.Vimeo) {
