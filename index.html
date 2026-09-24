@@ -130,6 +130,7 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
 .svc-row h3{margin:0;font-size:52px;font-weight:800;font-stretch:74%;line-height:.95;text-transform:uppercase}
 .svc-row p{margin:0;font-size:18px;line-height:1.45;color:rgba(255,255,255,.85)}
 .svc-row .fmt{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);padding-top:10px;text-align:right}
+.svc-row .fmt span{display:block}
 .who{display:flex;flex-wrap:wrap;gap:10px;margin-top:64px;align-items:center}
 .who .pill{border-color:rgba(255,255,255,.5)}
 .who span.l{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-right:8px}
@@ -218,6 +219,8 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
   #intro .big,.pillars{grid-column:1/-1}
   .svc-row{grid-template-columns:60px minmax(0,1fr) minmax(0,1fr)}
   .svc-row .fmt{grid-column:2/-1;text-align:left;padding-top:0}
+  .svc-row .fmt span{display:inline}
+  .svc-row .fmt span+span::before{content:"·";margin:0 .6em}
   .teach .col-a,.teach .col-b{grid-column:1/-1}
   .arch{grid-template-columns:1fr 1fr}
   .writing .title,.writing .detail{grid-column:1/-1}
@@ -792,7 +795,7 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
       <span class="n mono">03</span>
       <h3>Team Workshops</h3>
       <p>Practical, no-code-required sessions for executives, staff and communities, in English or Spanish, built around the problems your people actually face.</p>
-      <span class="fmt mono">Half-day<br>Full-day<br>Series</span>
+      <span class="fmt mono"><span>Half-day</span><span>Full-day</span><span>Series</span></span>
     </div>
     <div class="svc-row">
       <span class="n mono">04</span>
