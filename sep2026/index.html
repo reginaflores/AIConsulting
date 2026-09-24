@@ -26,8 +26,9 @@
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:24px}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:'Archivo','Helvetica Neue',Helvetica,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-a:hover{opacity:.72}
+a{color:inherit;text-decoration:none;transition:color .15s ease}
+a:hover{color:var(--accent)}
+#contact a:hover{color:#fff}
 img{display:block;max-width:100%}
 .mono{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace}
 .wrap{padding-left:var(--gutter);padding-right:var(--gutter)}
@@ -158,13 +159,18 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
 .arch .ph{height:260px;background:#0A0A0A;position:relative;overflow:hidden}
 .arch .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05)}
 .arch .ph svg{position:absolute;inset:0;width:100%;height:100%}
+.arch .ph img.flash{position:absolute;inset:0;opacity:0;transition:opacity .3s ease}
+.arch .ph img.flash.on{opacity:1}
+.arch .ph iframe.vid{position:absolute;top:50%;left:50%;width:max(100%,calc(260px * 16 / 9));aspect-ratio:16/9;height:auto;transform:translate(-50%,-50%);border:0;pointer-events:none;filter:grayscale(1) contrast(1.05)}
 .arch .body{padding:24px 24px 28px;display:flex;flex-direction:column;gap:12px}
 .arch .yr{font-size:12px;letter-spacing:.1em;color:var(--muted);text-transform:uppercase}
 .arch h3{margin:0;font-size:34px;font-weight:800;font-stretch:74%;line-height:.95;text-transform:uppercase}
 .arch p{margin:0;font-size:16px;line-height:1.45;color:var(--body)}
-.arch .press{font-size:12px;letter-spacing:.06em;color:#000;border-top:1px solid var(--rule);padding-top:12px;margin-top:auto}
-.also{margin-top:48px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
-.also .l{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-right:6px}
+.arch .press-block{border-top:1px solid var(--rule);padding-top:14px;margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.arch .stat{font-size:12px;letter-spacing:.06em;color:#000}
+.arch .plinks{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;font-size:12px;letter-spacing:.04em}
+.arch .plinks .pl{width:100%;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.arch .plinks a{border-bottom:1px solid currentColor;padding-bottom:1px}
 
 /* ---------- WRITING ---------- */
 .writing{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;row-gap:48px;align-items:start}
@@ -684,7 +690,7 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
       </div>
       <div class="meta mono"><span>04</span><span class="pill">Corporate · Interactive explainers</span></div>
       <h3>AI, explained interactively</h3>
-      <p>My own set of interactive explainers for corporate teams, used in workshops and client sessions: the full AI timeline, a benchmark chart, a platform overview across industries, the "five-layer cake" of the AI economy, how diffusion models work, and more.</p>
+      <p>Custom interactive explainers for corporate teams, used in workshops and client sessions. Examples: the full AI timeline, a benchmark chart, a platform overview across industries, a primer on the "five-layer cake" of the AI economy, or how diffusion models work.</p>
     </article>
 
     <!-- 05 -->
@@ -852,54 +858,48 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
   </div>
   <div class="arch">
     <article>
-      <div class="ph">
-        <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="400" height="260" fill="#0A0A0A"/>
-          <g fill="none" stroke="#fff" stroke-opacity=".5"><rect x="60" y="50" width="120" height="160" rx="4"/><circle cx="120" cy="110" r="30"/><path d="M80 190 Q120 150 160 190"/></g>
-          <g fill="var(--accent)"><rect x="210" y="60" width="130" height="8"/><rect x="210" y="84" width="96" height="8"/><rect x="210" y="108" width="118" height="8"/><rect x="210" y="132" width="60" height="8"/><rect x="210" y="156" width="104" height="8"/></g>
-        </svg>
-      </div>
+      <div class="ph"><iframe class="vid" src="https://player.vimeo.com/video/162077219?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1" title="Data Selfie — project film" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe></div>
       <div class="body">
         <span class="yr mono">DATA X · 2016–17 · Co-founder</span>
         <h3>Data Selfie</h3>
-        <p>A browser extension that shows you what your Facebook data says about you, as the machines read it.</p>
-        <span class="press mono">70,000+ installs · Vice, Fast Company, Mashable, The Next Web, Big Think · Index Award nominee</span>
+        <p>A browser extension that shows you what your Facebook data says about you, as the machines read it. Developed through NEW INC (2016 cohort) and the NY Media Lab Combine (2016).</p>
+        <div class="press-block">
+          <span class="stat mono">70,000+ installs · Index Award nominee</span>
+          <div class="plinks mono"><span class="pl">Press</span><a href="https://www.vice.com/en/article/data-selfie-app-shows-you-exactly-who-facebook-thinks-you-are/" target="_blank" rel="noopener">Vice <span aria-hidden="true">↗</span></a><a href="https://www.fastcompany.com/3067874/a-dead-simple-tool-to-find-out-what-facebook-knows-about-you" target="_blank" rel="noopener">Fast Company <span aria-hidden="true">↗</span></a><a href="https://thenextweb.com/news/facebook-chrome-track-data-selfie" target="_blank" rel="noopener">The Next Web <span aria-hidden="true">↗</span></a><a href="https://bigthink.com/technology-innovation/hack-your-own-facebook-data-with-this-spooky-tool/" target="_blank" rel="noopener">Big Think <span aria-hidden="true">↗</span></a></div>
+          <div class="plinks mono"><span class="pl">Video</span><a href="https://vimeo.com/162077219" target="_blank" rel="noopener">Watch the film <span aria-hidden="true">↗</span></a></div>
+        </div>
       </div>
     </article>
     <article>
-      <div class="ph"><img src="images/render-3d.jpg" alt="Holobiont Urbanism — 3D point-cloud visualization" loading="lazy"></div>
+      <div class="ph"><img src="images/holobiont-sydney.gif" alt="Holobiont Urbanism: radial tree of the microbes found in a Sydney beehive, 306 Elizabeth St." loading="lazy"></div>
       <div class="body">
         <span class="yr mono">MIT Media Lab · 2015–16 · Research fellow</span>
         <h3>Holobiont Urbanism</h3>
         <p>Revealing the microbiological world of cities. Honeybees and modified hives collect samples, which are genetically sequenced and turned into 3D web visualizations of each city's microbial neighborhoods. Made with the Playful Systems group, Dr. Chris Mason, Dr. Elizabeth Henaff and others. It grew out of my Parsons thesis on mapping NYC's microbiome.</p>
-        <span class="press mono">Venice Architecture Biennale 2016, Palazzo Mora · Wired · National Geographic</span>
-        <a class="link-arrow mono" href="https://www.media.mit.edu/projects/holobiont-urbanism-revealing-the-microbiological-world-of-cities/overview/" target="_blank" rel="noopener" style="align-self:flex-start">MIT Media Lab project <span aria-hidden="true">↗</span></a>
+        <div class="press-block">
+          <span class="stat mono">Venice Architecture Biennale 2016, Palazzo Mora</span>
+          <div class="plinks mono"><span class="pl">Press</span><a href="https://www.wired.com/2016/08/bees-help-build-gorgeous-maps-nycs-microbes/" target="_blank" rel="noopener">Wired <span aria-hidden="true">↗</span></a><a href="https://www.nationalgeographic.com/animals/article/honeybees-reveal-city-microbiome-bacteria-fungi-viruses" target="_blank" rel="noopener">National Geographic <span aria-hidden="true">↗</span></a><a href="https://www.creativeapplications.net/project/holobiont-urbanism-city-as-a-complex-adaptive-biological-superstructure/" target="_blank" rel="noopener">CreativeApplications.Net <span aria-hidden="true">↗</span></a><a href="https://www.media.mit.edu/projects/holobiont-urbanism-revealing-the-microbiological-world-of-cities/overview/" target="_blank" rel="noopener">MIT Media Lab <span aria-hidden="true">↗</span></a></div>
+          <div class="plinks mono"><span class="pl">White paper</span><a href="https://environmentalmicrobiome.biomedcentral.com/articles/10.1186/s40793-023-00467-z" target="_blank" rel="noopener">Environmental Microbiome, 2023 <span aria-hidden="true">↗</span></a></div>
+          <div class="plinks mono"><span class="pl">Video</span><a href="https://vimeo.com/165513932" target="_blank" rel="noopener">Watch the film <span aria-hidden="true">↗</span></a></div>
+        </div>
       </div>
     </article>
     <article>
       <div class="ph">
-        <svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="400" height="260" fill="#0A0A0A"/>
-          <g fill="#fff" fill-opacity=".85">
-            <rect x="40" y="130" width="10" height="40"/><rect x="58" y="100" width="10" height="100"/><rect x="76" y="80" width="10" height="140"/><rect x="94" y="115" width="10" height="70"/><rect x="112" y="95" width="10" height="110"/><rect x="130" y="125" width="10" height="50"/><rect x="148" y="70" width="10" height="160"/><rect x="166" y="105" width="10" height="90"/><rect x="184" y="120" width="10" height="60"/>
-          </g>
-          <g fill="var(--accent)"><rect x="202" y="60" width="10" height="180"/><rect x="220" y="90" width="10" height="120"/></g>
-          <g fill="#fff" fill-opacity=".4"><rect x="238" y="110" width="10" height="80"/><rect x="256" y="125" width="10" height="50"/><rect x="274" y="100" width="10" height="100"/><rect x="292" y="130" width="10" height="40"/><rect x="310" y="115" width="10" height="70"/><rect x="328" y="135" width="10" height="30"/><rect x="346" y="120" width="10" height="60"/></g>
-        </svg>
+        <iframe class="vid" id="rd-vid" src="https://player.vimeo.com/video/128783874?background=1&amp;autoplay=1&amp;loop=1&amp;muted=1&amp;dnt=1#t=4s" title="Rappers Delight — project film" allow="autoplay; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <img class="flash on" id="rd-shot" src="images/rappers-delight.jpg" alt="The HipHop Project web app: rapper portraits above lyric words paired with works from The Met's collection" loading="lazy">
       </div>
       <div class="body">
         <span class="yr mono">The Met Media Lab · 2015</span>
         <h3>Rappers Delight</h3>
         <p>A web app that uses hip hop to bring younger audiences into The Met's collection. It pairs the Genius (RapGenius) API with The Met's own API across 13 culturally influential rappers.</p>
-        <span class="press mono">The Met Media Lab Expo · NYC Media Lab Showcase</span>
+        <div class="press-block">
+          <span class="stat mono">The Met Media Lab Expo · NYC Media Lab Showcase</span>
+          <div class="plinks mono"><span class="pl">Press</span><a href="https://www.vice.com/en/article/the-hip-hop-guide-to-the-metropolitan-museum-of-art/" target="_blank" rel="noopener">Vice <span aria-hidden="true">↗</span></a><a href="https://www.fastcompany.com/3051697/get-a-guided-tour-of-the-met-from-jay-z-kanye-west-and-drake" target="_blank" rel="noopener">Fast Company <span aria-hidden="true">↗</span></a><a href="https://hypebeast.com/2015/10/kanye-drake-kendrick-met-museum" target="_blank" rel="noopener">Hypebeast <span aria-hidden="true">↗</span></a></div>
+          <div class="plinks mono"><span class="pl">Video</span><a href="https://vimeo.com/128783874" target="_blank" rel="noopener">Watch the film <span aria-hidden="true">↗</span></a></div>
+        </div>
       </div>
     </article>
-  </div>
-  <div class="also mono">
-    <span class="l">Also</span>
-    <span class="pill">Terreform One — three.js &amp; Arduino data systems, 2015</span>
-    <span class="pill">NY Media Lab Combine, 2016</span>
-    <span class="pill">NEW INC, 2016 cohort</span>
   </div>
 </section>
 
@@ -914,17 +914,16 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
       <h3>Design Manifesto for a New Earth</h3>
     </div>
     <div class="detail">
-      <p style="margin:0;font-size:18px;line-height:1.5;color:var(--body)">A rewrite, for the age of AI, of the design manifesto I wrote at Parsons in 2014. It works down from the cosmos to the everyday: astrophysics, planet Earth, the technosphere, and what it would mean to design a new Earth. Its central question is whether power in technology concentrates or distributes.</p>
+      <p style="margin:0;font-size:18px;line-height:1.5;color:var(--body)">A design manifesto for the age of AI. It moves from the cosmos down to the everyday, in four parts, and its central question is whether power in technology concentrates or distributes.</p>
       <div>
-        <p class="mono" style="margin:0 0 12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">The 2014 principles</p>
+        <p class="mono" style="margin:0 0 12px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)">The four parts</p>
         <div class="principles">
-          <div><span class="mono">I</span>Ecology above all else</div>
-          <div><span class="mono">II</span>Do no digital harm</div>
-          <div><span class="mono">III</span>Design to inspire</div>
-          <div><span class="mono">IV</span>Astrophysics as aesthetic</div>
+          <div><span class="mono">I</span>Powers of Ten: from the cosmos to the quark</div>
+          <div><span class="mono">II</span>Ecological ontology and intelligence</div>
+          <div><span class="mono">III</span>The TechnoSphere in the age of the singularity</div>
+          <div><span class="mono">IV</span>Ancestral Wisdom design and technology</div>
         </div>
       </div>
-      <a class="link-arrow mono" href="https://reginafloresmir.com/blog/2014/11/10/paper-2-write-a-design-manifesto" target="_blank" rel="noopener">Read the 2014 manifesto <span aria-hidden="true">↗</span></a>
     </div>
   </div>
 </section>
@@ -1002,6 +1001,32 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
   </div>
 </footer>
 
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+(function(){
+  // Rappers Delight: loop 0:04–0:12 of the film, then flash the app screenshot
+  var rf = document.getElementById('rd-vid'), shot = document.getElementById('rd-shot');
+  if (rf && shot && window.Vimeo) {
+    var pl = new Vimeo.Player(rf), busy = false;
+    pl.ready().then(function(){ return pl.setCurrentTime(4); }).catch(function(){});
+    // Screenshot stays up until the film is really playing (fallback if Vimeo fails)
+    pl.on('playing', function(){ if (!busy) shot.classList.remove('on'); });
+    pl.on('timeupdate', function(d){
+      if (busy) return;
+      if (d.seconds < 4) { pl.setCurrentTime(4); return; }
+      if (d.seconds >= 12) {
+        busy = true;
+        pl.pause().catch(function(){});
+        shot.classList.add('on');
+        setTimeout(function(){
+          pl.setCurrentTime(4).then(function(){ return pl.play(); }).catch(function(){});
+          setTimeout(function(){ shot.classList.remove('on'); busy = false; }, 350);
+        }, 2200);
+      }
+    });
+  }
+})();
+</script>
 <script>
 (function(){
   // Starfield (seeded, matches the design mock)
