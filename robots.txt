@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /sep2026/
+
+Sitemap: https://reginafloresmir.ai/sitemap.xml
