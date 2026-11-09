@@ -88,18 +88,9 @@ img{display:block;max-width:100%}
 
 /* ---------- HERO ---------- */
 #top{position:relative;min-height:100vh;min-height:100svh;background:var(--night);color:#fff;overflow:hidden;display:flex;flex-direction:column}
-#field{position:absolute;inset:0;width:100%;height:100%}
-.tw{animation:twinkle ease-in-out infinite}
-.orbit{transform-origin:1040px 470px;animation:spin 140s linear infinite}
-.orbit2{transform-origin:1040px 470px;animation:spin 220s linear infinite reverse}
-.sweep{transform-origin:1040px 470px;animation:spin 14s linear infinite}
-.wave{stroke-dasharray:14 10;animation:flow 6s linear infinite}
-.paused .tw,.paused .orbit,.paused .orbit2,.paused .sweep,.paused .wave{animation-play-state:paused}
-@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.95}}
-@keyframes spin{to{transform:rotate(360deg)}}
-@keyframes flow{to{stroke-dashoffset:-240}}
-@media (prefers-reduced-motion:reduce){.tw,.orbit,.orbit2,.sweep,.wave{animation:none}html{scroll-behavior:auto}}
-.veil{position:absolute;inset:0;background:rgba(11,11,10,.35)}
+#field{position:absolute;inset:0;width:100%;height:100%;display:block}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.veil{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(11,11,10,.1) 0%,rgba(11,11,10,0) 35%,rgba(11,11,10,.72) 100%)}
 
 header.bar{position:relative;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:28px var(--gutter)}
 .logo{display:flex;align-items:center;gap:14px;min-height:44px}
@@ -127,7 +118,6 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
 .hero-foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:0 var(--gutter) 36px}
 .scroll-cue{display:flex;align-items:center;gap:14px;min-height:48px;font-size:13px;letter-spacing:.12em;text-transform:uppercase}
 .scroll-cue i{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;background:#fff}
-.pause{display:flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:999px;border:1px solid rgba(255,255,255,.5);background:transparent;cursor:pointer}
 
 /* ---------- INTRO ---------- */
 #intro{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;row-gap:56px;padding-top:120px;padding-bottom:110px;border-bottom:1px solid #000}
@@ -322,20 +312,7 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
 
 <!-- ============ HERO ============ -->
 <section id="top">
-  <svg id="field" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <g id="stars"></g>
-    <g class="orbit" fill="none" stroke="#fff" stroke-opacity=".16" stroke-width="1">
-      <ellipse cx="1040" cy="470" rx="520" ry="190"/>
-      <ellipse cx="1040" cy="470" rx="380" ry="380" stroke-dasharray="2 8"/>
-    </g>
-    <g class="orbit2" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="1">
-      <circle cx="1040" cy="470" r="250"/>
-      <circle cx="1040" cy="470" r="150" stroke-dasharray="1 6"/>
-      <circle cx="1290" cy="470" r="5" fill="var(--accent)" stroke="none"/>
-    </g>
-    <g class="sweep"><line x1="1040" y1="470" x2="1040" y2="-40" stroke="var(--accent)" stroke-opacity=".55" stroke-width="1.5"/></g>
-    <path class="wave" d="M0 700 C 120 660, 200 740, 320 700 S 520 650, 640 700 S 860 760, 980 700 S 1200 640, 1320 700 S 1440 720, 1500 700" fill="none" stroke="#fff" stroke-opacity=".3" stroke-width="1.2"/>
-  </svg>
+  <canvas id="field" aria-hidden="true"></canvas>
   <div class="veil"></div>
 
   <header class="bar">
@@ -378,10 +355,6 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
       <i><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#000" stroke-width="1.8" aria-hidden="true"><path d="M9 3v12M4 10l5 5 5-5"/></svg></i>
       <span>Scroll to work</span>
     </a>
-    <button class="pause" id="pause" aria-label="Pause background animation">
-      <svg id="ico-pause" width="16" height="16" viewBox="0 0 16 16" fill="#fff" aria-hidden="true"><rect x="3" y="2" width="3.4" height="12"/><rect x="9.6" y="2" width="3.4" height="12"/></svg>
-      <svg id="ico-play" width="16" height="16" viewBox="0 0 16 16" fill="#fff" aria-hidden="true" style="display:none"><path d="M4 2l10 6-10 6z"/></svg>
-    </button>
   </div>
 </section>
 
@@ -1052,28 +1025,6 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
 </script>
 <script>
 (function(){
-  // Starfield (seeded, matches the design mock)
-  var seed = 11, rnd = function(){ seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
-  var g = document.getElementById('stars'), ns = 'http://www.w3.org/2000/svg', html = '';
-  var dly = [0,-1.1,-2.3,-3.4,-4.6,-5.7], dur = [3.2,4.4,5.9,7.3];
-  for (var i = 0; i < 160; i++) {
-    var x = Math.round(rnd()*1440), y = Math.round(rnd()*900), r = (0.5 + rnd()*1.7).toFixed(2);
-    var d = dly[Math.floor(rnd()*6)], u = dur[Math.floor(rnd()*4)];
-    html += '<circle class="tw" cx="'+x+'" cy="'+y+'" r="'+r+'" fill="#fff" style="animation-delay:'+d+'s;animation-duration:'+u+'s"/>';
-  }
-  g.innerHTML = html;
-
-  // Pause / play
-  var field = document.getElementById('field'), btn = document.getElementById('pause');
-  var ip = document.getElementById('ico-pause'), il = document.getElementById('ico-play');
-  function setPaused(p){
-    field.classList.toggle('paused', p);
-    ip.style.display = p ? 'none' : ''; il.style.display = p ? '' : 'none';
-    btn.setAttribute('aria-label', p ? 'Play background animation' : 'Pause background animation');
-  }
-  btn.addEventListener('click', function(){ setPaused(!field.classList.contains('paused')); });
-  if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) setPaused(true);
-
   // Menu
   var mb = document.getElementById('menu-btn'), menu = document.getElementById('site-menu'), lbl = document.getElementById('menu-label');
   function setMenu(o){ menu.classList.toggle('open', o); mb.setAttribute('aria-expanded', o); lbl.textContent = o ? 'Close' : 'Menu'; }
@@ -1083,6 +1034,113 @@ header.bar{position:relative;z-index:5;display:flex;justify-content:space-betwee
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape') { setMenu(false); mb.focus(); } });
 
   document.getElementById('yr').textContent = new Date().getFullYear();
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// Hero data map (shared with /ai-workshops)
+(function(){
+  if (!window.THREE) return;
+  var hero = document.getElementById('top'), canvas = document.getElementById('field');
+  var renderer;
+  try { renderer = new THREE.WebGLRenderer({canvas:canvas, antialias:true, alpha:true}); } catch (e) { return; }
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0x000000, 0);
+  var W = function(){ return hero.clientWidth; }, H = function(){ return hero.clientHeight; };
+  renderer.setSize(W(), H(), false);
+
+  var scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0x0B0B0A, 0.0008);
+  var camera = new THREE.PerspectiveCamera(65, W()/H(), 1, 3000);
+  camera.position.z = 320;
+
+  function glowTex(rgb){
+    var sz = 128, c = document.createElement('canvas'); c.width = c.height = sz;
+    var x = c.getContext('2d'), g = x.createRadialGradient(sz/2,sz/2,0,sz/2,sz/2,sz/2);
+    g.addColorStop(0,'rgba('+rgb+',.9)'); g.addColorStop(.15,'rgba('+rgb+',.7)');
+    g.addColorStop(.4,'rgba('+rgb+',.3)'); g.addColorStop(.7,'rgba('+rgb+',.08)'); g.addColorStop(1,'rgba('+rgb+',0)');
+    x.fillStyle = g; x.fillRect(0,0,sz,sz);
+    return new THREE.CanvasTexture(c);
+  }
+  var glow = glowTex('0,217,95'), starGlow = glowTex('255,255,255');
+  var mobile = W() < 768;
+
+  function points(pos, size, tex, opacity, parent){
+    var geo = new THREE.BufferGeometry();
+    geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+    var mat = new THREE.PointsMaterial({size:size, map:tex, transparent:true, opacity:opacity, blending:THREE.AdditiveBlending, depthWrite:false});
+    parent.add(new THREE.Points(geo, mat));
+    return mat;
+  }
+
+  // Star field
+  var STARS = mobile ? 1200 : 3000, sp = new Float32Array(STARS*3), i, j;
+  for (i = 0; i < STARS; i++) {
+    var r = 500 + Math.random()*900, th = Math.random()*Math.PI*2, ph = Math.acos(2*Math.random()-1);
+    sp[i*3] = r*Math.sin(ph)*Math.cos(th); sp[i*3+1] = r*Math.sin(ph)*Math.sin(th); sp[i*3+2] = r*Math.cos(ph);
+  }
+  points(sp, 2.2, starGlow, .45, scene);
+
+  // Network, right of center so it clears the headline on desktop
+  var group = new THREE.Group();
+  group.position.set(mobile ? 0 : 110, mobile ? 70 : 40, 0);
+  scene.add(group);
+  var NODES = mobile ? 80 : 160, nodes = [], np = new Float32Array(NODES*3);
+  for (i = 0; i < NODES; i++) {
+    var nr = 60 + Math.random()*200, nt = Math.random()*Math.PI*2, nh = Math.acos(2*Math.random()-1);
+    var nx = nr*Math.sin(nh)*Math.cos(nt), ny = nr*Math.sin(nh)*Math.sin(nt), nz = nr*Math.cos(nh);
+    np[i*3] = nx; np[i*3+1] = ny; np[i*3+2] = nz; nodes.push([nx,ny,nz]);
+  }
+  var nodeMat = points(np, 10, glow, .8, group);
+  var HUBS = 14, hp = new Float32Array(HUBS*3);
+  for (i = 0; i < HUBS; i++) { var n = nodes[Math.floor(Math.random()*NODES)]; hp[i*3] = n[0]; hp[i*3+1] = n[1]; hp[i*3+2] = n[2]; }
+  var hubMat = points(hp, 32, glow, .75, group);
+
+  var lv = [], MAX = mobile ? 90 : 115;
+  for (i = 0; i < NODES; i++) for (j = i+1; j < NODES; j++) {
+    var a = nodes[i], b = nodes[j], dx = a[0]-b[0], dy = a[1]-b[1], dz = a[2]-b[2];
+    if (Math.sqrt(dx*dx+dy*dy+dz*dz) < MAX) lv.push(a[0],a[1],a[2],b[0],b[1],b[2]);
+  }
+  var lineGeo = new THREE.BufferGeometry();
+  lineGeo.setAttribute('position', new THREE.BufferAttribute(new Float32Array(lv), 3));
+  var lineMat = new THREE.LineBasicMaterial({color:0x00D95F, transparent:true, opacity:.3, blending:THREE.AdditiveBlending, depthWrite:false});
+  group.add(new THREE.LineSegments(lineGeo, lineMat));
+
+  var coreMat = new THREE.MeshBasicMaterial({color:0x00D95F, wireframe:true, transparent:true, opacity:.08});
+  group.add(new THREE.Mesh(new THREE.IcosahedronGeometry(100, 2), coreMat));
+
+  // Mouse parallax and click pulse
+  var tx = 0, ty = 0, cx = 0, cy = 0, rot = 0, pulse = -1e9;
+  window.addEventListener('mousemove', function(e){
+    tx = (e.clientY/innerHeight-.5)*1.1; ty = (e.clientX/innerWidth-.5)*-1.1;
+  });
+  hero.addEventListener('click', function(e){ if (!e.target.closest('a,button')) pulse = Date.now(); });
+
+  var still = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  window.addEventListener('resize', function(){
+    camera.aspect = W()/H(); camera.updateProjectionMatrix(); renderer.setSize(W(), H(), false);
+    if (still) renderer.render(scene, camera);
+  });
+  if (still) { renderer.render(scene, camera); return; }
+
+  // Only draw while the hero is on screen
+  var visible = true;
+  new IntersectionObserver(function(en){ visible = en[0].isIntersecting; }, {threshold:0}).observe(hero);
+  function frame(){
+    requestAnimationFrame(frame);
+    if (!visible) return;
+    var t = Date.now(), sec = t*.001;
+    rot += .0008; cx += (tx-cx)*.055; cy += (ty-cy)*.055;
+    group.rotation.y = rot+cy; group.rotation.x = cx;
+    hubMat.opacity = .6+.15*Math.sin(sec*1.4); nodeMat.opacity = .7+.1*Math.sin(sec*.9);
+    var since = (t-pulse)/1000;
+    if (since < 1.2) {
+      var w = Math.sin(since*Math.PI);
+      lineMat.opacity = .3+w*.3; coreMat.opacity = .08+w*.15; hubMat.size = 32+w*20;
+    } else { lineMat.opacity = .3; coreMat.opacity = .08; hubMat.size = 32; }
+    renderer.render(scene, camera);
+  }
+  frame();
 })();
 </script>
 </body>
